@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K4mera</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.33;
+            color: #333;
+            max-width: 36rem;
+            margin: 0 auto;
+            padding: 20px;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: #999;
+            font-weight: 500; /* TODO */
+            letter-spacing: 2px;
+            margin-top: 0;
+            margin-bottom: 0;
+            display: inline-block; /* Ensures it wraps around the text */
+        }
+
+        h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            text-wrap: balance;
+            margin-top: 4rem;
+            margin-bottom: 1.33rem;
+        }
+
+        mark {
+            background-color: #f4f1f1;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 1.33px;
+        }
+
+        a {
+            color: #333;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #666;
+        }
+
+        .footnote {
+            text-align: center;
+            margin: 7rem 0 0;
+        }
+
+        .title {
+            display: flex; /* Makes it wrap around content */
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        .title-image {
+            display: block;
+            width: 80%;
+            height: auto;
+        }
+
+        .float-animation {
+            backface-visibility: hidden;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(5px);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(5px);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="float-animation title">
+            <img src="k4mera.jpg" alt="K4MERA render" class="title-image">
+            <h1>
+                K4MERA
+            </h1>
+        </div>
+    </header>
+
+    <main>
+        <p><b>We're aiming to be the first digital wigglegram camera on the market.</b></p>
+
+        <!-- TODO: dynamic updates -->
+        <p><i>Update: No news.</i></p>
+
+
+        <h2>What is a wigglegram ?</h2>
+        <p><mark>A wigglegram is an animated effect that creates a 3D illusion</mark> by rapidly alternating between slightly different images. This mimics depth perception, making the subject appear to move or "pop out".</p>
+
+        <h2>Gallery</h2>
+        <p>See our images on <a href="https://giphy.com/channel/k4mera" target="_blank">Giphy</a>.</p>
+
+        <h2>Current Team</h2>
+        <p class="team-members">
+            The team is composed of the two co-founders,
+            <a href="https://www.instagram.com/maikkorr/" target="_blank">Maïkor Juvet (CEO)</a>, and 
+            <a href="https://x.com/jbmyoo" target="_blank">Jean-Baptiste Michel (CTO)</a>.
+        </p>
+
+        <h2>Behind the scenes</h2>
+        <p><i>Coming soon...</i></p>
+
+        <h2>Links</h2>
+        <p>You can find us on <a href="https://www.instagram.com/k4.mera/" target="_blank">instagram</a>, <a href="https://giphy.com/channel/k4mera" target="_blank">giphy</a>, and <a href="https://x.com/jbmyoo" target="_blank">X</a>.</p>
+
+        <h2>Inquire</h2>
+        <p>For any inquiry, or if you want to join the team, feel free to contact us <a href="mailto:team@k4mera.world">here</a>.</p>
+    </main>
+
+    <footer class="footnote">
+        <p>© 2025 k4mera.world</p>
+    </footer>
+
+</body>
+</html>
