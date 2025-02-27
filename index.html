@@ -18,7 +18,7 @@
         h1 {
             font-size: 5rem;
             color: #999;
-            font-weight: 500; /* TODO */
+            font-weight: 600; /* TODO */
             letter-spacing: 2px;
             margin-top: 0;
             margin-bottom: 0;
@@ -69,6 +69,7 @@
             display: block;
             width: 60%;
             height: auto;
+            cursor: crosshair;
         }
 
         .float-animation {
@@ -90,6 +91,32 @@
             }
         }
 
+        @keyframes scroll {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            50% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        .update-container {
+            display: inline-block;
+            overflow: hidden;
+            height: 1.5em;
+            vertical-align: middle;
+        }
+
+        .update-text {
+            display: block;
+            transition: transform 1.5s ease-in-out;
+        }
+
 
     </style>
 </head>
@@ -97,7 +124,7 @@
 
     <header>
         <div class="float-animation title">
-            <img src="k4mera.png" alt="K4MERA render" class="title-image">
+            <img src="k4mera.png" alt="K4MERA render" class="title-image" id="titleImage">
             <h1>
                 K4MERA
             </h1>
@@ -105,10 +132,10 @@
     </header>
 
     <main>
-        <p><b>We're aiming to be the first digital wigglegram camera on the market.</b></p>
+        <p><b>We're building the first digital wigglegram camera on the market.</b></p>
 
         <!-- TODO: dynamic updates -->
-        <p><i>Update: No news.</i></p>
+        <p class="updates"><i><b>Updates: </b><span class="update-container"><span id="update-text" class="update-text"></span></span></i></p>
 
 
         <h2>What is a wigglegram ?</h2>
@@ -121,14 +148,18 @@
         <p class="team-members">
             The team is composed of the two co-founders,
             <a href="https://www.instagram.com/maikkorr/" target="_blank">Maïkor Juvet (CEO)</a>, and 
-            <a href="https://x.com/jbmyoo" target="_blank">Jean-Baptiste Michel (CTO)</a>.
+            <a href="https://www.instagram.com/jbmyo/" target="_blank">Jean-Baptiste Michel (CTO)</a>.
         </p>
-
-        <h2>Behind the scenes</h2>
-        <p><i>Coming soon...</i></p>
 
         <h2>Links</h2>
         <p>You can find us on <a href="https://www.instagram.com/k4.mera/" target="_blank">instagram</a>, <a href="https://giphy.com/channel/k4mera" target="_blank">giphy</a>, and <a href="https://x.com/jbmyoo" target="_blank">X</a>.</p>
+
+
+        <h2>Behind the scenes</h2>
+        <div style="display: flex; justify-content: center;">
+            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">testing and assembling the very first prototype<br><br>first with a cli then with buttons<br><br>the first ui was 3 buttons and no screen <a href="https://t.co/sBj28aChc4">pic.twitter.com/sBj28aChc4</a></p>&mdash; building k4mera (@jbmyoo) <a href="https://twitter.com/jbmyoo/status/1891960122571677780?ref_src=twsrc%5Etfw">February 18, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+        <!-- <p><i>Coming soon...</i></p> -->
 
         <h2>Inquire</h2>
         <p>For any inquiry, or if you want to join the team, feel free to contact us <a href="mailto:team@k4mera.world">here</a>.</p>
@@ -137,6 +168,56 @@
     <footer class="footnote">
         <p>© 2025 k4mera.world</p>
     </footer>
+
+    <script>
+        // Get the image element
+        const titleImage = document.getElementById('titleImage');
+        
+        // Add click event listener
+        titleImage.addEventListener('click', function() {
+            // toggle between images
+            if (this.src.includes('k4mera.png')) {
+                this.src = 'k4mera2.png';
+            } else {
+                this.src = 'k4mera.png';
+            }
+        });
+
+
+        const updates = [
+            "Stay tuned for more updates.",
+            "A surprise is coming soon...",
+            "No updates at the moment.",
+            "Follow us to stay updated!"
+        ];
+
+        let index = 0;
+        const updateElement = document.getElementById('update-text');
+
+        updateElement.textContent = updates[index];
+        index = (index + 1) % updates.length
+
+        function updateText() {
+            updateElement.style.transform = 'translateY(-100%)';
+            setTimeout(() => {
+                updateElement.style.transform = 'translateY(0)';
+                setTimeout(() => {
+                    updateElement.style.transform = 'translateY(100%)';
+                    setTimeout(() => {
+                        updateElement.textContent = updates[index];
+                        updateElement.style.transition = 'none';
+                        updateElement.style.transform = 'translateY(-100%)';
+                        void updateElement.offsetWidth;
+                        updateElement.style.transition = '';
+                    }, 1500) // animation duration
+                    index = (index + 1) % updates.length;
+                }, 5000); // Show text for 5 seconds
+            }, 50);
+        }
+
+        updateText();
+        setInterval(updateText, 7000);
+    </script>
 
 </body>
 </html>
