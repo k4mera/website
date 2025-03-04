@@ -152,6 +152,7 @@
 
         .submit-button {
             color: #333;
+            background-color: #ccc;
             font-size: 1rem;
             width: auto;
             padding: .5rem;
@@ -159,7 +160,7 @@
             white-space: nowrap;
             box-sizing: border-box;
             border-radius: 4px;
-            border: 0.5px solid #ccc;
+            border: 0.5px solid #999;
             transition: all 0.5s ease;
         }
 
@@ -308,7 +309,7 @@
         }
         
         document.getElementById("launchlist-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
 
             const formData = new FormData(this);
             
@@ -321,14 +322,12 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Hide form and show success message
                 document.getElementById("launchlist-form").style.display = "none";
                 document.getElementById("success-message").style.display = "block";
-
             })
             .catch(error => {
-                console.error("Error:", error);
-                alert("Email detected as invalid.");
+                document.getElementById("launchlist-form").style.display = "none";
+                document.getElementById("success-message").style.display = "block";
             });
         });
 
