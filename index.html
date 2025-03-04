@@ -200,8 +200,8 @@
         <p><mark>Drop your email below</mark> to get the freshest updates, help us shape the product, and be the first to try K4mera. We won't spam you or resell your data.</p>
 
         <!-- Mailing List -->
-        <form class="launchlist-form" action="https://getlaunchlist.com/s/myIZjJ" method="POST">
-        <!-- <form id="launchlist-form" class="launchlist-form"> -->
+        <!-- <form class="launchlist-form" action="https://getlaunchlist.com/s/myIZjJ" method="POST"> -->
+        <form id="launchlist-form" class="launchlist-form">
             <input type="hidden" name="_gotcha" />
             
             <div class="input-container">
@@ -307,30 +307,30 @@
             }
         }
         
-        // document.getElementById("launchlist-form").addEventListener("submit", function(event) {
-        //     event.preventDefault(); // Prevent default form submission
+        document.getElementById("launchlist-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
 
-        //     const formData = new FormData(this);
+            const formData = new FormData(this);
             
-        //     fetch("https://getlaunchlist.com/s/myIZjJ", {
-        //         method: "POST",
-        //         body: formData,
-        //         headers: {
-        //             "Accept": "text/html,application/xhtml+xml,application/xml;"
-        //         }
-        //     })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // Hide form and show success message
-        //         document.getElementById("launchlist-form").style.display = "none";
-        //         document.getElementById("success-message").style.display = "block";
+            fetch("https://getlaunchlist.com/s/myIZjJ", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Accept": "text/html,application/xhtml+xml,application/xml;"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide form and show success message
+                document.getElementById("launchlist-form").style.display = "none";
+                document.getElementById("success-message").style.display = "block";
 
-        //     })
-        //     .catch(error => {
-        //         console.error("Error:", error);
-        //         alert("Email detected as invalid.");
-        //     });
-        // });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Email detected as invalid.");
+            });
+        });
 
 
 
