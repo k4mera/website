@@ -223,11 +223,6 @@
             <mark>K4mera was founded in Switzerland</mark> with the objective of bringing the first digital wiggle-camera on the market. With backgrounds in engineering, business and design, we believe that we can enable a new generation of cameras crafted for the modern creator.
         </p>
 
-        <h2>Behind the Scenes</h2>
-        <div style="display: flex; justify-content: center;">
-            <blockquote class="twitter-tweet"><p lang="en" dir="ltr">testing and assembling the very first prototype<br><br>first with a cli then with buttons<br><br>the first ui was 3 buttons and no screen <a href="https://t.co/sBj28aChc4">pic.twitter.com/sBj28aChc4</a></p>&mdash; building k4mera (@jbmyoo) <a href="https://twitter.com/jbmyoo/status/1891960122571677780?ref_src=twsrc%5Etfw">February 18, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-
         <h2>Inquire</h2>
         <p>For any inquiry, or if you want to join the team, feel free to contact us <a href="mailto:team@k4mera.world">here</a>.</p>
     </main>
@@ -250,17 +245,17 @@
             }
         });
 
-
         const updates = [
-            "Try clicking on the camera!",
-            "If we took a portrait of you, contact us on Instagram.",
-            "Catch the k4mera team at Paris Fashion Week!"
-        ];
+            document.createElement('p').innerHTML = "Try clicking on the camera!",
+            document.createElement('p').innerHTML = `If we took a portrait of you, contact us on <a href="https://www.instagram.com/k4.mera/" target="_blank">Instagram</a>.`,
+            document.createElement('p').innerHTML = "Catch the k4mera team at Paris Fashion Week!",
+            document.createElement('p').innerHTML = `More behind the scenes on <a href="https://x.com/jbmyoo" target="_blank">X</a>!`
+        ]
 
         let index = 0;
         const updateElement = document.getElementById('update-text');
+        updateElement.innerHTML = updates[index];
 
-        updateElement.textContent = updates[index];
         index = (index + 1) % updates.length
 
         function updateText() {
@@ -270,7 +265,7 @@
                 setTimeout(() => {
                     updateElement.style.transform = 'translateY(100%)';
                     setTimeout(() => {
-                        updateElement.textContent = updates[index];
+                        updateElement.innerHTML = updates[index];
                         updateElement.style.transition = 'none';
                         updateElement.style.transform = 'translateY(-100%)';
                         void updateElement.offsetWidth;
