@@ -4,29 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
     <title>K4mera</title>
     <style>
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fffefd;
+            color: #2e2e2e;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
             line-height: 1.33;
-            color: #333;
             max-width: 36rem;
             margin: 0 auto;
             padding: 20px;
             align-items: center;
         }
-
         h1 {
+            font-family: 'Aileron', sans-serif;
             font-size: 5rem;
-            color: #999;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 2px;
+            font-weight: 700;
             margin-top: 0;
             margin-bottom: 0;
             display: inline-block;
         }
 
         h2 {
+            font-family: 'Aileron', sans-serif;
             font-size: 1rem;
             font-weight: 700;
             text-align: center;
@@ -93,32 +99,6 @@
             }
         }
 
-        @keyframes scroll {
-            0% {
-                transform: translateY(-100%);
-            }
-
-            50% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(100%);
-            }
-        }
-
-        .update-container {
-            display: inline-block;
-            overflow: hidden;
-            height: 1.5em;
-            vertical-align: middle;
-        }
-
-        .update-text {
-            display: block;
-            transition: transform 1.5s ease-in-out;
-        }
-
         .launchlist-form {
             width: 100%;
             margin-top: 1rem;
@@ -164,12 +144,9 @@
             border: 0.5px solid #999;
             transition: all 0.5s ease;
         }
-
         .submit-button:disabled {
             opacity: 0.5;
         }
-
-
     </style>
 </head>
 <body>
@@ -184,48 +161,27 @@
     </header>
 
     <main>
-        <p><b>We're building the first digital wigglegram camera on the market.</b></p>
-
-        <p class="updates"><i><b>Updates: </b><span class="update-container"><span id="update-text" class="update-text"></span></span></i></p>
-
-
-        <h2>What is a Wigglegram ?</h2>
-        <p><mark>A wigglegram is an animated effect that creates a 3D illusion</mark> by rapidly alternating between slightly different images. It's a great way to bring more depth and excitement to your visuals!</p>
-
-        <h2>Gallery</h2>
-        <p><mark>See our wigglegrams</mark> on <a href="https://giphy.com/channel/k4mera" target="_blank">Giphy</a> and <a href="https://www.instagram.com/k4.mera/" target="_blank">Instagram</a>.</p>
-        <p>We're also in the wild, just ask <a href="https://www.instagram.com/p/DLNSROGoubg/" target="_blank">TaTaKi</a> and <a href="https://www.instagram.com/p/DJTwH7hMqWU/" target="_blank">StrangeTree</a></p>
-
-        <h2>Let's Build Together</h2>
-        <p><mark>Drop your email below</mark> to get the freshest updates, help us shape the product, and be the first to try K4mera. We won't spam you or resell your data.</p>
-
-        <!-- Mailing List -->
-        <!-- <form class="launchlist-form" action="https://getlaunchlist.com/s/myIZjJ" method="POST"> -->
-        <form id="launchlist-form" class="launchlist-form">
-            <input type="hidden" name="_gotcha" />
-            
-            <div class="input-container">
-                <input id="launchlist-email" name="email" type="email" placeholder="Email Address" required>
-            </div>
-            <div class="input-container">
-                <input id="launchlist-other-info" name="name" type="text" placeholder="Anything else you want to add (instagram, youtube, ...)">
-            </div>
-            <div class="submit-button-container">
-                <input id="launchlist-submit" class="submit-button" type="submit" value="Join Waitlist"></input>
-            </div>
-        </form>
-
-        <!-- Success Message Placeholder -->
-        <p id="success-message" style="display: none; color: grey;"><i>Thank you for joining the waitlist!</i></p>
-
-
-        <h2>About Us</h2>
-        <p class="team-members">
-            <mark>K4mera was founded in Switzerland</mark> with the objective of bringing the first digital wiggle-camera on the market. With backgrounds in engineering, business and design, we believe that we can enable a new generation of cameras crafted for the modern creator.
-        </p>
-
-        <h2>Inquire</h2>
-        <p>For any inquiry, or if you want to join the team, feel free to contact us <a href="mailto:team@k4mera.world">here</a>.</p>
+        <p>We're building the first digital wigglegram camera on the market.</p>
+        
+        <div>
+            <!-- Mailing List -->
+            <form class="launchlist-form" action="https://getlaunchlist.com/s/myIZjJ" method="POST">
+            <form id="launchlist-form" class="launchlist-form">
+                <input type="hidden" name="_gotcha" />
+                
+                <div class="input-container">
+                    <input id="launchlist-email" name="email" type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-container">
+                    <input id="launchlist-other-info" name="name" type="text" placeholder="Anything else you want to add (instagram, youtube, ...)">
+                </div>
+                <div class="submit-button-container">
+                    <input id="launchlist-submit" class="submit-button" type="submit" value="Join Waitlist"></input>
+                </div>
+            </form>
+            <!-- Success Message Placeholder -->
+            <p id="success-message" style="display: none; color: grey;"><i>Thank you for joining the waitlist!</i></p>
+        </div>
     </main>
 
     <footer class="footnote">
@@ -233,53 +189,6 @@
     </footer>
 
     <script>
-        // Get the image element
-        const titleImage = document.getElementById('titleImage');
-        
-        // Add click event listener
-        titleImage.addEventListener('click', function() {
-            // toggle between images
-            if (this.src.includes('k4mera.png')) {
-                this.src = 'k4mera2.png';
-            } else {
-                this.src = 'k4mera.png';
-            }
-        });
-
-        const updates = [
-            document.createElement('p').innerHTML = "Try clicking on the camera!",
-            document.createElement('p').innerHTML = `If we took a portrait of you, contact us on <a href="https://www.instagram.com/k4.mera/" target="_blank">Instagram</a>.`,
-            document.createElement('p').innerHTML = "Catch the k4mera team at Paris Fashion Week!",
-            document.createElement('p').innerHTML = `More behind the scenes on <a href="https://x.com/jbmyoo" target="_blank">X</a>!`
-        ]
-
-        let index = 0;
-        const updateElement = document.getElementById('update-text');
-        updateElement.innerHTML = updates[index];
-
-        index = (index + 1) % updates.length
-
-        function updateText() {
-            updateElement.style.transform = 'translateY(-100%)';
-            setTimeout(() => {
-                updateElement.style.transform = 'translateY(0)';
-                setTimeout(() => {
-                    updateElement.style.transform = 'translateY(100%)';
-                    setTimeout(() => {
-                        updateElement.innerHTML = updates[index];
-                        updateElement.style.transition = 'none';
-                        updateElement.style.transform = 'translateY(-100%)';
-                        void updateElement.offsetWidth;
-                        updateElement.style.transition = '';
-                    }, 1500) // animation duration
-                    index = (index + 1) % updates.length;
-                }, 5000); // Show text for 5 seconds
-            }, 50);
-        }
-
-        updateText();
-        setInterval(updateText, 7000);
-
 
         // Activate submit button
         const email = document.getElementById("launchlist-email");
