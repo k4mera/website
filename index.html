@@ -4,80 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
     <title>K4mera</title>
     <style>
-        body {
-            background-color: #fffefd;
-            color: #2e2e2e;
-            font-family: 'Inter', sans-serif;
+        .font-aileron-bold {
+            font-family: 'Aileron', sans-serif;
+            font-weight: bold;
+        }
+
+        .font-aileron-regular {
+            font-family: 'Aileron', sans-serif;
             font-weight: 400;
-            line-height: 1.33;
-            max-width: 36rem;
-            margin: 0 auto;
-            padding: 20px;
-            align-items: center;
         }
-        h1 {
-            font-family: 'Aileron', sans-serif;
-            font-size: 5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 0;
-            display: inline-block;
-        }
-
-        h2 {
-            font-family: 'Aileron', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            text-align: center;
-            text-wrap: balance;
-            margin-top: 4rem;
-            margin-bottom: 1.33rem;
-        }
-
-        mark {
-            background-color: #f4f1f1;
-        }
-
-        p {
-            font-size: 1rem;
-            margin-bottom: 1.33px;
-            text-align: center;
-        }
-
-        a {
-            color: #333;
-            text-decoration: underline;
-        }
-
-        a:hover {
-            color: #666;
-        }
-
-        .footnote {
-            text-align: center;
-            margin: 7rem 0 0;
-        }
-
-        .title {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 40px;
-            text-align: center;
-        }
-
-        .title-image {
-            display: block;
-            width: 60%;
-            height: auto;
-            cursor: crosshair;
+        
+        .font-inter {
+            font-family: 'Inter', sans-serif;
         }
 
         .float-animation {
@@ -99,101 +42,131 @@
             }
         }
 
-        .launchlist-form {
-            width: 100%;
-            margin-top: 1rem;
+        .crosshair-cursor {
+            cursor: crosshair;
         }
 
-        .input-container {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: .5rem;
+        /* Custom colors to match original */
+        /* .bg-custom-white { background-color: #fffefd; } */
+        /* .bg-custom-white { 
+            background: radial-gradient(circle at 50% 50vh, #ff8a5c 0%, #fffefd 18%, #3c3e8c 300%);
+        } */
+        /* .bg-custom-white { 
+            background: 
+                radial-gradient(ellipse at top, #ff8a5c 0%, #fffefd 20%, transparent),
+                radial-gradient(ellipse at bottom, #3c3e8c, transparent);
+        } */
+        .bg-custom-white { 
+            background: linear-gradient(to bottom, #ff8a5c -200%, #fffefd 50%, #3c3e8c 200%);
+        }
+        .text-custom-white {
+            color: #fffefd;
         }
 
-        .input-container input {
-            width: 80%;
-            padding: .5rem;
-            box-sizing: border-box;
-            border-radius: 4px;
-            border: 0.5px solid #ccc;
-            font-size: 1rem;
+        .bg-custom-black { 
+            background: #2e2e2e;
         }
-
-        .input-container input:focus {
-            outline: none;
-            border-color:#666;
-        }
-
-        .submit-button-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: .5rem;
-        }
-
-        .submit-button {
-            color: #333;
-            background-color: #ccc;
-            font-size: 1rem;
-            width: auto;
-            padding: .5rem;
-            font-weight: bold;
-            white-space: nowrap;
-            box-sizing: border-box;
-            border-radius: 4px;
-            border: 0.5px solid #999;
-            transition: all 0.5s ease;
-        }
-        .submit-button:disabled {
-            opacity: 0.5;
-        }
+        .text-custom-black { color: #2e2e2e; }
+        .border-custom-black { border-color: #2e2e2e; }
+        .accent-blue {color: #3c3e8c}
+        .accent-orange {color: #ff8a5c}
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'aileron': ['Aileron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif']
+                    },
+                    letterSpacing: {
+                        'custom': '2px'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-
-    <header>
-        <div class="float-animation title">
-            <img src="k4mera.png" alt="K4MERA render" class="title-image" id="titleImage">
-            <h1>
-                K4MERA
-            </h1>
+<body class="bg-custom-white text-custom-black font-inter font-normal leading-tight max-w-2xl mx-auto p-5 flex flex-col items-center min-h-screen justify-between">
+    <!-- HEADER  -->
+    <header class="fixed top-0 left-0 w-full flex items-center justify-between p-4 z-50 pt-0 pb-4">
+        <a href="#" aria-label="Go to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="hover:opacity-75 transition-opacity">
+            <img src="logo.png" alt="Company Logo" class="h-16 w-auto">
+        </a>
+        <div class="flex items-center space-x-4">
+            <a href="https://instagram.com/k4.mera" target="_blank" aria-label="Instagram" class="hover:opacity-75 transition-opacity transform-gpu will-change-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-auto" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.75 2a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1a.75.75 0 0 1 .75-.75ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/>
+                </svg>
+            </a>
+            <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-aileron-regular hover:opacity-75 transition-opacity">
+                Join Waitlist
+            </button>
         </div>
     </header>
-
     <main>
-        <p>We're building the first digital wigglegram camera on the market.</p>
-        
-        <div>
-            <!-- Mailing List -->
-            <form class="launchlist-form" action="https://getlaunchlist.com/s/myIZjJ" method="POST">
-            <form id="launchlist-form" class="launchlist-form">
+        <!-- BODY 1: Title, gif, CTA -->
+        <div class="flex flex-col items-center justify-center text-center min-h-screen">
+            <h1 class="font-aileron-bold text-5xl tracking-custom mt-0 mb-2 inline-block cursor-default select-none">
+                K4MERA
+            </h1>
+            
+            <img src="https://media.giphy.com/media/ehudPkR4e9vpWpI70f/giphy.gif" alt="Wigglegram" class="crosshair-cursor block w-3/5 h-auto mb-4" id="gif">
+            
+            <div class="text-center">
+                <h2 class="text-3xl mb-1 font-aileron-regular">Stop wasting your time with film rolls</h2>
+                <p class="text-base mb-1 font-inter">Authentic wigglegrams, effortlessly.</p>
+            </div>
+            <div class="flex flex-col mt-2 gap-2">
+                <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-aileron-regular hover:opacity-75 transition-opacity">
+                    Join Waitlist
+                </button>
+                <button onclick="document.getElementById('body-2').scrollIntoView({behavior:'smooth'})" class="text-custom-black hover:underline font-aileron-regular">
+                    Learn More
+                </button>
+            </div>
+
+        </div>
+
+        <!-- BODY 2: Render -->
+        <div class="flex flex-col items-center justify-center text-center min-h-screen" id="body-2">
+            <img src="k4mera.png" alt="K4MERA render" class="title-image block w-3/5 h-auto">
+        </div>
+
+        <!-- BODY 3: Waitlist -->
+        <div class="flex flex-col items-center justify-center text-center" id="waitlist">
+            <h2 class="font-aileron-regular text-2xl tracking-custom mt-0 mb-2 inline-block">Join our waitlist!</h2>
+            <form class="w-full mt-4" action="https://getlaunchlist.com/s/myIZjJ" method="POST">
+            <form id="waitlist-form" class="w-full mt-4">
                 <input type="hidden" name="_gotcha" />
                 
-                <div class="input-container">
-                    <input id="launchlist-email" name="email" type="email" placeholder="Email Address" required>
+                <div class="flex justify-center w-full mb-2">
+                    <input id="launchlist-email" name="email" type="email" placeholder="Email Address" required
+                           class="w-4/5 p-2 box-border rounded border-2 border-custom-black focus:outline-none bg-transparent">
                 </div>
-                <div class="input-container">
-                    <input id="launchlist-other-info" name="name" type="text" placeholder="Anything else you want to add (instagram, youtube, ...)">
+                <div class="flex justify-center w-full mb-2">
+                    <input id="launchlist-other-info" name="name" type="text" placeholder="Anything else you want to add (instagram, youtube, ...)"
+                           class="w-4/5 p-2 box-border rounded border-2 border-custom-black focus:outline-none bg-transparent">
                 </div>
-                <div class="submit-button-container">
-                    <input id="launchlist-submit" class="submit-button" type="submit" value="Join Waitlist"></input>
+                <div class="flex justify-center mb-2">
+                    <input id="launchlist-submit" class="w-auto p-2 whitespace-nowrap box-border rounded border-custom-black border-2 transition-all duration-300 disabled:opacity-50 bg-transparent cursor-pointer disabled:cursor-default" type="submit" value="Join Waitlist" disabled></input>
                 </div>
             </form>
-            <!-- Success Message Placeholder -->
-            <p id="success-message" style="display: none; color: grey;"><i>Thank you for joining the waitlist!</i></p>
+            <p id="success-message" class="hidden text-gray-500 text-center"><i>Thank you for joining the waitlist!</i></p>
         </div>
+
     </main>
 
-    <footer class="footnote">
-        <p>© 2025 k4mera.world</p>
+    <!-- FOOTER -->
+    <footer class="text-center">
+         <p class="text-base mb-1 text-center">designed and built by roofless labs</p>
+        <p class="text-base mb-1 text-center">© 2025 k4mera.world</p>
     </footer>
 
     <script>
-
         // Activate submit button
         const email = document.getElementById("launchlist-email");
         const otherInfo = document.getElementById("launchlist-other-info")
-        // otherInfo.value = " "
         const submitButton = document.getElementById("launchlist-submit")
         submitButton.disabled = true;
         email.addEventListener("keyup", submitButtonState);
@@ -206,7 +179,7 @@
             }
         }
         
-        document.getElementById("launchlist-form").addEventListener("submit", function(event) {
+        document.getElementById("waitlist-form").addEventListener("submit", function(event) {
             event.preventDefault();
 
             const formData = new FormData(this);
@@ -220,18 +193,14 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById("launchlist-form").style.display = "none";
-                document.getElementById("success-message").style.display = "block";
+                document.getElementById("waitlist-form").classList.add("hidden");
+                document.getElementById("success-message").classList.remove("hidden");
             })
             .catch(error => {
-                document.getElementById("launchlist-form").style.display = "none";
-                document.getElementById("success-message").style.display = "block";
+                document.getElementById("waitlist-form").classList.add("hidden");
+                document.getElementById("success-message").classList.remove("hidden");
             });
         });
-
-
-
     </script>
-
 </body>
 </html>
