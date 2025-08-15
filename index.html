@@ -5,9 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHEF0B28WX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-GHEF0B28WX');
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
-    <title>K4mera</title>
+    <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="K4MERA" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <title>K4MERA</title>
     <style>
         .font-aileron-bold {
             font-family: 'Aileron', sans-serif;
@@ -73,6 +88,57 @@
         .border-custom-black { border-color: #2e2e2e; }
         .accent-blue {color: #3c3e8c}
         .accent-orange {color: #ff8a5c}
+
+        @media (max-width: 768px) {
+            header {
+                position: relative !important;
+                padding: 0.25rem !important; /* p-1 */
+                padding-top: 0 !important; /* pt-0 */
+            }
+
+            #body-2 {
+                flex-direction: column-reverse !important;
+                gap: 1 !important; /* Even smaller gap */
+            }
+
+            .image-container {
+                display: flex !important;
+                align-items: flex-end !important;
+                justify-content: flex-end !important;
+            }
+
+            .image-container img {
+                border-radius: 0;
+            }
+
+            #body-2 .flex-1 {
+                padding: 1rem !important;
+            }
+
+            #card-container {
+                flex-direction: column !important;
+                padding: 0.25rem !important; /* p-1 */
+            }
+
+            #body-3 {
+                margin-bottom: 4rem;
+            }
+
+            .interlude {
+                margin-bottom: 4rem;
+            }
+
+            /* Waitlist inputs - full width on mobile */
+            #launchlist-email,
+            #launchlist-other-info {
+                width: calc(100% - 0.5rem) !important; /* Full width minus p-1 padding */
+                margin: 0 0.25rem !important; /* p-1 margin */
+            }
+
+            #waitlist {
+                margin-bottom: 4rem;
+            }
+        }
     </style>
     <script>
         tailwind.config = {
@@ -90,19 +156,17 @@
         }
     </script>
 </head>
-<body class="bg-custom-white text-custom-black font-inter font-normal leading-tight mx-auto pt-5 pb-2 flex flex-col items-center min-h-screen justify-between">
+<body class="bg-custom-white text-custom-black font-inter font-normal leading-tight mx-auto pb-2 flex flex-col items-center min-h-screen justify-between">
     <!-- HEADER  -->
     <header class="fixed top-0 left-0 w-full flex items-center justify-between p-4 z-50 pt-0 pb-4">
         <a href="#" aria-label="Go to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="hover:opacity-75 transition-opacity">
-            <img src="assets/logo.png" alt="Company Logo" class="h-16 w-auto">
+            <img src="assets/images/logo.png" alt="Company Logo" class="h-16 w-auto">
         </a>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2">
             <a href="https://instagram.com/k4.mera" target="_blank" aria-label="Instagram" class="hover:opacity-75 transition-opacity transform-gpu will-change-opacity">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-auto" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.75 2a.75.75 0 0 1 .75.75v1a.75.75 0 0 1-1.5 0v-1a.75.75 0 0 1 .75-.75ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/>
-                </svg>
+                <img src="assets/images/k4meragram.svg" alt="Company Logo" class="h-9 w-auto">
             </a>
-            <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-aileron-regular hover:opacity-75 transition-opacity">
+            <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity">
                 Join Waitlist
             </button>
         </div>
@@ -118,7 +182,7 @@
                 <img src="https://media.giphy.com/media/ehudPkR4e9vpWpI70f/giphy.gif" alt="Wigglegram" class="crosshair-cursor block w-2xl h-auto mb-4" id="gif">
                 
                 <div class="text-center">
-                    <h2 class="text-3xl mb-1 font-aileron-regular">Stop wasting your time with film rolls</h2>
+                    <h2 class="text-4xl mb-1 font-aileron-regular">Stop wasting your time with film rolls</h2>
                     <p class="text-base mb-1 font-inter">Authentic wigglegrams, effortlessly.</p>
                 </div>
                 <div class="flex flex-col mt-2 gap-2">
@@ -135,7 +199,7 @@
             <!-- BODY 2: Render -->
             <div class="flex items-center w-full gap-4 min-h-screen" id="body-2">
                 <div class="flex-1">
-                    <h3 class="text-3xl mb-1 font-aileron-regular text-right">Shoot in 3D...</h3>
+                    <h3 class="text-4xl mb-1 font-aileron-regular text-right">Shoot in 3D...</h3>
                     <p class="text-base mb-1 font-inter text-justify">...think in 4D! K4mera is the first digital stereo-camera made to capture real, authentic wiggelgrams. With edge-image processing inside, you won't need to spend hours on Photoshop getting the gif right.</p>
                     <div class="flex mt-6">
                         <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="ml-auto px-3 py-2 bg-transparent box-border rounded-lg border-2 border-custom-black text-custom-black rounded-lg font-inter hover:opacity-75 transition-opacity">
@@ -143,58 +207,60 @@
                         </button>
                     </div>
                 </div>
-                <div class="flex-[1.5]">
-                    <img src="assets/k4-closeup.png" alt="K4MERA Render" class="ml-auto w-full h-auto rounded-md">
+                <div class="flex-[1.5] image-container" id="k4mera-closeup">
+                    <img src="assets/images/k4-closeup.png" alt="K4MERA Render" class="ml-auto w-full h-auto rounded-md">
                 </div>
             </div>
 
             <!-- INTERLUDE -->
             <div class="flex justify-center items-center">
-                <img src="assets/k4-4.png" alt="K4MERA Render" class="w-64 h-auto">
+                <img src="assets/images/k4-4.png" alt="K4MERA Render" class="w-64 h-auto interlude">
             </div>
 
 
             <!-- BODY 3: Capabilities -->
-            <div class="flex flex-col items-center justify-center w-full min-h-screen ">
+            <div class="flex flex-col items-center justify-center w-full min-h-screen" id="body-3">
 
                 <!-- Title -->
-                <h2 class="text-center text-5xl font-aileron-regular mb-6">Bring a Comp4nion!</h2>
+                <h2 class="text-center text-4xl font-aileron-regular mb-6">Bring a Comp4nion!</h2>
 
                 <!-- Cards container -->
-                <div class="flex gap-4 w-full max-w-7xl mx-auto">
+                <div class="flex gap-4 w-full max-w-7xl mx-auto" id="card-container">
                     <!-- Card 1 -->
                     <div class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base">
-                        <img src="assets/app-1.png" alt="App Screenshot" class="w-full h-auto object-cover mb-2" />
-                        <h3 class="font-aileron-regular mb-1">At your Fingertips</h3>
-                        <p class="text-sm font-inter p-3">Your k4mera seamlessly connects with your phone, so you shots are always available to you.</p>
+                        <img src="assets/images/app-1.png" alt="App Screenshot" class="w-full h-auto object-cover mb-2" />
+                        <h3 class="font-aileron-regular mb-1 text-xl">At your Fingertips</h3>
+                        <p class="text-sm font-inter p-3">Your k4mera seamlessly airdrops your shots to your phone with Bluetooth and ad-hoc Wi-Fi, so your masterpieces are always in your pocket. K4mera prepares the gifs for you, but the originals are also available for power users. And if you don't like being on your phone all the time, we got you covered. Go touch grass embrace the micro SD slot the old-school way.</p>
                     </div>
                     <!-- Card 2 -->
                     <div class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base">
-                        <img src="assets/app-2.png" alt="Image 2" class="w-full h-auto object-cover mb-2" />
-                        <h3 class="font-aileron-regular mb-1">Comp4nion App</h3>
-                        <p class="text-sm font-inter p-3">See your shots, refine your gifs, share to the world. All from the comp4nion app.</p>
+                        <img src="assets/images/app-2.png" alt="Image 2" class="w-full h-auto object-cover mb-2" />
+                        <h3 class="font-aileron-regular mb-1 text-xl">Comp4nion App</h3>
+                        <p class="text-sm font-inter p-3">See your shots, refine your gifs, share to the world. All from the comp4nion app. The fyp/tl/gc/gram are not ready for your wigglegrams. Give them a heads up! We also baked a couple of surprises into the app to show you a sneak peek into the future of content creation.</p>
                     </div>
                     <!-- Card 3 -->
                     <div class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base">
                         <img src="image3.png" alt="Image 3" class="w-full h-auto object-cover mb-2" />
-                        <h3 class="font-aileron-regular mb-1">Slopify with AI</h3>
-                        <p class="text-sm font-inter p-3">Bring your shots to life with uncanny generative AI effects. </p>
+                        <h3 class="font-aileron-regular mb-1 text-xl">Slopify with AI</h3>
+                        <p class="text-sm font-inter p-3">Bring your shots to life with uncanny generative AI effects built for stereoscopic photography.</p>
                     </div>
                 </div>
             </div>
 
             <!-- INTERLUDE -->
-            <div class="flex justify-center items-center">
-                <img src="assets/k4-0.png" alt="K4MERA Render" class="w-64 h-auto">
+            <div class="flex flex-col justify-center items-center interlude">
+                <h2 class="text-center text-2xl font-aileron-regular">Say cheeeeeeeeeeeeeese!</h2>
+                <img src="assets/images/k4-0.png" alt="K4MERA Render" class="w-64 h-auto">
+                <p class="text-base mb-1 font-inter text-center max-w-lg">K4MERA and its comp4nion app are designed and engineered by a small team in the heart of beautiful Switzerland, with the support of Innosuisse.</p>
             </div>
 
             <!-- BODY 4: Waitlist -->
-            <div class="flex flex-col items-center justify-center w-full min-h-[50vh]" id="waitlist">
-                <h2 class="font-aileron-regular text-5xl tracking-custom mt-0 mb-2 inline-block">Join our waitlist!</h2>
+            <div class="flex flex-col items-center justify-center w-full min-h-[70vh] mb-10" id="waitlist">
+                <h2 class="font-aileron-regular text-4xl mt-0 mb-2 inline-block">Join our waitlist!</h2>
+                <p class="text-base mb-1 font-inter text-center max-w-lg">Be the first to know when the product is ready and get exclusive access to new features.</p>
                 <!-- <form class="w-full mt-4" action="https://getlaunchlist.com/s/myIZjJ" method="POST"> -->
                 <form id="waitlist-form" class="w-full mt-4">
                     <input type="hidden" name="_gotcha" />
-                    
                     <div class="flex justify-center w-full mb-2">
                         <input id="launchlist-email" name="email" type="email" placeholder="Email Address" required
                             class="w-1/2 p-2 box-border rounded border-2 border-custom-black focus:outline-none bg-transparent font-inter"/>
@@ -217,6 +283,7 @@
     <footer class="flex flex-col justify-between items-center w-full">
         <div class="flex justify-between w-full px-4 text-base font-inter">
             <div class="flex-1 flex flex-col text-left">
+                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="merch" onclick="expandText('merch', 'coming soon')">get merch</p>
                 <a href="mailto:contact@rooflesslabs.com?subject=inquiry" class="flex-1 hover:opacity-75">
                     get in touch
                 </a>
@@ -229,16 +296,17 @@
                 <p class="flex-1 cursor-default">designed and built by roofless labs</p>
             </div>
             <div class="flex-1 flex flex-col items-center">
-                <img src="assets/logo.png" alt="Icon" class="h-24" />
+                <img src="assets/images/logo.png" alt="Icon" class="h-24" />
             </div>
             <div class="flex-1 flex flex-col text-right">
                 <a href="https://instagram.com/k4.mera" target="_blank" rel="noopener noreferrer" class="flex-1 hover:opacity-75">
                     about us
                 </a>
-                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="privacyPolicy" onclick="expandPrivacy()">privacy</p>
+                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="privacyPolicy" onclick="expandText('privacyPolicy', 'we won\'t spam you or resell your data')">privacy</p>
                 <a href="mailto:contact@rooflesslabs.com?subject=spontaneous-application" class="flex-1 hover:opacity-75">
                     careers
                 </a>
+                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="discord" onclick="expandText('discord', 'coming soon')">discord</p>
                 <p class="flex-1 cursor-default">© 2025 k4mera.world</p>
             </div>
         </div>
@@ -291,10 +359,25 @@
             }
             const privacyElement = document.getElementById('privacyPolicy');
             expanded = true;
-            privacyElement.innerHTML = "we won't spam you or resell your data.";
+            privacyElement.innerHTML = "we won't spam you or resell your data";
             // add cursor default while this
             setTimeout(() => {
                 privacyElement.innerHTML = 'privacy';
+                expanded = false;
+            }, 3000);
+        }
+
+        function expandText(id, newText) {
+            if (expanded) {
+                return;
+            }
+            const privacyElement = document.getElementById(id);
+            const originalText = privacyElement.innerHTML;
+            expanded = true;
+            privacyElement.innerHTML = newText;
+            // add cursor default while this, and not clickable
+            setTimeout(() => {
+                privacyElement.innerHTML = originalText;
                 expanded = false;
             }, 3000);
         }
