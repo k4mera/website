@@ -4,74 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
-    <title>K4mera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHEF0B28WX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-GHEF0B28WX');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="K4MERA" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <title>K4MERA</title>
     <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.33;
-            color: #333;
-            max-width: 36rem;
-            margin: 0 auto;
-            padding: 20px;
-            align-items: center;
+        .font-aileron-bold {
+            font-family: 'Aileron', sans-serif;
+            font-weight: bold;
         }
 
-        h1 {
-            font-size: 5rem;
-            color: #999;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-top: 0;
-            margin-bottom: 0;
-            display: inline-block;
+        .font-aileron-regular {
+            font-family: 'Aileron', sans-serif;
+            font-weight: 400;
         }
-
-        h2 {
-            font-size: 1rem;
-            font-weight: 700;
-            text-align: center;
-            text-wrap: balance;
-            margin-top: 4rem;
-            margin-bottom: 1.33rem;
-        }
-
-        mark {
-            background-color: #f4f1f1;
-        }
-
-        p {
-            font-size: 1rem;
-            margin-bottom: 1.33px;
-            text-align: center;
-        }
-
-        a {
-            color: #333;
-            text-decoration: underline;
-        }
-
-        a:hover {
-            color: #666;
-        }
-
-        .footnote {
-            text-align: center;
-            margin: 7rem 0 0;
-        }
-
-        .title {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 40px;
-            text-align: center;
-        }
-
-        .title-image {
-            display: block;
-            width: 60%;
-            height: auto;
-            cursor: crosshair;
+        
+        .font-inter {
+            font-family: 'Inter', sans-serif;
         }
 
         .float-animation {
@@ -93,198 +57,257 @@
             }
         }
 
-        @keyframes scroll {
-            0% {
-                transform: translateY(-100%);
+        .crosshair-cursor {
+            cursor: crosshair;
+        }
+
+        .bg-custom-white { 
+            background: radial-gradient(circle at 50% 50vh, #ff8a5c -10%, #fffefd 18%, #3c3e8c 300%);
+        }
+        .text-custom-white {
+            color: #fffefd;
+        }
+
+        .bg-custom-black { 
+            background: #2e2e2e;
+        }
+        .text-custom-black { color: #2e2e2e; }
+        .border-custom-black { border-color: #2e2e2e; }
+        .accent-blue {color: #3c3e8c}
+        .accent-orange {color: #ff8a5c}
+
+        .black-contour {
+            -webkit-text-stroke: 2px #2e2e2e;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        @media (max-width: 768px) {
+
+            header {
+                position: relative !important;
+                padding: 0.25rem !important; /* p-1 */
             }
 
-            50% {
-                transform: translateY(0);
+            #body-2 {
+                flex-direction: column-reverse !important;
+                gap: 1 !important; /* Even smaller gap */
             }
 
-            100% {
-                transform: translateY(100%);
+            .image-container {
+                display: flex !important;
+                align-items: flex-end !important;
+                justify-content: flex-end !important;
+            }
+
+            .image-container img {
+                border-radius: 0;
+            }
+
+            #body-2 .flex-1 {
+                padding: 1rem !important;
+            }
+
+            #card-container {
+                flex-direction: column !important;
+                padding: 0.25rem !important; /* p-1 */
+            }
+
+            #body-3 {
+                margin-bottom: 4rem;
+            }
+
+            .interlude {
+                margin-bottom: 4rem;
+            }
+
+            /* Waitlist inputs - full width on mobile */
+            #launchlist-email,
+            #launchlist-other-info {
+                width: calc(100% - 0.5rem) !important; /* Full width minus p-1 padding */
+                margin: 0 0.25rem !important; /* p-1 margin */
+            }
+
+            #waitlist {
+                margin-bottom: 4rem;
             }
         }
-
-        .update-container {
-            display: inline-block;
-            overflow: hidden;
-            height: 1.5em;
-            vertical-align: middle;
-        }
-
-        .update-text {
-            display: block;
-            transition: transform 1.5s ease-in-out;
-        }
-
-        .launchlist-form {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .input-container {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: .5rem;
-        }
-
-        .input-container input {
-            width: 80%;
-            padding: .5rem;
-            box-sizing: border-box;
-            border-radius: 4px;
-            border: 0.5px solid #ccc;
-            font-size: 1rem;
-        }
-
-        .input-container input:focus {
-            outline: none;
-            border-color:#666;
-        }
-
-        .submit-button-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: .5rem;
-        }
-
-        .submit-button {
-            color: #333;
-            background-color: #ccc;
-            font-size: 1rem;
-            width: auto;
-            padding: .5rem;
-            font-weight: bold;
-            white-space: nowrap;
-            box-sizing: border-box;
-            border-radius: 4px;
-            border: 0.5px solid #999;
-            transition: all 0.5s ease;
-        }
-
-        .submit-button:disabled {
-            opacity: 0.5;
-        }
-
-
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'aileron': ['Aileron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif']
+                    },
+                    letterSpacing: {
+                        'custom': '2px'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-
-    <header>
-        <div class="float-animation title">
-            <img src="k4mera.png" alt="K4MERA render" class="title-image" id="titleImage">
-            <h1>
-                K4MERA
-            </h1>
+<body class="bg-custom-white text-custom-black font-inter font-normal leading-tight mx-auto pb-2 flex flex-col items-center min-h-screen justify-between">
+    <!-- HEADER  -->
+    <header class="fixed top-0 left-0 w-full flex items-center justify-between p-4 z-50 pt-2 pb-4">
+        <a href="#" aria-label="Go to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="hover:opacity-75 transition-opacity">
+            <img src="assets/images/logo.png" alt="Company Logo" class="w-16 md:w-20 h-auto">
+        </a>
+        <div class="flex items-center space-x-2">
+            <a href="https://instagram.com/k4.mera" target="_blank" aria-label="Instagram" class="hover:opacity-75 transition-opacity transform-gpu will-change-opacity">
+                <img src="assets/images/k4meragram.svg" alt="Company Logo" class="h-9 w-auto">
+            </a>
+            <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity">
+                Join waitlist
+            </button>
         </div>
     </header>
-
     <main>
-        <p><b>We're building the first digital wigglegram camera on the market.</b></p>
+        <div class="flex flex-col max-w-5xl">
+            <!-- BODY 1: Title, gif, CTA -->
+            <div class="flex flex-col items-center justify-center text-center min-h-screen">
+                <h1 class="font-aileron-bold text-5xl tracking-custom mt-0 mb-2 inline-block cursor-default select-none black-contour">
+                    K4MERA
+                </h1>
+                
+                <img src="https://media.giphy.com/media/ehudPkR4e9vpWpI70f/giphy.gif" alt="Wigglegram" class="crosshair-cursor block w-2xl h-auto mb-4" id="gif">
+                
+                <div class="text-center">
+                    <p class="text-base mb-1 font-inter">Real depth. Real movement. Fully digital wigglegrams.</p>
+                </div>
+                <div class="flex flex-col mt-2 gap-2">
+                    <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity">
+                        Access pre-order
+                    </button>
+                    <button onclick="document.getElementById('body-2').scrollIntoView({behavior:'smooth'})" class="text-custom-black hover:underline font-inter">
+                        Learn more
+                    </button>
+                </div>
 
-        <p class="updates"><i><b>Updates: </b><span class="update-container"><span id="update-text" class="update-text"></span></span></i></p>
-
-
-        <h2>What is a Wigglegram ?</h2>
-        <p><mark>A wigglegram is an animated effect that creates a 3D illusion</mark> by rapidly alternating between slightly different images. It's a great way to bring more depth and excitement to your visuals!</p>
-
-        <h2>Gallery</h2>
-        <p><mark>See our wigglegrams</mark> on <a href="https://giphy.com/channel/k4mera" target="_blank">Giphy</a> and <a href="https://www.instagram.com/k4.mera/" target="_blank">Instagram</a>.</p>
-        <p>We're also in the wild, just ask <a href="https://www.instagram.com/p/DLNSROGoubg/" target="_blank">TaTaKi</a> and <a href="https://www.instagram.com/p/DJTwH7hMqWU/" target="_blank">StrangeTree</a></p>
-
-        <h2>Let's Build Together</h2>
-        <p><mark>Drop your email below</mark> to get the freshest updates, help us shape the product, and be the first to try K4mera. We won't spam you or resell your data.</p>
-
-        <!-- Mailing List -->
-        <!-- <form class="launchlist-form" action="https://getlaunchlist.com/s/myIZjJ" method="POST"> -->
-        <form id="launchlist-form" class="launchlist-form">
-            <input type="hidden" name="_gotcha" />
-            
-            <div class="input-container">
-                <input id="launchlist-email" name="email" type="email" placeholder="Email Address" required>
             </div>
-            <div class="input-container">
-                <input id="launchlist-other-info" name="name" type="text" placeholder="Anything else you want to add (instagram, youtube, ...)">
+
+            <!-- BODY 2: Render -->
+            <div class="flex items-center w-full gap-4 min-h-screen" id="body-2">
+                <div class="flex-1">
+                    <h3 class="text-3xl md:text-4xl mb-1 font-aileron-regular text-right">Shoot in 3D...</h3>
+                    <p class="text-base mb-1 font-inter text-justify">...think in 4D! K4MERA is the first digital stereo-camera designed to capture authentic wigglegrams. With built-in depth processing and no post-production needed, every moment loops back to life. No film rolls, no Photoshop, no mimics.</p>
+                    <div class="flex mt-6">
+                        <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="ml-auto px-3 py-2 bg-transparent box-border rounded-lg border-2 border-custom-black text-custom-black rounded-lg font-inter hover:opacity-75 tr ansition-opacity">
+                            I want one!
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-[1.5] image-container" id="k4mera-closeup">
+                    <img src="assets/images/k4-closeup.png" alt="K4MERA Render" class="ml-auto w-full h-auto rounded-md">
+                </div>
             </div>
-            <div class="submit-button-container">
-                <input id="launchlist-submit" class="submit-button" type="submit" value="Join Waitlist"></input>
+
+            <!-- INTERLUDE -->
+            <div class="flex justify-center items-center mb-24">
+                <img src="assets/images/k4-4.png" alt="K4MERA Render" class="w-64 h-auto interlude">
             </div>
-        </form>
-
-        <!-- Success Message Placeholder -->
-        <p id="success-message" style="display: none; color: grey;"><i>Thank you for joining the waitlist!</i></p>
 
 
-        <h2>About Us</h2>
-        <p class="team-members">
-            <mark>K4mera was founded in Switzerland</mark> with the objective of bringing the first digital wiggle-camera on the market. With backgrounds in engineering, business and design, we believe that we can enable a new generation of cameras crafted for the modern creator.
-        </p>
+            <!-- BODY 3: Capabilities -->
+            <div class="flex flex-col items-center justify-center w-full min-h-screen" id="body-3">
 
-        <h2>Inquire</h2>
-        <p>For any inquiry, or if you want to join the team, feel free to contact us <a href="mailto:team@k4mera.world">here</a>.</p>
+                <!-- Title -->
+                <h2 class="text-center text-3xl md:text-4xl font-aileron-regular mb-6">Bring a Comp4nion!</h2>
+
+                <!-- Cards container -->
+                <div class="flex gap-4 w-full max-w-7xl mx-auto" id="card-container">
+                    <!-- Card 1 -->
+                    <div class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base">
+                        <img src="assets/images/app-1.png" alt="App Screenshot" class="w-full h-auto object-cover mb-2" />
+                        <h3 class="font-aileron-regular mb-1 text-xl">At your fingertips</h3>
+                        <p class="text-sm font-inter px-3 pb-1">Your K4MERA seamlessly airdrops your 3D shots to your phone using Bluetooth and ad-hoc Wi-Fi, so your creations are always in your pocket. K4MERA prepares wigglegrams automatically for instant sharing, but the originals are always available for power users. Prefer to stay off your phone? No problem. Pop in a microSD card and go the old-school way, no syncing required.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base">
+                        <img src="assets/images/app-2.png" alt="Image 2" class="w-full h-auto object-cover mb-2" />
+                        <h3 class="font-aileron-regular mb-1 text-xl">Comp4nion app</h3>
+                        <p class="text-sm font-inter px-3 pb-1">K4MERA isn't just about the capture. The Comp4nion app gives you everything you need after the click: instantly preview your 3D shots, fine-tune the motion, and export perfect wigglegrams. Easy and ready to share in just a few taps.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base">
+                         <video src="assets/images/k4-ai.mp4" autoplay muted loop class="p-1"></video>
+                        <h3 class="font-aileron-regular mb-1 text-xl">Slopify with AI</h3>
+                        <p class="text-sm font-inter px-3 pb-1">Comp4nion is more than an app, it's your uncanny creative partner, built for stereoscopic photography. If you want to push your shots further, it comes with a set of curated generative AI effects designed to enhance what you just framed. Built to express, not to automate, imitate, or cut corners.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERLUDE -->
+            <div class="flex flex-col justify-center items-center interlude">
+                <h2 class="text-center text-2xl font-aileron-regular">Say cheeeeeeeeeeeeeese!</h2>
+                <img src="assets/images/k4-0.png" alt="K4MERA Render" class="w-64 h-auto">
+                <p class="text-base mb-1 font-inter text-center max-w-lg">Born in the heart of Switzerland, K4MERA is the result of a small team's vision: designers, engineers, and creators rethinking what photography could feel like. Built with care, crafted with obsession.</p>
+            </div>
+
+            <!-- BODY 4: Waitlist -->
+            <div class="flex flex-col items-center justify-center w-full min-h-[70vh] mb-10" id="waitlist">
+                <h2 class="font-aileron-regular text-3xl md:text-4xl mt-0 mb-2 inline-block">Join our waitlist!</h2>
+                <p class="text-base mb-1 font-inter text-center max-w-lg">Be the first to hear when it's ready and test exclusive features.</p>
+                <!-- <form class="w-full mt-4" action="https://getlaunchlist.com/s/myIZjJ" method="POST"> -->
+                <form id="waitlist-form" class="w-full mt-4">
+                    <input type="hidden" name="_gotcha" />
+                    <div class="flex justify-center w-full mb-2">
+                        <input id="launchlist-email" name="email" type="email" placeholder="Email Address" required
+                            class="w-1/2 p-2 box-border rounded border-2 border-custom-black focus:outline-none bg-transparent font-inter"/>
+                    </div>
+                    <div class="flex justify-center w-full mb-2">
+                        <input id="launchlist-other-info" name="name" type="text" placeholder="Anything else you want to add (instagram, youtube, ...)"
+                            class="w-1/2 p-2 box-border rounded border-2 border-custom-black focus:outline-none bg-transparent font-inter"/>
+                    </div>
+                    <div class="flex justify-center mb-2">
+                        <input id="launchlist-submit" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity cursor-pointer disabled:opacity-50 disabled:cursor-default" type="submit" value="Join waitlist" disabled></input>
+                    </div>
+                </form>
+                <p id="success-message" class="hidden font-inter text-custom-black text-center">Thank you for joining the waitlist!</p>
+            </div>
+
+        </div>
     </main>
 
-    <footer class="footnote">
-        <p>© 2025 k4mera.world</p>
+    <!-- FOOTER -->
+    <footer class="flex flex-col justify-between items-center w-full">
+        <div class="flex justify-between w-full px-4 text-base font-inter">
+            <div class="flex-1 flex flex-col text-left">
+                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="merch" onclick="expandText('merch', 'coming soon')">get merch</p>
+                <a href="mailto:contact@rooflesslabs.com?subject=inquiry" class="flex-1 hover:opacity-75">
+                    get in touch
+                </a>
+                <a href="https://giphy.com/channel/k4mera" target="_blank" rel="noopener noreferrer" class="flex-1 hover:opacity-75">
+                    see more gifs
+                </a>
+                <a href="https://instagram.com/k4.mera" target="_blank" rel="noopener noreferrer" class="flex-1 hover:opacity-75">
+                    follow us on instagram
+                </a>
+                <p class="flex-1 cursor-default">designed and built by roofless labs</p>
+            </div>
+            <div class="flex-1 flex flex-col items-center justify-center">
+                <img src="assets/images/logo.png" alt="Icon" class="w-24" />
+            </div>
+            <div class="flex-1 flex flex-col text-right">
+                <a href="https://instagram.com/k4.mera" target="_blank" rel="noopener noreferrer" class="flex-1 hover:opacity-75">
+                    about us
+                </a>
+                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="privacyPolicy" onclick="expandText('privacyPolicy', 'we won\'t spam you or resell your data')">privacy</p>
+                <a href="mailto:contact@rooflesslabs.com?subject=spontaneous-application" class="flex-1 hover:opacity-75">
+                    careers
+                </a>
+                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="discord" onclick="expandText('discord', 'coming soon')">discord</p>
+                <p class="flex-1 cursor-default">© 2025 k4mera.world</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Get the image element
-        const titleImage = document.getElementById('titleImage');
-        
-        // Add click event listener
-        titleImage.addEventListener('click', function() {
-            // toggle between images
-            if (this.src.includes('k4mera.png')) {
-                this.src = 'k4mera2.png';
-            } else {
-                this.src = 'k4mera.png';
-            }
-        });
-
-        const updates = [
-            document.createElement('p').innerHTML = "Try clicking on the camera!",
-            document.createElement('p').innerHTML = `If we took a portrait of you, contact us on <a href="https://www.instagram.com/k4.mera/" target="_blank">Instagram</a>.`,
-            document.createElement('p').innerHTML = "Catch the k4mera team at Paris Fashion Week!",
-            document.createElement('p').innerHTML = `More behind the scenes on <a href="https://x.com/jbmyoo" target="_blank">X</a>!`
-        ]
-
-        let index = 0;
-        const updateElement = document.getElementById('update-text');
-        updateElement.innerHTML = updates[index];
-
-        index = (index + 1) % updates.length
-
-        function updateText() {
-            updateElement.style.transform = 'translateY(-100%)';
-            setTimeout(() => {
-                updateElement.style.transform = 'translateY(0)';
-                setTimeout(() => {
-                    updateElement.style.transform = 'translateY(100%)';
-                    setTimeout(() => {
-                        updateElement.innerHTML = updates[index];
-                        updateElement.style.transition = 'none';
-                        updateElement.style.transform = 'translateY(-100%)';
-                        void updateElement.offsetWidth;
-                        updateElement.style.transition = '';
-                    }, 1500) // animation duration
-                    index = (index + 1) % updates.length;
-                }, 5000); // Show text for 5 seconds
-            }, 50);
-        }
-
-        updateText();
-        setInterval(updateText, 7000);
-
-
         // Activate submit button
         const email = document.getElementById("launchlist-email");
         const otherInfo = document.getElementById("launchlist-other-info")
-        // otherInfo.value = " "
         const submitButton = document.getElementById("launchlist-submit")
         submitButton.disabled = true;
         email.addEventListener("keyup", submitButtonState);
@@ -297,7 +320,7 @@
             }
         }
         
-        document.getElementById("launchlist-form").addEventListener("submit", function(event) {
+        document.getElementById("waitlist-form").addEventListener("submit", function(event) {
             event.preventDefault();
 
             const formData = new FormData(this);
@@ -311,18 +334,44 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById("launchlist-form").style.display = "none";
-                document.getElementById("success-message").style.display = "block";
+                document.getElementById("waitlist-form").classList.add("hidden");
+                document.getElementById("success-message").classList.remove("hidden");
             })
             .catch(error => {
-                document.getElementById("launchlist-form").style.display = "none";
-                document.getElementById("success-message").style.display = "block";
+                document.getElementById("waitlist-form").classList.add("hidden");
+                document.getElementById("success-message").classList.remove("hidden");
             });
         });
 
+        let expanded = false;
 
+        function expandPrivacy() {
+            if (expanded) {
+                return;
+            }
+            const privacyElement = document.getElementById('privacyPolicy');
+            expanded = true;
+            privacyElement.innerHTML = "we won't spam you or resell your data";
+            setTimeout(() => {
+                privacyElement.innerHTML = 'privacy';
+                expanded = false;
+            }, 3000);
+        }
 
+        function expandText(id, newText) {
+            if (expanded) {
+                return;
+            }
+            const privacyElement = document.getElementById(id);
+            const originalText = privacyElement.innerHTML;
+            expanded = true;
+            privacyElement.innerHTML = newText;
+            // add cursor default while this, and not clickable
+            setTimeout(() => {
+                privacyElement.innerHTML = originalText;
+                expanded = false;
+            }, 3000);
+        }
     </script>
-
 </body>
 </html>
