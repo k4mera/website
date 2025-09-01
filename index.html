@@ -309,33 +309,36 @@
             "https://cdn.jsdelivr.net/gh/k4mera/website/assets/images/gif-1.gif",
             "https://cdn.jsdelivr.net/gh/k4mera/website/assets/images/gif-2.gif"
         ];
-        
+
         let currentIndex = 0;
         const gifElement = document.getElementById('gif');
-        let rotationTimer;
+        let autoRotateInterval;
         
         function rotateGif() {
             currentIndex = (currentIndex + 1) % gifSources.length;
             gifElement.src = gifSources[currentIndex];
         }
         
-        function startTimer() {
-            rotationTimer = setInterval(rotateGif, 5000);
+        function resetAutoRotate() {
+            clearInterval(autoRotateInterval);
+            autoRotateInterval = setInterval(rotateGif, 5000);
         }
         
-        function restartTimer() {
-            clearInterval(rotationTimer);
-            startTimer();
-        }
-        
-        // Start the initial timer
-        startTimer();
-        
-        // Change on click and restart timer
+        // Add click/tap event listener
         gifElement.addEventListener('click', function() {
             rotateGif();
-            restartTimer();
+            resetAutoRotate();
         });
+        
+        // Add touch event for better mobile responsiveness
+        gifElement.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            rotateGif();
+            resetAutoRotate();
+        });
+        
+        // Start auto-rotation every 5 seconds
+        autoRotateInterval = setInterval(rotateGif, 5000);
 
 
         // Activate submit button
