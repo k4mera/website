@@ -76,6 +76,13 @@
         .accent-blue {color: #3c3e8c}
         .accent-orange {color: #ff8a5c}
 
+        .gradient-orange-blue {
+            background: linear-gradient(to right, #ff8a5c, #3c3e8c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .black-contour {
             -webkit-text-stroke: 2px #2e2e2e;
             -webkit-text-fill-color: transparent;
@@ -216,7 +223,7 @@
             <div class="flex flex-col items-center justify-center w-full min-h-screen" id="body-3">
 
                 <!-- Title -->
-                <h2 class="text-center text-3xl md:text-4xl font-aileron-regular mb-6">Bring a Comp4nion!</h2>
+                <h2 class="text-center text-3xl md:text-4xl font-aileron-regular mb-6">Bring a <span class="gradient-orange-blue">Comp4nion</span>!</h2>
 
                 <!-- Cards container -->
                 <div class="flex gap-4 w-full max-w-7xl mx-auto" id="card-container">
