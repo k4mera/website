@@ -77,10 +77,21 @@
         .accent-orange {color: #ff8a5c}
 
         .gradient-orange-blue {
-            background: linear-gradient(to right, #ff8a5c, #3c3e8c);
+            background: linear-gradient(45deg, #ff8a5c, #3c3e8c, #ff8a5c, #3c3e8c);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         .black-contour {
