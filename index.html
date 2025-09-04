@@ -16,12 +16,12 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
-    <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="K4MERA" />
-    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link rel="manifest" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/site.webmanifest" />
     <title>K4MERA</title>
     <style>
         .font-aileron-bold {
@@ -36,11 +36,6 @@
         
         .font-inter {
             font-family: 'Inter', sans-serif;
-        }
-
-        .float-animation {
-            backface-visibility: hidden;
-            animation: float 7s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -82,7 +77,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShift 3s ease-in-out infinite;
         }
 
         @keyframes gradientShift {
@@ -360,6 +354,20 @@
         
         // Start auto-rotation every 5 seconds
         autoRotateInterval = setInterval(rotateGif, 5000);
+
+
+        document.addEventListener('mousemove', function(e) {
+            const span = document.querySelector('.gradient-orange-blue');
+            if (span) {
+                const x = (e.clientX / window.innerWidth) * 200 - 50; // Range: -50% to 150%
+                const y = (e.clientY / window.innerHeight) * 200 - 50; // Range: -50% to 150%
+                
+                span.style.background = `radial-gradient(circle at ${x}% ${y}%, #ff8a5c, #3c3e8c)`;
+                span.style.backgroundClip = 'text';
+                span.style.webkitBackgroundClip = 'text';
+                span.style.webkitTextFillColor = 'transparent';
+            }
+        });
 
 
         // Activate submit button
