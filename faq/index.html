@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
+    <title>K4MERA - FAQ</title>
+    <style>
+        .font-aileron-bold {
+            font-family: 'Aileron', sans-serif;
+            font-weight: bold;
+        }
+
+        .font-aileron-regular {
+            font-family: 'Aileron', sans-serif;
+            font-weight: 400;
+        }
+        
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .bg-custom-white { 
+            background: radial-gradient(circle at 50% 50vh, #ff8a5c 0%, #fffefd 50%, #3c3e8c 200%);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .text-custom-white {
+            color: #fffefd;
+        }
+
+        .bg-custom-black { 
+            background: #2e2e2e;
+        }
+        .text-custom-black { color: #2e2e2e; }
+        .border-custom-black { border-color: #2e2e2e; }
+        .accent-blue {color: #3c3e8c}
+        .accent-orange {color: #ff8a5c}
+
+        .hover-accent-blue:hover {
+            color: #3c3e8c
+        }
+
+        .gradient-orange-blue {
+            background: linear-gradient(45deg, #ff8a5c, #3c3e8c, #ff8a5c, #3c3e8c);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                position: relative !important;
+                padding: 0.25rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-custom-white text-custom-black font-inter font-normal leading-tight mx-auto pb-2 flex flex-col items-center min-h-screen">
+    <!-- HEADER  -->
+    <header class="fixed top-0 left-0 w-full flex items-center justify-between p-4 z-50 pt-2 pb-4">
+        <a href="/" aria-label="Go to home" class="hover:opacity-75 transition-opacity">
+            <img src="https://cdn.jsdelivr.net/gh/k4mera/website/assets/images/logo.png" alt="Company Logo" class="w-16 md:w-20 h-auto">
+        </a>
+        <div class="flex items-center space-x-2">
+            <a href="https://instagram.com/k4.mera" target="_blank" aria-label="Instagram" class="hover:opacity-75 transition-opacity transform-gpu will-change-opacity">
+                <img src="https://cdn.jsdelivr.net/gh/k4mera/website/assets/images/k4meragram.svg" alt="Company Logo" class="h-9 w-auto">
+            </a>
+            <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity">
+                Join waitlist
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="flex flex-col max-w-5xl">
+            <!-- BODY 1: Title, gif, CTA -->
+            <div class="flex flex-col items-center justify-center text-center min-h-screen">                
+                <div class="text-center">
+                    <h3 class="text-3xl md:text-4xl font-aileron-regular text-right">Frequently Asked Questions</h3>
+                </div>
+                <img src="https://cdn.jsdelivr.net/gh/k4mera/website/assets/images/k4-0.png" alt="K4MERA" class="cursor-pointer block h-96 w-auto bject-cover">
+                <div class="text-center">
+                    <p class="text-base mb-2 font-inter">Everything you need to know about K4MERA, wigglegrams, and stereoscopic photography.</p>
+                </div>
+                <div class="flex flex-col gap-2 mb-2">
+                    <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity">
+                        Access pre-order
+                    </button>
+                    <a href="/" aria-label="Go to home" class="text-custom-black hover:underline font-inter">
+                        Back to home
+                    </a>
+                </div>
+            </div>
+            <!-- FAQ Items -->
+            <div class="space-y-4 max-w-3xl">
+                <div class="p-1 box-border m-2 hover-accent-blue">
+                    <h3 class="font-aileron-regular text-2xl cursor-default">What is K4MERA ?</h3>
+                    <p class="font-inter text-base cursor-default">K4MERA is the first digital wigglegram camera, or stereoscopic camera.</p>
+                </div>
+
+                <div class="p-1 box-border m-2 hover-accent-blue">
+                    <h3 class="font-aileron-regular text-2xl cursor-default">What is wigglegram ?</h3>
+                    <p class="font-inter text-base cursor-default">A wigglegram is an animated GIF that creates a 3D-like effect by rapidly changing between 4 photos taken from slightly different angles.</p>
+                </div>
+
+                <div class="p-1 box-border m-2 hover-accent-blue">
+                    <h3 class="font-aileron-regular text-2xl cursor-default">Why not use a Nishika ?</h3>
+                    <p class="font-inter text-base cursor-default">K4MERA is meant to be a modern, digital Nishika N8000 (or Nimslo 3D), opening up not only digital wigglegrams but try new things in the photography space. From experience, using a film camera for wigglegrams is very time-consuming and leads to a lot of frustration. K4MERA reduces all that friction.</p>
+                </div>
+
+                <div class="p-1 box-border m-2 hover-accent-blue">
+                    <h3 class="font-aileron-regular text-2xl cursor-default">Why not use a lens ?</h3>
+                    <p class="font-inter text-base cursor-default">A mounted lens that splits a single view only mimics different angles rather than capturing true parallax from separate viewpoints. Our 4-lens system captures four authentic perspectives simultaneously, creating more realistic 3D depth and smoother wigglegram motion.</p>
+                </div>
+
+                <div class="p-1 box-border m-2 hover-accent-blue">
+                    <h3 class="font-aileron-regular text-2xl cursor-default">Why not use AI ?</h3>
+                    <p class="font-inter text-base cursor-default">AI wigglegrams? Sure, but where's the fun in that? Our 4-lens camera gives you the real deal - authentic photos you captured yourself, plus that satisfying click of a real camera in your hands.</p>
+                </div>
+
+                <div class="p-1 box-border m-2 hover-accent-blue">
+                    <h3 class="font-aileron-regular text-2xl cursor-default">Does K4MERA have a screen ?</h3>
+                    <p class="font-inter text-base cursor-default">Yes! K4MERA features a touch screen so you can preview your shots and navigate settings with ease.</p>
+                </div>
+
+                <div class="p-1 box-border m-2 hover-accent-blue">
+                    <h3 class="font-aileron-regular text-2xl cursor-default">Do I still need to use Photoshop to edit the photos ?</h3>
+                    <p class="font-inter text-base cursor-default">Nope! The camera handles all the editing automatically with its built-in processing pipeline - just shoot and your wigglegram is ready to go. You can still adjust your gifs in the comp4nion app.</p>
+                </div>
+
+                <div class="p-1 box-border m-2 hover-accent-blue cursor-pointer" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+                    <h3 class="font-aileron-regular text-2xl">Is K4MERA already available ?</h3>
+                    <p class="font-inter text-base">Not yet - we're still perfecting it! Join our waitlist to follow our progress and we might even ask for your input on some features.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center justify-center w-full min-h-[70vh] mb-10" id="waitlist">
+                <h2 class="font-aileron-regular text-3xl md:text-4xl mt-0 mb-2 inline-block">Join our waitlist!</h2>
+                <p class="text-base mb-1 font-inter text-center max-w-lg">Be the first to hear when it's ready and test exclusive features.</p>
+                <!-- <form class="w-full mt-4" action="https://getlaunchlist.com/s/myIZjJ" method="POST"> -->
+                <form id="waitlist-form" class="w-full mt-4">
+                    <input type="hidden" name="_gotcha" />
+                    <div class="flex justify-center w-full mb-2">
+                        <input id="launchlist-email" name="email" type="email" placeholder="Email Address" required
+                            class="w-1/2 p-2 box-border rounded border-2 border-custom-black focus:outline-none bg-transparent font-inter"/>
+                    </div>
+                    <div class="flex justify-center w-full mb-2">
+                        <input id="launchlist-other-info" name="name" type="text" placeholder="Anything else you want to add (instagram, youtube, ...)"
+                            class="w-1/2 p-2 box-border rounded border-2 border-custom-black focus:outline-none bg-transparent font-inter"/>
+                    </div>
+                    <div class="flex justify-center mb-2">
+                        <input id="launchlist-submit" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity cursor-pointer disabled:opacity-50 disabled:cursor-default" type="submit" value="Join waitlist" disabled></input>
+                    </div>
+                </form>
+                <p id="success-message" class="hidden font-inter text-custom-black text-center">Thank you for joining the waitlist!</p>
+            </div>
+        </div>
+
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="flex flex-col justify-between items-center w-full">
+        <div class="flex justify-between w-full px-4 text-base font-inter">
+            <div class="flex-1 flex flex-col text-left">
+                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="merch" onclick="expandText('merch', 'dm us on instagram')">get merch</p>
+                <a href="mailto:contact@rooflesslabs.com?subject=inquiry" class="flex-1 hover:opacity-75">
+                    get in touch
+                </a>
+                <a href="https://giphy.com/channel/k4mera" target="_blank" rel="noopener noreferrer" class="flex-1 hover:opacity-75">
+                    see more gifs
+                </a>
+                <a href="https://instagram.com/k4.mera" target="_blank" rel="noopener noreferrer" class="flex-1 hover:opacity-75">
+                    follow us on instagram
+                </a>
+                <p class="flex-1 cursor-default">designed and built by roofless labs</p>
+            </div>
+            <div class="flex-1 flex flex-col items-center justify-center">
+                <a href="/" aria-label="Go to home" class="hover:opacity-75 transition-opacity">
+                    <img src="https://cdn.jsdelivr.net/gh/k4mera/website/assets/images/logo.png" alt="Company Logo" class="w-24">
+                </a>
+            </div>
+            <div class="flex-1 flex flex-col text-right">
+                <a href="https://instagram.com/k4.mera" target="_blank" rel="noopener noreferrer" class="flex-1 hover:opacity-75">
+                    about us
+                </a>
+                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="privacyPolicy" onclick="expandText('privacyPolicy', 'we won\'t spam you or resell your data')">privacy</p>
+                <a href="mailto:contact@rooflesslabs.com?subject=spontaneous-application" class="flex-1 hover:opacity-75">
+                    careers
+                </a>
+                <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="discord" onclick="expandText('discord', 'coming soon')">discord</p>
+                <p class="flex-1 cursor-default">© 2025 k4mera.world</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        let expanded;
+
+        function expandText(id, newText) {
+            if (expanded) {
+                return;
+            }
+            const privacyElement = document.getElementById(id);
+            const originalText = privacyElement.innerHTML;
+            expanded = true;
+            privacyElement.innerHTML = newText;
+            // add cursor default while this, and not clickable
+            setTimeout(() => {
+                privacyElement.innerHTML = originalText;
+                expanded = false;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
