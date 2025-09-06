@@ -411,20 +411,7 @@
             });
         });
 
-        let expanded = false;
-
-        function expandPrivacy() {
-            if (expanded) {
-                return;
-            }
-            const privacyElement = document.getElementById('privacyPolicy');
-            expanded = true;
-            privacyElement.innerHTML = "we won't spam you or resell your data";
-            setTimeout(() => {
-                privacyElement.innerHTML = 'privacy';
-                expanded = false;
-            }, 3000);
-        }
+        let expanded;
 
         function expandText(id, newText) {
             if (expanded) {
