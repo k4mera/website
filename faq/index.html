@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="K4MERA" />
+    <link rel="manifest" href="https://cdn.jsdelivr.net/gh/k4mera/website/assets/icons/site.webmanifest" />
     <title>K4MERA - FAQ</title>
     <style>
         .font-aileron-bold {
@@ -51,14 +58,10 @@
             }
 
             .bg-custom-white {
-                background: radial-gradient(circle at 50% 50vh, #ff8a5c 0%, #fffefd 50%, #3c3e8c 200%);
+                background: radial-gradient(circle at 50% 50vh, #ff8a5c -20%, #fffefd 25%, #3c3e8c 200%);
                 background-attachment: fixed;
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
-            }
-
-            .mobile-tap-blue:active {
-                color: #3c3e8c !important;
             }
         }
     </style>
@@ -86,7 +89,7 @@
                     <h3 class="text-3xl md:text-4xl font-aileron-regular text-right">Frequently Asked Questions</h3>
                 </div>
                 <a href="/" aria-label="Go to home">
-                    <img src="https://cdn.jsdelivr.net/gh/k4mera/website/assets/images/k4-0.png" alt="K4MERA" class="cursor-pointer block w-auto object-cover h-64 md:h-96">
+                    <img src="https://cdn.jsdelivr.net/gh/k4mera/website/assets/images/k4-0.png" alt="K4MERA" class="cursor-pointer block w-auto object-cover h-48 md:h-96">
                 </a>
                 <div class="text-center">
                     <p class="text-base mb-2 font-inter">Everything you need to know about K4MERA, wigglegrams, and stereoscopic photography.</p>
@@ -221,6 +224,24 @@
                 expanded = false;
             }, 3000);
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.mobile-tap-blue');
+            
+            faqItems.forEach(item => {
+                item.addEventListener('touchstart', function() {
+                    this.style.color = '#3c3e8c';
+                });
+                
+                item.addEventListener('touchend', function() {
+                    this.style.color = '';
+                });
+                
+                item.addEventListener('touchcancel', function() {
+                    this.style.color = '';
+                });
+            });
+        });
     </script>
 </body>
 </html>
