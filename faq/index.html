@@ -101,10 +101,13 @@
                     <a href="/" aria-label="Go to home" class="text-custom-black hover:underline font-inter">
                         Back to home
                     </a>
+                    <div onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})" class="mt-6 text-2xl text-custom-black animate-bounce cursor-pointer hover:opacity-75">
+                    ↓
+                </div>
                 </div>
             </div>
             <!-- FAQ Items -->
-            <div class="space-y-4 max-w-3xl">
+            <div class="space-y-4 max-w-3xl" id="faq">
                 <div class="p-1 box-border m-2 hover-accent-blue mobile-tap-blue">
                     <h3 class="font-aileron-regular text-2xl cursor-default">What is K4MERA ?</h3>
                     <p class="font-inter text-base cursor-default">K4MERA is the first digital wigglegram camera, or stereoscopic camera.</p>
@@ -144,6 +147,13 @@
                     <h3 class="font-aileron-regular text-2xl">Is K4MERA already available ?</h3>
                     <p class="font-inter text-base">Not yet - we're still perfecting it! Join our waitlist to follow our progress and we might even ask for your input on some features.</p>
                 </div>
+
+                <a href="mailto:contact@rooflesslabs.com?subject=questions">
+                <div class="p-1 box-border m-2 hover-accent-blue cursor-pointer mobile-tap-blue">
+                    <h3 class="font-aileron-regular text-2xl">More questions or suggestions ?</h3>
+                    <p class="font-inter text-base">Feel free to contact us!</p>
+                </div>
+                </a>
             </div>
 
             <div class="flex flex-col items-center justify-center w-full min-h-[70vh] mb-10" id="waitlist">
