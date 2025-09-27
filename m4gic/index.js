@@ -58,3 +58,12 @@ function like(icon) {
     icon.classList.add('fa-heart');
   }
 }
+
+window.addEventListener('load', function() {
+    document.getElementById('orientationPopup').style.display = 'block';
+});
+
+function handleOkClick() {
+    requestDeviceOrientation();
+    document.getElementById('orientationPopup').style.display = 'none';
+}

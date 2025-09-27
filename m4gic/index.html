@@ -26,8 +26,12 @@
             <i class="fa fa-chevron-down ml-1"></i>
           </div>
           <!-- TODO: make it a pop up at the beginning -->
-          <div class="col-4 text-right">
-            <button class="fa fa-plus-square-o" id="ig_add_post" onclick="requestDeviceOrientation()"></button>
+          <div class="popup-overlay" id="orientationPopup">
+            <div class="popup-content">
+              <p>Visualize the wigglegrams by tilting your phone sideways</p>
+              <img src="../assets/images/tilt.gif" alt="Phone tilting demonstration" class="popup-gif">
+              <button class="popup-ok-btn" onclick="handleOkClick()">Ok</button>
+            </div>
           </div>
         </div>
       </section>
