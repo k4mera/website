@@ -156,6 +156,26 @@
                 margin-bottom: 4rem;
             }
         }
+
+        @layer utilities {
+            .bg-gradient-accents {
+                background: linear-gradient(-45deg, #3c3e8c, #ff8a5c, #3c3e8c, #ff8a5c);
+                background-size: 400% 400%;
+                animation: gradient-shift 4s ease infinite;
+            }
+            
+            @keyframes gradient-shift {
+                0% {
+                background-position: 0% 50%;
+                }
+                50% {
+                background-position: 100% 50%;
+                }
+                100% {
+                background-position: 0% 50%;
+                }
+            }
+            }
     </style>
     <script>
         tailwind.config = {
@@ -201,6 +221,9 @@
                     <p class="text-base mb-1 font-inter">Real depth. Real movement. Fully digital wigglegrams.</p>
                 </div>
                 <div class="flex flex-col mt-2 gap-2">
+                    <a href="/m4gic" aria-label="Go to K4MERAGRAM" target="_blank" class="px-3 py-2 bg-gradient-accents box-border rounded-lg text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity sm:hidden">
+                        Click here for some m4gic
+                    </a>
                     <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter bg-accent-blue hover:opacity-75 transition-opacity">
                         Access pre-order
                     </button>
