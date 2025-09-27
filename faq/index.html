@@ -76,9 +76,9 @@
             <a href="https://instagram.com/k4.mera" target="_blank" aria-label="Instagram" class="hover:opacity-75 transition-opacity transform-gpu will-change-opacity">
                 <img src="https://cdn.jsdelivr.net/gh/k4mera/website/assets/images/k4meragram.svg" alt="Company Logo" class="h-9 w-auto">
             </a>
-            <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity">
-                Join waitlist
-            </button>
+            <a href="https://form.typeform.com/to/kRmB5TdA" target="_blank" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity">
+                Get access
+            </a>
         </div>
     </header>
     <main>
@@ -156,25 +156,13 @@
                 </a>
             </div>
 
-            <div class="flex flex-col items-center justify-center w-full min-h-[70vh] mb-10" id="waitlist">
-                <h2 class="font-aileron-regular text-3xl md:text-4xl mt-0 mb-2 inline-block">Join our waitlist!</h2>
-                <p class="text-base mb-1 font-inter text-center max-w-lg">Be the first to hear when it's ready and test exclusive features.</p>
-                <!-- <form class="w-full mt-4" action="https://getlaunchlist.com/s/myIZjJ" method="POST"> -->
-                <form id="waitlist-form" class="w-full mt-4">
-                    <input type="hidden" name="_gotcha" />
-                    <div class="flex justify-center w-full mb-2">
-                        <input id="launchlist-email" name="email" type="email" placeholder="Email Address" required
-                            class="w-1/2 p-2 box-border rounded border-2 border-custom-black focus:outline-none bg-transparent font-inter"/>
-                    </div>
-                    <div class="flex justify-center w-full mb-2">
-                        <input id="launchlist-other-info" name="name" type="text" placeholder="Anything else you want to add (instagram, youtube, ...)"
-                            class="w-1/2 p-2 box-border rounded border-2 border-custom-black focus:outline-none bg-transparent font-inter"/>
-                    </div>
-                    <div class="flex justify-center mb-2">
-                        <input id="launchlist-submit" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity cursor-pointer disabled:opacity-50 disabled:cursor-default" type="submit" value="Join waitlist" disabled></input>
-                    </div>
-                </form>
-                <p id="success-message" class="hidden font-inter text-custom-black text-center">Thank you for joining the waitlist!</p>
+            <!-- Waitlist -->
+            <div class="flex flex-col items-center justify-center w-full min-h-[70vh]" id="waitlist">
+                <h2 class="font-aileron-regular text-3xl md:text-4xl mt-0 mb-2 inline-block">Bring your pictures to life!</h2>
+                <p class="text-base mb-1 font-inter text-center max-w-lg mb-2">Join our waitlist to be the first to hear when <span class="k4mera-accent-orange crosshair-cursor">K4MERA</span> is ready for pre-order and try exclusive features.</p>
+                <a href="https://form.typeform.com/to/kRmB5TdA" target="_blank" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter bg-accent-blue hover:opacity-75 transition-opacity">
+                    Get early access
+                </a>
             </div>
         </div>
 
