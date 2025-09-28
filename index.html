@@ -370,45 +370,6 @@
             }
         });
 
-
-        // Activate submit button
-        const email = document.getElementById("launchlist-email");
-        const otherInfo = document.getElementById("launchlist-other-info")
-        const submitButton = document.getElementById("launchlist-submit")
-        submitButton.disabled = true;
-        email.addEventListener("keyup", submitButtonState);
-
-        function submitButtonState() {
-            if (document.getElementById("launchlist-email").checkValidity()) {
-                submitButton.disabled = false;
-            } else {
-                submitButton.disabled = true;
-            }
-        }
-        
-        document.getElementById("waitlist-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const formData = new FormData(this);
-            
-            fetch("https://getlaunchlist.com/s/myIZjJ", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    "Accept": "text/html,application/xhtml+xml,application/xml;"
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("waitlist-form").classList.add("hidden");
-                document.getElementById("success-message").classList.remove("hidden");
-            })
-            .catch(error => {
-                document.getElementById("waitlist-form").classList.add("hidden");
-                document.getElementById("success-message").classList.remove("hidden");
-            });
-        });
-
         let expanded;
 
         function expandText(id, newText) {
