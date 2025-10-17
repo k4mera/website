@@ -312,7 +312,7 @@
         <div class="flex justify-between w-full px-4 text-base font-inter">
             <div class="flex-1 flex flex-col text-left">
                 <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="merch" onclick="expandText('merch', 'dm us on instagram')">get merch</p>
-                <a href="mailto:contact@rooflesslabs.com?subject=inquiry" class="flex-1 hover:opacity-75">
+                <a href="mailto:inquire@k4mera.world?subject=inquiry" class="flex-1 hover:opacity-75">
                     get in touch
                 </a>
                 <a href="https://giphy.com/channel/k4mera" target="_blank" rel="noopener noreferrer" class="flex-1 hover:opacity-75">
@@ -334,7 +334,7 @@
                     about us
                 </a>
                 <p class="flex-1 hover:opacity-75 hover:cursor-pointer" id="privacyPolicy" onclick="expandText('privacyPolicy', 'we won\'t spam you or resell your data')">privacy</p>
-                <a href="mailto:contact@rooflesslabs.com?subject=spontaneous-application" class="flex-1 hover:opacity-75">
+                <a href="mailto:inquire@k4mera.world?subject=spontaneous-application" class="flex-1 hover:opacity-75">
                     careers
                 </a>
                 <p class="flex-1 cursor-default">© 2025 k4mera.world</p>
@@ -412,10 +412,7 @@
 
         document.querySelectorAll('.preorder').forEach(function(btn) {
             btn.addEventListener('click', function() {
-            gtag('event', 'pre_order_clicks', {
-                event_category: 'engagement',
-                event_label: 'Pre-order button'
-            });
+                gtag('event', 'pre_order_clicks');
             });
         });
     </script>
