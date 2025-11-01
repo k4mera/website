@@ -866,11 +866,8 @@ const initFluid = () => {
             {r: 0.235, g: 0.243, b: 0.549},  // #3c3e8c (deep blue)
             {r: 1.0, g: 0.541, b: 0.361}     // #ff8a5c (coral orange)
         ];
-        
-        // Pick a random color from your palette
         let color = colors[Math.floor(Math.random() * colors.length)];
-        
-        // Apply intensity multiplier
+
         return {
             r: color.r * 0.08,
             g: color.g * 0.08,
