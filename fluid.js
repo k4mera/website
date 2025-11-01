@@ -22,9 +22,10 @@
     SOFTWARE.
 */
 
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
     initFluid()
 });
+
 const initFluid = () => {
     const canvas = document.getElementById("fluid");
     resizeCanvas();
@@ -510,7 +511,7 @@ const initFluid = () => {
         divergence,
         curl,
         pressure,
-        ditheringTexture = createTextureAsync("../app/themes/flipp/dist/images/LDR_LLL1_0.png");
+        ditheringTexture = createTextureAsync("assets/images/LDR_LLL1_0.png");
     const blurProgram = new Program(blurVertexShader, blurShader),
         copyProgram = new Program(baseVertexShader, copyShader),
         clearProgram = new Program(baseVertexShader, clearShader),
@@ -606,8 +607,7 @@ const initFluid = () => {
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR),
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR),
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT),
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT),
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, 1, 1, 0, gl.RGB, gl.UNSIGNED_BYTE, new Uint8Array([255, 255, 255]));
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
         let obj = {
                 texture,
                 width: 1,
@@ -620,8 +620,7 @@ const initFluid = () => {
         return image.onload = () => {
             obj.width = image.width,
             obj.height = image.height,
-            gl.bindTexture(gl.TEXTURE_2D, texture),
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image)
+            gl.bindTexture(gl.TEXTURE_2D, texture)
         }, image.src = url, obj
     }
     function updateKeywords() {

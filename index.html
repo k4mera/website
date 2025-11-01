@@ -208,7 +208,8 @@
     </script>
 </head>
 <body class="bg-custom-gradient text-custom-black font-inter font-normal leading-tight mx-auto pb-2 flex flex-col items-center min-h-screen justify-between">
-    <canvas id="fluid" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; mix-blend-mode: lighter;" width="2792" height="672"></canvas>
+    <canvas id="fluid" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; mix-blend-mode: lighter;"></canvas>
+    <script src="fluid.js"></script>
     <!-- HEADER  -->
     <header class="fixed top-0 left-0 w-full flex items-center justify-between p-4 z-50 pt-2 pb-4">
         <a href="#" aria-label="Go to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="hover:opacity-75 transition-opacity">
@@ -450,6 +451,5 @@
         });
 
     </script>
-    <script src="fluid.js"></script>
 </body>
 </html>
