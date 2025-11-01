@@ -51,7 +51,7 @@
             }
         }
 
-        .crosshair-cursor {
+        .cursor-default {
             cursor: crosshair;
         }
 
@@ -189,7 +189,7 @@
                 background-position: 0% 50%;
                 }
             }
-            }
+        }
     </style>
     <script>
         tailwind.config = {
@@ -208,6 +208,7 @@
     </script>
 </head>
 <body class="bg-custom-gradient text-custom-black font-inter font-normal leading-tight mx-auto pb-2 flex flex-col items-center min-h-screen justify-between">
+    <canvas id="fluid" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; mix-blend-mode: lighter;" width="2792" height="672"></canvas>
     <!-- HEADER  -->
     <header class="fixed top-0 left-0 w-full flex items-center justify-between p-4 z-50 pt-2 pb-4">
         <a href="#" aria-label="Go to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="hover:opacity-75 transition-opacity">
@@ -230,7 +231,7 @@
                     K4MERA
                 </h1>
                 
-                <img src="assets/images/gif-1.gif" alt="Wigglegram" class="crosshair-cursor block mb-4 h-96 w-auto object-cover" id="gif">
+                <img src="assets/images/gif-1.gif" alt="Wigglegram" class="cursor-default block mb-4 h-96 w-auto object-cover" id="gif">
                 <div class="text-center">
                     <p class="text-base mb-1 font-inter">Real depth. Real movement. Fully digital wigglegrams.</p>
                 </div>
@@ -255,21 +256,21 @@
             <div class="flex items-center w-full gap-4 min-h-screen" id="body-2">
                 <div class="flex-1">
                     <h3 class="text-3xl md:text-4xl mb-1 font-aileron-regular text-right">Shoot in 3D...</h3>
-                    <p class="text-base mb-1 font-inter text-justify">...think in 4D! <span class="k4mera-accent-orange crosshair-cursor">K4MERA</span> is the first digital stereo-camera designed to capture authentic wigglegrams. With built-in depth processing and no post-production needed, every moment loops back to life. No film rolls, no Photoshop, no mimics.</p>
+                    <p class="text-base mb-1 font-inter text-justify">...think in 4D! <span class="k4mera-accent-orange cursor-default">K4MERA</span> is the first digital stereo-camera designed to capture authentic wigglegrams. With built-in depth processing and no post-production needed, every moment loops back to life. No film rolls, no Photoshop, no mimics.</p>
                     <div class="flex mt-6">
                         <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="ml-auto px-3 py-2 bg-transparent box-border rounded-lg border-2 border-accent-blue accent-blue rounded-lg font-inter hover:opacity-75 tr ansition-opacity preorder">
                             I want one!
                         </button>
                     </div>
                 </div>
-                <div class="flex-[1.5] image-container crosshair-cursor" id="k4mera-closeup">
+                <div class="flex-[1.5] image-container cursor-default" id="k4mera-closeup">
                     <video src="assets/images/k4-1.mp4" alt="K4MERA Render" autoplay muted loop playsinline class="ml-auto w-full h-auto rounded-md">
                 </div>
             </div>
 
             <!-- INTERLUDE -->
             <div class="flex justify-center items-center mb-24">
-                <img src="assets/images/k4-4.png" alt="K4MERA Render" class="w-64 h-auto interlude crosshair-cursor">
+                <img src="assets/images/k4-4.png" alt="K4MERA Render" class="w-64 h-auto interlude cursor-default">
             </div>
 
 
@@ -283,19 +284,19 @@
                 <div class="flex items-center gap-4 w-full max-w-7xl mx-auto" id="card-container">
                     <!-- Card 1 -->
                     <div class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base">
-                        <img src="assets/images/app-1.png" alt="App Screenshot" class="w-full h-auto object-cover mb-2 crosshair-cursor" />
+                        <img src="assets/images/app-1.png" alt="App Screenshot" class="w-full h-auto object-cover mb-2 cursor-default" />
                         <h3 class="font-aileron-regular mb-1 text-xl">At your fingertips</h3>
-                        <p class="text-sm font-inter px-3 pb-1">Your <span class="k4mera-accent-orange crosshair-cursor">K4MERA</span> seamlessly airdrops your 3D shots to your phone using Bluetooth and ad-hoc Wi-Fi, so your creations are always in your pocket. <span class="k4mera-accent-orange crosshair-cursor">K4MERA</span> prepares wigglegrams automatically for instant sharing, but the originals are always available for power users. Prefer to stay off your phone? No problem. Pop in a microSD card and go the old-school way, no syncing required.</p>
+                        <p class="text-sm font-inter px-3 pb-1">Your <span class="k4mera-accent-orange cursor-default">K4MERA</span> seamlessly airdrops your 3D shots to your phone using Bluetooth and ad-hoc Wi-Fi, so your creations are always in your pocket. <span class="k4mera-accent-orange cursor-default">K4MERA</span> prepares wigglegrams automatically for instant sharing, but the originals are always available for power users. Prefer to stay off your phone? No problem. Pop in a microSD card and go the old-school way, no syncing required.</p>
                     </div>
                     <!-- Card 2 -->
                     <div class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base">
-                        <img src="assets/images/app-2.png" alt="Image 2" class="w-full h-auto object-cover mb-2 crosshair-cursor" />
+                        <img src="assets/images/app-2.png" alt="Image 2" class="w-full h-auto object-cover mb-2 cursor-default" />
                         <h3 class="font-aileron-regular mb-1 text-xl">Comp4nion app</h3>
-                        <p class="text-sm font-inter px-3 pb-1"><span class="k4mera-accent-orange crosshair-cursor">K4MERA</span> isn't just about the capture. The Comp4nion app gives you everything you need after the click: instantly preview your 3D shots, fine-tune the motion, and export perfect wigglegrams. Easy and ready to share in just a few taps.</p>
+                        <p class="text-sm font-inter px-3 pb-1"><span class="k4mera-accent-orange cursor-default">K4MERA</span> isn't just about the capture. The Comp4nion app gives you everything you need after the click: instantly preview your 3D shots, fine-tune the motion, and export perfect wigglegrams. Easy and ready to share in just a few taps.</p>
                     </div>
                     <!-- Card 3 -->
                     <div class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base">
-                        <video src="assets/images/k4-ai.mp4" autoplay muted loop playsinline class="p-1 crosshair-cursor"></video>
+                        <video src="assets/images/k4-ai.mp4" autoplay muted loop playsinline class="p-1 cursor-default"></video>
                         <h3 class="font-aileron-regular mb-1 text-xl">Slopify with AI</h3>
                         <p class="text-sm font-inter px-3 pb-1">Comp4nion is more than an app, it's your uncanny creative partner, built for stereoscopic photography. If you want to push your shots further, it comes with a set of curated generative AI effects designed to enhance what you just framed. Built to express, not to automate, imitate, or cut corners.</p>
                     </div>
@@ -305,15 +306,15 @@
             <!-- INTERLUDE -->
             <div class="flex flex-col justify-center items-center interlude mb-24 mt-8">
                 <h2 class="text-center text-2xl font-aileron-regular">Say cheeeeeeeeeeeeeese!</h2>
-                <video src="assets/images/k4rousel.mp4" autoplay muted loop playsinline class="p-1 crosshair-cursor h-64 w-auto"></video>
-                <p class="text-base mb-1 font-inter text-center max-w-lg">Born in the heart of Switzerland, <span class="k4mera-accent-orange crosshair-cursor">K4MERA</span> is the result of a small team's vision: designers, engineers, and creators rethinking what photography could feel like. Built with care, crafted with obsession.</p>
+                <video src="assets/images/k4rousel.mp4" autoplay muted loop playsinline class="p-1 cursor-default h-64 w-auto"></video>
+                <p class="text-base mb-1 font-inter text-center max-w-lg">Born in the heart of Switzerland, <span class="k4mera-accent-orange cursor-default">K4MERA</span> is the result of a small team's vision: designers, engineers, and creators rethinking what photography could feel like. Built with care, crafted with obsession.</p>
             </div>
 
             <!-- BODY 4: Waitlist -->
             <div class="flex flex-col items-center justify-center w-full min-h-[70vh]" id="waitlist">
                 <h2 class="font-aileron-regular text-3xl md:text-4xl mt-0 mb-2 inline-block">Still building...</h2>
-                <img src="assets/images/k4-0.png" alt="K4MERA Render" class="w-64 h-auto crosshair-cursor">
-                <p class="text-base mb-1 font-inter text-center max-w-lg mb-2"><span class="k4mera-accent-orange crosshair-cursor">K4MERA</span> is still under construction, and we're working on a brand new design. Join our waitlist to be the first to hear when it's ready for pre-order and try exclusive features. </p>
+                <img src="assets/images/k4-0.png" alt="K4MERA Render" class="w-64 h-auto cursor-default">
+                <p class="text-base mb-1 font-inter text-center max-w-lg mb-2"><span class="k4mera-accent-orange cursor-default">K4MERA</span> is still under construction, and we're working on a brand new design. Join our waitlist to be the first to hear when it's ready for pre-order and try exclusive features. </p>
                 <a href="https://form.typeform.com/to/kRmB5TdA" target="_blank" class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter bg-accent-blue hover:opacity-75 transition-opacity mb-8 preorder">
                     Get early access
                 </a>
@@ -449,5 +450,6 @@
         });
 
     </script>
+    <script src="fluid.js"></script>
 </body>
 </html>
