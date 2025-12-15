@@ -1,0 +1,33 @@
+---
+// src/components/Header.astro
+---
+
+<header
+  class="fixed top-0 left-0 w-full flex items-center justify-between p-4 z-50 pt-2 pb-4"
+>
+  <a
+    href="/"
+    aria-label="Go to home"
+    class="hover:opacity-75 transition-opacity"
+  >
+    <img
+      src="/assets/images/logo.png"
+      alt="Company Logo"
+      class="w-16 md:w-20 h-auto"
+    />
+  </a>
+  <div class="flex items-center space-x-2">
+    <a
+      href="https://instagram.com/k4.mera"
+      target="_blank"
+      aria-label="Instagram"
+      class="hover:opacity-75 transition-opacity transform-gpu will-change-opacity"
+    >
+      <img
+        src="/assets/images/k4meragram.svg"
+        alt="Company Logo"
+        class="h-9 w-auto"
+      />
+    </a>
+  </div>
+</header>
