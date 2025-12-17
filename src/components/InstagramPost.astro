@@ -1,0 +1,38 @@
+---
+export interface InstagramPostProps {
+  image: string;
+  link: string;
+  profileImage: string;
+  username: string;
+  caption: string;
+}
+
+interface Props {
+  post: InstagramPostProps;
+}
+
+const { post } = Astro.props;
+---
+
+<div
+  class="shrink-0 w-80 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base"
+>
+  <a href={post.link} target="_blank">
+    <img
+      src={post.image}
+      alt="Instagram post"
+      class="w-full aspect-square object-cover p-1"
+    />
+  </a>
+  <div class="p-4 flex flex-row items-start gap-2 w-full">
+    <img src={post.profileImage} class="w-10 h-10 rounded-full" />
+    <div class="flex flex-col">
+      <a
+        href={`https://www.instagram.com/${post.username}/`}
+        target="_blank"
+        class="font-bold">{post.username}</a
+      >
+      <span set:html={post.caption} />
+    </div>
+  </div>
+</div>

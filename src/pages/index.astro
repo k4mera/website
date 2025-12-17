@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/Card.astro";
+import MultiGif from "../components/MultiGif.astro";
+import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScroll.astro";
+---
+
+<BaseLayout title="K4MERA">
+  <div class="w-full flex flex-col items-center">
+    <!-- Hero -->
+    <div
+      class="flex flex-col items-center justify-center text-center min-h-screen max-w-5xl"
+    >
+      <div class="text-center">
+        <h1
+          class="font-aileron-bold text-8xl inline-block cursor-default select-none"
+        >
+          K4MERA
+        </h1>
+        <p class="text-base mb-4 font-inter cursor-default">
+          The first digital wigglegram camera. Bring your pictures to life!
+        </p>
+      </div>
+      <MultiGif
+        sources={["assets/images/gif-1.gif", "assets/images/gif-2.gif"]}
+      />
+      <div class="flex flex-col mt-2 gap-2">
+        <a
+          href="https://form.typeform.com/to/kRmB5TdA"
+          target="_blank"
+          class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter bg-accent-blue hover:opacity-75 transition-opacity preorder"
+        >
+          Join waitlist
+        </a>
+        <button
+          onclick="document.getElementById('body-3').scrollIntoView({behavior:'smooth'})"
+          class="text-custom-black hover:underline hover-accent-blue font-inter"
+        >
+          Learn more
+        </button>
+      </div>
+      <div
+        onclick="document.getElementById('body-3').scrollIntoView({behavior:'smooth'})"
+        class="mt-6 text-2xl text-custom-black animate-bounce cursor-pointer hover:opacity-75"
+      >
+        ↓
+      </div>
+    </div>
+
+    <!-- BODY 2: Render -->
+    <div
+      class="flex items-center w-full gap-4 min-h-[50vh] max-w-3xl"
+      id="body-2"
+    >
+      <div class="flex-1">
+        <h3 class="text-3xl md:text-4xl mb-1 font-aileron-regular text-right">
+          Shoot in 3D...
+        </h3>
+        <p class="text-base mb-1 font-inter text-justify">
+          ...think in 4D! K4MERA is the first digital stereo-camera designed to
+          capture authentic wigglegrams. With built-in depth processing and no
+          post-production needed, every moment loops back to life. No film
+          rolls, no Photoshop, no mimics.
+        </p>
+      </div>
+      <div
+        class="flex-[1.5] image-container cursor-default"
+        id="k4mera-closeup"
+      >
+        <video
+          src="assets/images/k4-1.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          class="ml-auto w-full h-auto rounded-md"
+        >
+        </video>
+      </div>
+    </div>
+    <script>
+      const videoCloseupContainer = document.getElementById("k4mera-closeup");
+      const video = videoCloseupContainer?.querySelector("video");
+
+      videoCloseupContainer?.addEventListener("click", () => {
+        if (video?.paused) {
+          video.play();
+        } else {
+          video?.pause();
+        }
+      });
+    </script>
+
+    <!-- INTERLUDE -->
+    <div class="flex justify-center items-center min-h-[50vh]">
+      <img
+        src="assets/images/k4-4.png"
+        alt="K4MERA Render"
+        class="w-64 h-auto interlude cursor-default"
+      />
+    </div>
+    <!-- Body 3: Cards -->
+    <div
+      class="flex flex-col items-center justify-center w-full min-h-screen"
+      id="body-3"
+    >
+      <h2 class="text-center text-3xl md:text-4xl font-aileron-regular mb-6">
+        Bring a Comp4nion!
+      </h2>
+      <div
+        class="flex items-center gap-4 w-full max-w-7xl mx-auto"
+        id="card-container"
+      >
+        <Card
+          src="/assets/images/app-1.png"
+          title="At your fingertips"
+          description="Your K4MERA seamlessly airdrops your 3D shots to your phone using Bluetooth and ad-hoc Wi-Fi, so your creations are always in your pocket. K4MERA prepares wigglegrams automatically for instant sharing, but the originals are always available for power users. Prefer to stay off your phone? No problem. Pop in a microSD card and go the old-school way, no syncing required."
+        />
+        <Card
+          src="/assets/images/app-2.png"
+          title="Comp4nion app"
+          description="K4MERA isn't just about the capture. The Comp4nion app gives you everything you need after the click: instantly preview your 3D shots, fine-tune the motion, and export perfect wigglegrams. Easy and ready to share in just a few taps."
+        />
+        <Card
+          src="/assets/images/k4-ai.mp4"
+          title="Slopify with AI"
+          description="K4MERA is not only about wigglegrams. Stereo lenses allow for countless effects and enhancements, like HDR, AR/VR applications, and whatever the community can imagine."
+          isVideo={true}
+        />
+      </div>
+    </div>
+
+    <!-- LOGOS -->
+    <div
+      class="flex flex-col items-center justify-center w-full mt-32 min-h-[100vh]"
+    >
+      <h2 class="text-center text-3xl md:text-4xl font-aileron-regular mb-6">
+        Already in the wild
+      </h2>
+      <InfiniteInstagramPostScroll
+        posts={[
+          {
+            image: "/assets/posts/tataki.gif",
+            link: "https://www.instagram.com/p/DLNSROGoubg/?img_index=8",
+            profileImage: "assets/posts/tataki.jpg",
+            username: "ta_ta_ki",
+            caption: `
+                📸 3D 
+                <a
+                  href="https://www.instagram.com/k4.mera/"
+                  target="_blank"
+                  class="accent-blue"
+                >
+                  @k4.mera
+                </a>
+            `,
+          },
+          {
+            image: "/assets/posts/strangetree.gif",
+            link: "https://www.instagram.com/p/DJTwH7hMqWU",
+            profileImage: "/assets/posts/strangetree.jpg",
+            username: "strangetree.fam",
+            caption: `
+                Ps: we used a new camera by 
+                <a
+                  href="https://www.instagram.com/k4.mera/"
+                  target="_blank"
+                  class="accent-blue"
+                >
+                  @k4.mera
+                </a>
+                 to take some new shot, what do you think?
+            `,
+          },
+        ]}
+      />
+    </div>
+
+    <!-- TEAM -->
+    <div class="flex flex-col justify-center items-center interlude mb-24 mt-8">
+      <h2 class="text-center text-2xl font-aileron-regular mb-2">
+        Say cheeeeeeeeeeeeeeeeeeeeeeeese!
+      </h2>
+      <img
+        src="/assets/images/team.jpg"
+        alt="Team"
+        class="p-1 cursor-default h-96 w-auto mb-2"
+      />
+
+      <p class="text-base mb-1 font-inter text-center max-w-lg">
+        Born in the heart of Switzerland, K4MERA is the result of a small team's
+        vision: designers, engineers, and creators rethinking what photography
+        could feel like. Built with care, crafted with obsession.
+      </p>
+    </div>
+
+    <!-- WAITLIST -->
+    <!-- BODY 4: Waitlist -->
+    <div
+      class="flex flex-col items-center justify-center w-full min-h-[70vh]"
+      id="waitlist"
+    >
+      <h2 class="font-aileron-regular text-3xl md:text-4xl mt-0 inline-block">
+        Still building...
+      </h2>
+      <img
+        src="assets/images/k4-0.png"
+        alt="K4MERA Render"
+        class="w-64 h-auto cursor-default m-2"
+      />
+      <p class="text-base font-inter text-center max-w-lg mb-2">
+        K4MERA is still under construction, and we're working on a brand new
+        design. Join our waitlist to be the first to hear when it's ready for
+        pre-order and try exclusive features.
+      </p>
+      <a
+        href="https://form.typeform.com/to/kRmB5TdA"
+        target="_blank"
+        class="px-3 py-2 bg-custom-black text-custom-white rounded-lg font-inter bg-accent-blue hover:opacity-75 transition-opacity mb-8 preorder"
+      >
+        Join waitlist
+      </a>
+    </div>
+  </div>
+</BaseLayout>

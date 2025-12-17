@@ -1,0 +1,33 @@
+---
+import type { InstagramPostProps } from "./InstagramPost.astro";
+import InstagramPost from "./InstagramPost.astro";
+
+interface Props {
+  posts: InstagramPostProps[];
+}
+const { posts } = Astro.props;
+---
+
+<style>
+  .track {
+    display: flex;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+
+<div class="w-full overflow-hidden">
+  <div class="w-full track gap-x-60 items-center">
+    {[...posts, ...posts].map((post) => <InstagramPost post={post} />)}
+    {[...posts, ...posts].map((post) => <InstagramPost post={post} />)}
+  </div>
+</div>
