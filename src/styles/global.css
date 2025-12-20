@@ -64,15 +64,6 @@
     background-clip: text;
 }
 
-@keyframes gradientShift {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
 @media (max-width: 768px) {
 
     header {
@@ -114,25 +105,5 @@
 
     #waitlist {
         margin-bottom: 4rem;
-    }
-}
-
-@layer utilities {
-    .bg-gradient-accents {
-        background: linear-gradient(-45deg, #3c3e8c, #ff8a5c, #3c3e8c, #ff8a5c);
-        background-size: 400% 400%;
-        animation: gradient-shift 4s ease infinite;
-    }
-    
-    @keyframes gradient-shift {
-        0% {
-        background-position: 0% 50%;
-        }
-        50% {
-        background-position: 100% 50%;
-        }
-        100% {
-        background-position: 0% 50%;
-        }
     }
 }

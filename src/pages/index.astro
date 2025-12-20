@@ -5,7 +5,7 @@ import MultiGif from "../components/MultiGif.astro";
 import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScroll.astro";
 ---
 
-<BaseLayout title="K4MERA">
+<BaseLayout title="K4MERA" nav="/faq">
   <div class="w-full flex flex-col items-center">
     <!-- Hero -->
     <div
@@ -40,7 +40,7 @@ import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScro
         </button>
       </div>
       <div
-        onclick="document.getElementById('body-3').scrollIntoView({behavior:'smooth'})"
+        onclick="document.getElementById('body-2').scrollIntoView({behavior:'smooth'})"
         class="mt-6 text-2xl text-custom-black animate-bounce cursor-pointer hover:opacity-75"
       >
         ↓
@@ -101,16 +101,13 @@ import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScro
     </div>
     <!-- Body 3: Cards -->
     <div
-      class="flex flex-col items-center justify-center w-full min-h-screen"
+      class="flex flex-col items-center justify-center max-w-5xl min-h-screen"
       id="body-3"
     >
       <h2 class="text-center text-3xl md:text-4xl font-aileron-regular mb-6">
         Bring a Comp4nion!
       </h2>
-      <div
-        class="flex items-center gap-4 w-full max-w-7xl mx-auto"
-        id="card-container"
-      >
+      <div class="flex items-center gap-4 w-full mx-auto" id="card-container">
         <Card
           src="/assets/images/app-1.png"
           title="At your fingertips"
@@ -124,7 +121,7 @@ import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScro
         <Card
           src="/assets/images/k4-ai.mp4"
           title="Slopify with AI"
-          description="K4MERA is not only about wigglegrams. Stereo lenses allow for countless effects and enhancements, like HDR, AR/VR applications, and whatever the community can imagine."
+          description="Comp4nion is more than an app, it's your uncanny creative partner, built for stereoscopic photography. If you want to push your shots further, it comes with a set of curated generative AI effects designed to enhance what you just framed. Built to express, not to automate, imitate, or cut corners."
           isVideo={true}
         />
       </div>

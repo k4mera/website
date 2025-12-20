@@ -1,5 +1,5 @@
 ---
-// src/components/Footer.astro
+const { nav = "/" } = Astro.props;
 ---
 
 <footer class="flex flex-col justify-between items-center w-full">
@@ -36,8 +36,16 @@
       <img src="/assets/images/logo.png" alt="Icon" class="w-24" />
     </div>
     <div class="flex-1 flex flex-col text-right">
-      <a href="/faq" aria-label="Go to FAQ" class="flex-1 hover:opacity-75">
-        faq
+      <a href={nav} aria-label="Go to FAQ" class="flex-1 hover:opacity-75">
+        {
+          () => {
+            if (nav === "/") {
+              return "home";
+            } else if (nav === "/faq") {
+              return "faq";
+            }
+          }
+        }
       </a>
       <a
         href="https://instagram.com/k4.mera"
