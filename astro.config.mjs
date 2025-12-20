@@ -5,4 +5,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  site: 'https://k4mera.world',
 });
