@@ -10,7 +10,39 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- your other head content -->
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GHEF0B28WX"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-GHEF0B28WX");
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.cdnfonts.com/css/aileron" rel="stylesheet" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/icons/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="assets/icons/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/icons/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="K4MERA" />
+    <link rel="manifest" href="assets/icons/site.webmanifest" />
     <title>{title}</title>
   </head>
   <body class="bg-custom-gradient text-custom-black font-inter">
