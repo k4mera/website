@@ -1,0 +1,135 @@
+---
+import FaqItem from "../components/FaqItem.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="FAQ" nav="/">
+  <div class="flex flex-col w-full items-center">
+    <!-- BODY 1: Title, gif, CTA -->
+    <div
+      class="flex flex-col items-center justify-center text-center min-h-screen"
+    >
+      <div class="text-center">
+        <h3 class="text-3xl md:text-4xl font-aileron-regular text-right">
+          Frequently Asked Questions
+        </h3>
+      </div>
+      <a href="/" aria-label="Go to home">
+        <img
+          src="/assets/images/k4-0.png"
+          alt="K4MERA"
+          class="cursor-pointer block w-auto object-cover h-48 md:h-96"
+        />
+      </a>
+      <div class="text-center">
+        <p class="text-base mb-2 font-inter">
+          Everything you need to know about K4MERA, wigglegrams, and
+          stereoscopic photography.
+        </p>
+      </div>
+      <div class="flex flex-col gap-2 mb-2">
+        <button
+          onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"
+          class="px-3 py-2 text-custom-white rounded-lg font-inter bg-accent-blue hover:opacity-75 transition-opacity cursor-pointer"
+        >
+          Join waitlist
+        </button>
+        <a
+          href="/"
+          aria-label="Go to home"
+          class="text-custom-black hover:underline font-inter"
+        >
+          Back to home
+        </a>
+        <div
+          onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"
+          class="mt-6 text-2xl text-custom-black animate-bounce cursor-pointer hover:opacity-75"
+        >
+          ↓
+        </div>
+      </div>
+    </div>
+    <!-- FAQ Items -->
+    <div class="space-y-4 max-w-3xl" id="faq">
+      <FaqItem
+        question="What is K4MERA ?"
+        answer="K4MERA is the first digital wigglegram camera, or stereoscopic camera."
+      />
+      <FaqItem
+        question="What is wigglegram ?"
+        answer=`A wigglegram is an animated GIF that creates a 3D-like effect by
+          rapidly changing between 4 photos taken from slightly different
+          angles.`
+      />
+      <FaqItem
+        question="Why not use a Nishika ?"
+        answer=`K4MERA is meant to be a modern, digital Nishika N8000 (or Nimslo 3D),
+          opening up not only digital wigglegrams but try new things in the
+          photography space. From experience, using a film camera for
+          wigglegrams is very time-consuming and leads to a lot of frustration.
+          K4MERA reduces all that friction.`
+      />
+      <FaqItem
+        question="Why not use a lens ?"
+        answer=`A mounted lens that splits a single view only mimics different angles
+          rather than capturing true parallax from separate viewpoints. Our
+          4-lens system captures four authentic perspectives simultaneously,
+          creating more realistic 3D depth and smoother wigglegram motion.`
+      />
+      <FaqItem
+        question="Why not use AI ?"
+        answer=`AI wigglegrams? Sure, but where's the fun in that? Our 4-lens camera
+          gives you the real deal - authentic photos you captured yourself, plus
+          that satisfying click of a real camera in your hands.`
+      />
+      <FaqItem
+        question="Does K4MERA have a screen ?"
+        answer=`Yes! K4MERA features a touch screen so you can preview your shots and
+          navigate settings with ease.`
+      />
+      <FaqItem
+        question="Do I still need to use Photoshop to edit the photos ?"
+        answer=`Nope! The camera handles all the editing automatically with its
+          built-in processing pipeline - just shoot and your wigglegram is ready
+          to go. You can still adjust your gifs in the comp4nion app.`
+      />
+      <FaqItem
+        question="Is K4MERA already available ?"
+        answer=`Not yet - we're still perfecting it! Join our waitlist to follow our
+          progress and we might even ask for your input on some features.`
+        onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"
+      />
+      <a href="mailto:inquire@k4mera.world?subject=questions">
+        <FaqItem
+          question="More questions or suggestions ?"
+          answer="Feel free to contact us!"
+          onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})"
+        />
+      </a>
+    </div>
+
+    <!-- Waitlist -->
+    <div
+      class="flex flex-col items-center justify-center w-full min-h-[70vh]"
+      id="waitlist"
+    >
+      <h2
+        class="font-aileron-regular text-3xl md:text-4xl mt-0 mb-2 inline-block"
+      >
+        Bring your pictures to life!
+      </h2>
+      <p class="text-base font-inter text-center max-w-lg mb-2">
+        Join our waitlist to be the first to hear when <span
+          class="k4mera-accent-orange crosshair-cursor">K4MERA</span
+        > is ready for pre-order and try exclusive features.
+      </p>
+      <a
+        href="https://form.typeform.com/to/kRmB5TdA"
+        target="_blank"
+        class="px-3 py-2 text-custom-white rounded-lg font-inter bg-accent-blue hover:opacity-75 transition-opacity"
+      >
+        Join waitlist
+      </a>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,100 @@
+---
+const { nav = "/" } = Astro.props;
+---
+
+<footer class="flex flex-col justify-between items-center w-full">
+  <div class="flex justify-between w-full px-4 text-base font-inter">
+    <div class="flex-1 flex flex-col text-left">
+      <p class="flex-1 hover:opacity-75 hover:cursor-pointer merch" id="merch">
+        get merch
+      </p>
+      <a
+        href="mailto:inquire@k4mera.world?subject=inquiry"
+        class="flex-1 hover:opacity-75"
+      >
+        get in touch
+      </a>
+      <a
+        href="https://giphy.com/channel/k4mera"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 hover:opacity-75"
+      >
+        see more gifs
+      </a>
+      <a
+        href="https://instagram.com/k4.mera"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 hover:opacity-75"
+      >
+        follow us on instagram
+      </a>
+      <p class="flex-1 cursor-default">designed and built by roofless labs</p>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center">
+      <img src="/assets/images/logo.png" alt="Icon" class="w-24" />
+    </div>
+    <div class="flex-1 flex flex-col text-right">
+      <a href={nav} aria-label="Go to FAQ" class="flex-1 hover:opacity-75">
+        {
+          () => {
+            if (nav === "/") {
+              return "home";
+            } else if (nav === "/faq") {
+              return "faq";
+            }
+          }
+        }
+      </a>
+      <a
+        href="https://instagram.com/k4.mera"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 hover:opacity-75"
+      >
+        about us
+      </a>
+      <p
+        class="flex-1 hover:opacity-75 hover:cursor-pointer"
+        id="privacyPolicy"
+      >
+        privacy
+      </p>
+      <a
+        href="mailto:inquire@k4mera.world?subject=spontaneous-application"
+        class="flex-1 hover:opacity-75"
+      >
+        careers
+      </a>
+      <p class="flex-1 cursor-default">© 2025 k4mera.world</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let expanded = false;
+
+  function expandText(id: string, newText: string) {
+    if (expanded) return;
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    const originalText = element.innerHTML;
+    expanded = true;
+    element.innerHTML = newText;
+
+    setTimeout(() => {
+      element.innerHTML = originalText;
+      expanded = false;
+    }, 3000);
+  }
+
+  document.getElementById("merch")?.addEventListener("click", () => {
+    expandText("merch", "dm us on instagram");
+  });
+
+  document.getElementById("privacyPolicy")?.addEventListener("click", () => {
+    expandText("privacyPolicy", "we won't spam you or resell your data");
+  });
+</script>

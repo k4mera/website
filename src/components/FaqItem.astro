@@ -1,0 +1,13 @@
+---
+const { question, answer, onclick = null } = Astro.props;
+---
+
+<div
+  class="p-1 box-border m-2 hover-accent-blue mobile-tap-blue"
+  onclick={onclick}
+>
+  <h3 class="font-aileron-regular text-2xl cursor-default">{question}</h3>
+  <p class="font-inter text-base cursor-default">
+    {answer}
+  </p>
+</div>
