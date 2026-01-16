@@ -109,20 +109,22 @@ import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScro
       </h2>
       <div class="flex items-center gap-4 w-full mx-auto" id="card-container">
         <Card
-          src="/assets/images/app-1.png"
+          sources={[{ src: "/assets/images/app-1.png" }]}
           title="At your fingertips"
           description="Your K4MERA seamlessly airdrops your 3D shots to your phone using Bluetooth and ad-hoc Wi-Fi, so your creations are always in your pocket. K4MERA prepares wigglegrams automatically for instant sharing, but the originals are always available for power users. Prefer to stay off your phone? No problem. Pop in a microSD card and go the old-school way, no syncing required."
         />
         <Card
-          src="/assets/images/app-2.png"
+          sources={[{ src: "/assets/images/app-2.png" }]}
           title="Comp4nion app"
           description="K4MERA isn't just about the capture. The Comp4nion app gives you everything you need after the click: instantly preview your 3D shots, fine-tune the motion, and export perfect wigglegrams. Easy and ready to share in just a few taps."
         />
         <Card
-          src="/assets/images/k4-ai.mp4"
+          sources={[
+            { src: "/assets/images/k4-ai.mp4", isVideo: true },
+            { src: "/assets/images/app-1.png" },
+          ]}
           title="Slopify with AI"
           description="Comp4nion is more than an app, it's your uncanny creative partner, built for stereoscopic photography. If you want to push your shots further, it comes with a set of curated generative AI effects designed to enhance what you just framed. Built to express, not to automate, imitate, or cut corners."
-          isVideo={true}
         />
       </div>
     </div>
