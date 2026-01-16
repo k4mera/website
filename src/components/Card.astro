@@ -17,7 +17,11 @@ const cardId = `card-${Math.random().toString(36).slice(2, 9)}`;
 <div
   class="flex-1 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base"
 >
-  <div class="relative w-full" data-card-gallery={cardId}>
+  <div
+    class="relative w-full"
+    data-card-gallery={cardId}
+    data-slide-count={sources.length}
+  >
     {
       sources.map((item, index) => (
         <div
@@ -43,8 +47,67 @@ const cardId = `card-${Math.random().toString(36).slice(2, 9)}`;
         </div>
       ))
     }
+    {
+      sources.length > 1 && (
+        <div class="flex justify-center gap-2 py-2" data-dots-container>
+          {sources.map((_, index) => (
+            <button
+              class={`w-2 h-2 rounded-full transition-colors cursor-pointer ${index === 0 ? "bg-custom-black" : "bg-gray-300"}`}
+              data-dot-index={index}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )
+    }
   </div>
 
   <h3 class="font-aileron-regular mb-1 text-xl mt-2">{title}</h3>
   <p class="text-sm font-inter px-3 pb-1">{description}</p>
 </div>
+
+<script define:vars={{ cardId, slideCount: sources.length }}>
+  if (slideCount > 1) {
+    document.addEventListener("DOMContentLoaded", () => {
+      const gallery = document.querySelector(`[data-card-gallery="${cardId}"]`);
+      if (!gallery) return;
+
+      const slides = gallery.querySelectorAll(".card-slide");
+      const dots = gallery.querySelectorAll("[data-dot-index]");
+      let currentIndex = 0;
+
+      function goToSlide(index) {
+        slides[currentIndex].classList.add("hidden");
+        dots[currentIndex].classList.remove("bg-custom-black");
+        dots[currentIndex].classList.add("bg-gray-300");
+
+        currentIndex = index;
+
+        slides[currentIndex].classList.remove("hidden");
+        dots[currentIndex].classList.add("bg-custom-black");
+        dots[currentIndex].classList.remove("bg-gray-300");
+      }
+
+      function nextSlide() {
+        const next = (currentIndex + 1) % slideCount;
+        goToSlide(next);
+      }
+
+      // Auto-advance every 10 seconds
+      let autoAdvanceTimer = setInterval(nextSlide, 10000);
+
+      function resetTimer() {
+        clearInterval(autoAdvanceTimer);
+        autoAdvanceTimer = setInterval(nextSlide, 10000);
+      }
+
+      // Click handlers for dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          goToSlide(index);
+          resetTimer();
+        });
+      });
+    });
+  }
+</script>
