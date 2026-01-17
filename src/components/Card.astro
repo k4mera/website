@@ -22,32 +22,32 @@ const cardId = `card-${Math.random().toString(36).slice(2, 9)}`;
     data-card-gallery={cardId}
     data-slide-count={sources.length}
   >
-    <div class="flex transition-transform duration-300 ease-in-out" data-slides-track>
-    {
-      sources.map((item, index) => (
-        <div
-          class="card-slide w-full shrink-0"
-          data-slide-index={index}
-        >
-          {item.isVideo ? (
-            <video
-              src={item.src}
-              autoplay
-              muted
-              loop
-              playsinline
-              class="w-full h-auto object-cover cursor-default p-1"
-            />
-          ) : (
-            <img
-              src={item.src}
-              alt={`${title} - ${index + 1}`}
-              class="w-full h-auto object-cover cursor-default"
-            />
-          )}
-        </div>
-      ))
-    }
+    <div
+      class="flex transition-transform duration-300 ease-in-out"
+      data-slides-track
+    >
+      {
+        sources.map((item, index) => (
+          <div class="card-slide w-full shrink-0" data-slide-index={index}>
+            {item.isVideo ? (
+              <video
+                src={item.src}
+                autoplay
+                muted
+                loop
+                playsinline
+                class="w-full h-auto object-cover cursor-default p-1"
+              />
+            ) : (
+              <img
+                src={item.src}
+                alt={`${title} - ${index + 1}`}
+                class="w-full h-auto object-cover cursor-default"
+              />
+            )}
+          </div>
+        ))
+      }
     </div>
     {
       sources.length > 1 && (
