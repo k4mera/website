@@ -66,6 +66,9 @@ const cardId = `card-${Math.random().toString(36).slice(2, 9)}`;
 
   <h3 class="font-aileron-regular mb-1 text-xl mt-2">{title}</h3>
   <p class="text-sm font-inter px-3 pb-1">{description}</p>
+  <div class="mt-2 mb-3">
+    <slot />
+  </div>
 </div>
 
 <script define:vars={{ cardId, slideCount: sources.length }}>

@@ -1,0 +1,168 @@
+---
+interface Props {
+  buttonText?: string;
+  buttonClass?: string;
+}
+
+const { buttonText = "Learn more", buttonClass = "" } = Astro.props;
+const dialogId = `dialog-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="inline-block" data-dialog-wrapper={dialogId}>
+  <button
+    type="button"
+    class:list={[
+      "px-4 py-2 text-sm font-inter rounded border-2 border-custom-black bg-transparent text-custom-black hover:bg-custom-black hover:text-custom-white transition-colors cursor-pointer",
+      buttonClass,
+    ]}
+    data-dialog-trigger={dialogId}
+  >
+    {buttonText}
+  </button>
+
+  <div
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+    data-dialog-backdrop={dialogId}
+  >
+    <!-- Backdrop overlay -->
+    <div
+      class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+      data-dialog-overlay={dialogId}
+    >
+    </div>
+
+    <!-- Dialog content -->
+    <div
+      class="relative bg-custom-white rounded-lg shadow-xl max-w-lg w-full max-h-[85vh] overflow-y-auto z-10 border-2 border-custom-black"
+      data-dialog-content={dialogId}
+    >
+      <!-- Close button -->
+      <button
+        type="button"
+        class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-custom-black hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+        data-dialog-close={dialogId}
+        aria-label="Close dialog"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Slot for dialog content -->
+      <div class="p-6 pt-10">
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  [data-dialog-backdrop].open {
+    display: flex;
+  }
+
+  /* Prevent body scroll when dialog is open */
+  :global(body.dialog-open) {
+    overflow: hidden;
+  }
+
+  /* Animation for backdrop */
+  [data-dialog-backdrop] {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+  }
+
+  [data-dialog-backdrop].open {
+    opacity: 1;
+  }
+
+  /* Animation for dialog content */
+  [data-dialog-content] {
+    transform: scale(0.95) translateY(10px);
+    transition:
+      transform 0.2s ease-out,
+      opacity 0.2s ease-out;
+    opacity: 0;
+  }
+
+  [data-dialog-backdrop].open [data-dialog-content] {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  /* Custom scrollbar for dialog content */
+  [data-dialog-content]::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  [data-dialog-content]::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  [data-dialog-content]::-webkit-scrollbar-thumb {
+    background: #2e2e2e;
+    border-radius: 3px;
+  }
+
+  .bg-custom-white {
+    background: #fffefd;
+  }
+</style>
+
+<script define:vars={{ dialogId }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const trigger = document.querySelector(`[data-dialog-trigger="${dialogId}"]`);
+    const backdrop = document.querySelector(`[data-dialog-backdrop="${dialogId}"]`);
+    const overlay = document.querySelector(`[data-dialog-overlay="${dialogId}"]`);
+    const closeBtn = document.querySelector(`[data-dialog-close="${dialogId}"]`);
+    const content = document.querySelector(`[data-dialog-content="${dialogId}"]`);
+
+    if (!trigger || !backdrop || !overlay || !closeBtn || !content) return;
+
+    function openDialog() {
+      backdrop.classList.add("open");
+      document.body.classList.add("dialog-open");
+      // Focus the close button for accessibility
+      closeBtn.focus();
+    }
+
+    function closeDialog() {
+      backdrop.classList.remove("open");
+      document.body.classList.remove("dialog-open");
+      // Return focus to trigger button
+      trigger.focus();
+    }
+
+    // Open on trigger click
+    trigger.addEventListener("click", openDialog);
+
+    // Close on overlay click (outside dialog)
+    overlay.addEventListener("click", closeDialog);
+
+    // Close on close button click
+    closeBtn.addEventListener("click", closeDialog);
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && backdrop.classList.contains("open")) {
+        closeDialog();
+      }
+    });
+
+    // Prevent clicks inside dialog from closing it
+    content.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  });
+</script>
