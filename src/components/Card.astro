@@ -23,7 +23,7 @@ const cardId = `card-${Math.random().toString(36).slice(2, 9)}`;
     data-slide-count={sources.length}
   >
     <div
-      class="flex transition-transform duration-300 ease-in-out"
+      class="flex transition-transform duration-300 ease-in-out p-1"
       data-slides-track
     >
       {
@@ -36,7 +36,7 @@ const cardId = `card-${Math.random().toString(36).slice(2, 9)}`;
                 muted
                 loop
                 playsinline
-                class="w-full h-auto object-cover cursor-default p-1"
+                class="w-full h-auto object-cover cursor-default"
               />
             ) : (
               <img
