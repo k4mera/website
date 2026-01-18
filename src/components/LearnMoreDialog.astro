@@ -33,7 +33,7 @@ const dialogId = `dialog-${Math.random().toString(36).slice(2, 9)}`;
 
     <!-- Dialog content -->
     <div
-      class="relative bg-custom-white rounded-lg shadow-xl max-w-lg w-full max-h-[85vh] overflow-y-auto z-10 border-2 border-custom-black"
+      class="relative bg-custom-white rounded-lg shadow-xl max-w-2xl w-full max-h-[85vh] overflow-y-auto z-10 border-2 border-custom-black"
       data-dialog-content={dialogId}
     >
       <!-- Close button -->
@@ -122,11 +122,21 @@ const dialogId = `dialog-${Math.random().toString(36).slice(2, 9)}`;
 
 <script define:vars={{ dialogId }}>
   document.addEventListener("DOMContentLoaded", () => {
-    const trigger = document.querySelector(`[data-dialog-trigger="${dialogId}"]`);
-    const backdrop = document.querySelector(`[data-dialog-backdrop="${dialogId}"]`);
-    const overlay = document.querySelector(`[data-dialog-overlay="${dialogId}"]`);
-    const closeBtn = document.querySelector(`[data-dialog-close="${dialogId}"]`);
-    const content = document.querySelector(`[data-dialog-content="${dialogId}"]`);
+    const trigger = document.querySelector(
+      `[data-dialog-trigger="${dialogId}"]`,
+    );
+    const backdrop = document.querySelector(
+      `[data-dialog-backdrop="${dialogId}"]`,
+    );
+    const overlay = document.querySelector(
+      `[data-dialog-overlay="${dialogId}"]`,
+    );
+    const closeBtn = document.querySelector(
+      `[data-dialog-close="${dialogId}"]`,
+    );
+    const content = document.querySelector(
+      `[data-dialog-content="${dialogId}"]`,
+    );
 
     if (!trigger || !backdrop || !overlay || !closeBtn || !content) return;
 
