@@ -3,6 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Card from "../components/Card.astro";
 import MultiGif from "../components/MultiGif.astro";
 import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScroll.astro";
+import LearnMoreDialog from "../components/LearnMoreDialog.astro";
+import { Content as Specifications } from "../content/specifications.md";
+import { Content as MoreThanWigglegrams } from "../content/more-than-wigglegrams.md";
+import { Content as LearnMoreApp } from "../content/learn-more-app.md";
 ---
 
 <BaseLayout title="K4MERA" nav="/faq">
@@ -47,50 +51,6 @@ import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScro
       </div>
     </div>
 
-    <!-- BODY 2: Render -->
-    <div
-      class="flex items-center w-full gap-4 min-h-[50vh] max-w-3xl"
-      id="body-2"
-    >
-      <div class="flex-1">
-        <h3 class="text-3xl md:text-4xl mb-1 font-aileron-regular text-right">
-          Shoot in 3D...
-        </h3>
-        <p class="text-base mb-1 font-inter text-justify">
-          ...think in 4D! K4MERA is the first digital stereo-camera designed to
-          capture authentic wigglegrams. With built-in depth processing and no
-          post-production needed, every moment loops back to life. No film
-          rolls, no Photoshop, no mimics.
-        </p>
-      </div>
-      <div
-        class="flex-[1.5] image-container cursor-default"
-        id="k4mera-closeup"
-      >
-        <video
-          src="assets/images/k4-1.mp4"
-          autoplay
-          muted
-          loop
-          playsinline
-          class="ml-auto w-full h-auto rounded-md"
-        >
-        </video>
-      </div>
-    </div>
-    <script>
-      const videoCloseupContainer = document.getElementById("k4mera-closeup");
-      const video = videoCloseupContainer?.querySelector("video");
-
-      videoCloseupContainer?.addEventListener("click", () => {
-        if (video?.paused) {
-          video.play();
-        } else {
-          video?.pause();
-        }
-      });
-    </script>
-
     <!-- INTERLUDE -->
     <div class="flex justify-center items-center min-h-[50vh]">
       <img
@@ -105,27 +65,45 @@ import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScro
       id="body-3"
     >
       <h2 class="text-center text-3xl md:text-4xl font-aileron-regular mb-6">
-        Bring a Comp4nion!
+        Built for creatives and creators
       </h2>
       <div class="flex items-center gap-4 w-full mx-auto" id="card-container">
         <Card
-          sources={[{ src: "/assets/images/app-1.png" }]}
-          title="At your fingertips"
-          description="Your K4MERA seamlessly airdrops your 3D shots to your phone using Bluetooth and ad-hoc Wi-Fi, so your creations are always in your pocket. K4MERA prepares wigglegrams automatically for instant sharing, but the originals are always available for power users. Prefer to stay off your phone? No problem. Pop in a microSD card and go the old-school way, no syncing required."
-        />
+          sources={[{ src: "/assets/images/k4-1.mp4", isVideo: true }]}
+          title="Shoot in 3D..."
+          description="...think in 4D! K4MERA is the first digital stereo-camera designed to capture authentic wigglegrams. With built-in depth processing and no post-production needed, every moment loops back to life. No film rolls, no Photoshop, no mimics."
+        >
+          <LearnMoreDialog buttonText="Specifications">
+            <div class="prose prose-sm">
+              <Specifications />
+            </div>
+          </LearnMoreDialog>
+        </Card>
         <Card
-          sources={[{ src: "/assets/images/app-2.png" }]}
-          title="Comp4nion app"
-          description="K4MERA isn't just about the capture. The Comp4nion app gives you everything you need after the click: instantly preview your 3D shots, fine-tune the motion, and export perfect wigglegrams. Easy and ready to share in just a few taps."
-        />
+          sources={[]}
+          title="Instant wigglegrams"
+          description="K4MERA runs a built-in image processing pipeline that aligns all four shots and builds your wigglegrams in seconds. Want full control? The original images are always saved, ready for manual tweaking and custom workflows."
+        >
+          <LearnMoreDialog buttonText="More than wigglegrams">
+            <div class="prose prose-sm">
+              <MoreThanWigglegrams />
+            </div>
+          </LearnMoreDialog>
+        </Card>
         <Card
           sources={[
-            { src: "/assets/images/k4-ai.mp4", isVideo: true },
             { src: "/assets/images/app-1.png" },
+            { src: "/assets/images/app-2.png" },
           ]}
-          title="Slopify with AI"
-          description="Comp4nion is more than an app, it's your uncanny creative partner, built for stereoscopic photography. If you want to push your shots further, it comes with a set of curated generative AI effects designed to enhance what you just framed. Built to express, not to automate, imitate, or cut corners."
-        />
+          title="Companion app"
+          description="K4MERA isn't just about the capture. Our companion app gives you everything you need after the click: instantly preview your 3D shots, fine-tune the motion, and export perfect wigglegrams. Easy and ready to share in just a few taps."
+        >
+          <LearnMoreDialog buttonText="Learn more">
+            <div class="prose prose-sm">
+              <LearnMoreApp />
+            </div>
+          </LearnMoreDialog>
+        </Card>
       </div>
     </div>
 

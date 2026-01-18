@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 .font-aileron-bold {
     font-family: 'Aileron', sans-serif;
