@@ -7,6 +7,7 @@ import LearnMoreDialog from "../components/LearnMoreDialog.astro";
 import { Content as Specifications } from "../content/specifications.md";
 import { Content as MoreThanWigglegrams } from "../content/more-than-wigglegrams.md";
 import { Content as LearnMoreApp } from "../content/learn-more-app.md";
+import { Content as About } from "../content/about.md";
 ---
 
 <BaseLayout title="K4MERA" nav="/faq">
@@ -164,11 +165,9 @@ import { Content as LearnMoreApp } from "../content/learn-more-app.md";
         class="p-1 cursor-default h-96 w-auto mb-2"
       />
 
-      <p class="text-base mb-1 font-inter text-center max-w-lg">
-        Born in the heart of Switzerland, K4MERA is the result of a small team's
-        vision: designers, engineers, and creators rethinking what photography
-        could feel like. Built with care, crafted with obsession.
-      </p>
+      <div class="text-base mb-1 font-inter text-center max-w-lg">
+        <About />
+      </div>
     </div>
 
     <!-- WAITLIST -->
