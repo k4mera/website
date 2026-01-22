@@ -177,8 +177,24 @@ import { Content as About } from "../content/about.md";
       id="waitlist"
     >
       <h2 class="font-aileron-regular text-3xl md:text-4xl mt-0 inline-block">
-        Still building...
+        Still building<span
+          id="loading-dots"
+          class="inline-block w-[1.5ch] text-left"></span>
       </h2>
+      <script>
+        const dots = document.getElementById("loading-dots");
+        if (dots) {
+          const delays = [100, 100, 100, 1000]; // pause at empty, then quick dots
+          let count = 0;
+          const animate = () => {
+            dots.textContent = ".".repeat(count);
+            const delay = delays[count];
+            count = (count + 1) % 4;
+            setTimeout(animate, delay);
+          };
+          animate();
+        }
+      </script>
       <img
         src="assets/images/k4-0.png"
         alt="K4MERA Render"
