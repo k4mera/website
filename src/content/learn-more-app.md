@@ -8,7 +8,7 @@ Through a Wi-Fi hotspot, Your photos sync automatically from your K4MERA to your
 
 Preview and tweak your 3D shots instantly, without Photoshop: speed, direction, timing, feel. It's all adjustable in a few taps.
 
-## From Wigglegram to K4ROUSEL
+## From wigglegrams to K4ROUSELs
 
 Stitch multiple wigglegrams into a signature K4ROUSEL and export ready-to-post results.
 
