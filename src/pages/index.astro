@@ -52,6 +52,12 @@ import { Content as About } from "../content/about.md";
       </div>
     </div>
 
+    <!-- Video -->
+    <div
+      class="flex flex-col items-center justify-center text-center min-h-screen max-w-5xl"
+    >
+    </div>
+
     <!-- INTERLUDE -->
     <div class="flex justify-center items-center min-h-[50vh]">
       <img
@@ -184,12 +190,12 @@ import { Content as About } from "../content/about.md";
       <script>
         const dots = document.getElementById("loading-dots");
         if (dots) {
-          const delays = [100, 100, 100, 1000]; // pause at empty, then quick dots
+          const delays = [100, 100, 100, 100, 1000]; // pause at empty, then quick dots
           let count = 0;
           const animate = () => {
             dots.textContent = ".".repeat(count);
             const delay = delays[count];
-            count = (count + 1) % 4;
+            count = (count + 1) % 5;
             setTimeout(animate, delay);
           };
           animate();
