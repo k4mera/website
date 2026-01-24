@@ -1,0 +1,199 @@
+---
+interface MediaItem {
+  src: string;
+  isVideo?: boolean;
+}
+
+interface Props {
+  sources: MediaItem[];
+  alt?: string;
+}
+
+const { sources, alt = "Media" } = Astro.props;
+const carouselId = `carousel-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+  class="relative w-full overflow-hidden"
+  data-carousel={carouselId}
+  data-slide-count={sources.length}
+>
+  <div
+    class="flex transition-transform duration-300 ease-in-out"
+    data-slides-track
+  >
+    {
+      sources.map((item, index) => (
+        <div class="carousel-slide w-full shrink-0" data-slide-index={index}>
+          {item.isVideo ? (
+            <video
+              src={item.src}
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full h-auto object-cover cursor-default"
+            />
+          ) : (
+            <img
+              src={item.src}
+              alt={`${alt} - ${index + 1}`}
+              class="w-full h-auto object-cover cursor-default"
+            />
+          )}
+        </div>
+      ))
+    }
+  </div>
+  {
+    sources.length > 1 && (
+      <div class="flex justify-center gap-2 py-2" data-dots-container>
+        {sources.map((_, index) => (
+          <button
+            class={`w-2 h-2 rounded-full transition-colors cursor-pointer ${index === 0 ? "bg-custom-black" : "bg-gray-300"}`}
+            data-dot-index={index}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    )
+  }
+</div>
+
+<script define:vars={{ carouselId, slideCount: sources.length }}>
+  if (slideCount > 1) {
+    document.addEventListener("DOMContentLoaded", () => {
+      const carousel = document.querySelector(
+        `[data-carousel="${carouselId}"]`,
+      );
+      if (!carousel) return;
+
+      const track = carousel.querySelector("[data-slides-track]");
+      const dots = carousel.querySelectorAll("[data-dot-index]");
+      let currentIndex = 0;
+
+      function goToSlide(index) {
+        dots[currentIndex].classList.remove("bg-custom-black");
+        dots[currentIndex].classList.add("bg-gray-300");
+
+        currentIndex = index;
+
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots[currentIndex].classList.add("bg-custom-black");
+        dots[currentIndex].classList.remove("bg-gray-300");
+      }
+
+      function nextSlide() {
+        const next = (currentIndex + 1) % slideCount;
+        goToSlide(next);
+      }
+
+      function prevSlide() {
+        const prev = (currentIndex - 1 + slideCount) % slideCount;
+        goToSlide(prev);
+      }
+
+      // Auto-advance every 10 seconds
+      let autoAdvanceTimer = setInterval(nextSlide, 10000);
+
+      function resetTimer() {
+        clearInterval(autoAdvanceTimer);
+        autoAdvanceTimer = setInterval(nextSlide, 10000);
+      }
+
+      // Click handlers for dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          goToSlide(index);
+          resetTimer();
+        });
+      });
+
+      // Mouse drag functionality
+      let isDragging = false;
+      let startX = 0;
+      let currentTranslate = 0;
+
+      carousel.addEventListener("mousedown", (e) => {
+        // Don't start drag if clicking on a button or interactive element
+        if (e.target.closest("button, a, [data-dialog-trigger]")) return;
+        isDragging = true;
+        startX = e.clientX;
+        track.style.transition = "none";
+        carousel.style.cursor = "grabbing";
+      });
+
+      carousel.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        const diff = e.clientX - startX;
+        const baseTranslate = -currentIndex * 100;
+        const percentDiff = (diff / carousel.offsetWidth) * 100;
+        currentTranslate = baseTranslate + percentDiff;
+        track.style.transform = `translateX(${currentTranslate}%)`;
+      });
+
+      function endDrag(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        track.style.transition = "";
+        carousel.style.cursor = "";
+
+        const diff = e.clientX - startX;
+        const threshold = carousel.offsetWidth * 0.2;
+
+        if (diff < -threshold && currentIndex < slideCount - 1) {
+          nextSlide();
+          resetTimer();
+        } else if (diff > threshold && currentIndex > 0) {
+          prevSlide();
+          resetTimer();
+        } else {
+          track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+      }
+
+      carousel.addEventListener("mouseup", endDrag);
+      carousel.addEventListener("mouseleave", endDrag);
+
+      // Touch support
+      carousel.addEventListener("touchstart", (e) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        track.style.transition = "none";
+      });
+
+      carousel.addEventListener("touchmove", (e) => {
+        if (!isDragging) return;
+        const diff = e.touches[0].clientX - startX;
+        const baseTranslate = -currentIndex * 100;
+        const percentDiff = (diff / carousel.offsetWidth) * 100;
+        currentTranslate = baseTranslate + percentDiff;
+        track.style.transform = `translateX(${currentTranslate}%)`;
+      });
+
+      carousel.addEventListener("touchend", (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        track.style.transition = "";
+
+        const diff = e.changedTouches[0].clientX - startX;
+        const threshold = carousel.offsetWidth * 0.2;
+
+        if (diff < -threshold && currentIndex < slideCount - 1) {
+          nextSlide();
+          resetTimer();
+        } else if (diff > threshold && currentIndex > 0) {
+          prevSlide();
+          resetTimer();
+        } else {
+          track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+      });
+
+      // Prevent image dragging
+      carousel.querySelectorAll("img, video").forEach((el) => {
+        el.addEventListener("dragstart", (e) => e.preventDefault());
+      });
+    });
+  }
+</script>

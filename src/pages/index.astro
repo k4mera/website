@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Card from "../components/Card.astro";
+import MediaCarousel from "../components/MediaCarousel.astro";
 import MultiGif from "../components/MultiGif.astro";
 import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScroll.astro";
 import LearnMoreDialog from "../components/LearnMoreDialog.astro";
@@ -8,6 +9,7 @@ import { Content as Specifications } from "../content/specifications.md";
 import { Content as MoreThanWigglegrams } from "../content/more-than-wigglegrams.md";
 import { Content as LearnMoreApp } from "../content/learn-more-app.md";
 import { Content as About } from "../content/about.md";
+import AutoeditAnimation from "../components/AutoeditAnimation.astro";
 ---
 
 <BaseLayout title="K4MERA" nav="/faq">
@@ -101,36 +103,42 @@ import { Content as About } from "../content/about.md";
       </h2>
       <div class="flex items-center gap-4 w-full mx-auto" id="card-container">
         <Card
-          sources={[{ src: "/assets/images/k4-1.mp4", isVideo: true }]}
           title="Shoot in 3D..."
           description="...think in 4D! K4MERA is the first digital stereo-camera designed to capture authentic wigglegrams. With built-in depth processing and no post-production needed, every moment loops back to life. No film rolls, no Photoshop, no mimics."
         >
-          <LearnMoreDialog buttonText="Specifications">
+          <MediaCarousel
+            sources={[{ src: "/assets/images/k4-1.mp4", isVideo: true }]}
+            alt="K4MERA camera"
+          />
+          <LearnMoreDialog slot="cta" buttonText="Specifications">
             <div class="prose prose-sm">
               <Specifications />
             </div>
           </LearnMoreDialog>
         </Card>
         <Card
-          sources={[]}
           title="Instant wigglegrams"
           description="K4MERA runs a built-in image processing pipeline that aligns all four shots and builds your wigglegrams in seconds. Want full control? The original images are always saved, ready for manual tweaking and custom workflows. But there's more..."
         >
-          <LearnMoreDialog buttonText="More than wigglegrams">
+          <AutoeditAnimation />
+          <LearnMoreDialog slot="cta" buttonText="More than wigglegrams">
             <div class="prose prose-sm">
               <MoreThanWigglegrams />
             </div>
           </LearnMoreDialog>
         </Card>
         <Card
-          sources={[
-            { src: "/assets/images/app-1.png" },
-            { src: "/assets/images/app-2.png" },
-          ]}
           title="Companion app"
           description="K4MERA isn't just about the capture. Our companion app gives you everything you need after the click: instantly preview your 3D shots, fine-tune the motion, and export perfect wigglegrams. Easy and ready to share in just a few taps."
         >
-          <LearnMoreDialog buttonText="Learn more">
+          <MediaCarousel
+            sources={[
+              { src: "/assets/images/app-1.png" },
+              { src: "/assets/images/app-2.png" },
+            ]}
+            alt="K4MERA companion app"
+          />
+          <LearnMoreDialog slot="cta" buttonText="Learn more">
             <div class="prose prose-sm">
               <LearnMoreApp />
             </div>
