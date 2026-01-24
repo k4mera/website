@@ -53,6 +53,8 @@ public/
 
 ## Styling Conventions
 
+**Prefer Tailwind CSS utility classes** for all styling and layout. Only use custom CSS in global.css when Tailwind utilities are insufficient.
+
 ### Custom Colors (defined in global.css)
 - `.text-custom-white` - #fffefd
 - `.bg-custom-black` / `.text-custom-black` - #2e2e2e

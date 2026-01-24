@@ -6,73 +6,44 @@ interface Props {
 const { class: className = "" } = Astro.props;
 ---
 
-<div class={`autoedit-container ${className}`}>
-  <div class="autoedit-animation">
+<div class={`flex w-full items-center justify-center ${className}`}>
+  <div class="flex flex-col items-center gap-6">
     <!-- The 4 merging images (top) -->
-    <div class="merging-images">
+    <div class="relative flex h-12.5 w-50 items-center justify-center">
       <img
         src="/assets/images/autoedit-animation/k-1.png"
         alt=""
-        class="merge-img img-1"
+        class="img-1 absolute h-auto w-10"
       />
       <img
         src="/assets/images/autoedit-animation/k-2.png"
         alt=""
-        class="merge-img img-2"
+        class="img-2 absolute h-auto w-10"
       />
       <img
         src="/assets/images/autoedit-animation/k-3.png"
         alt=""
-        class="merge-img img-3"
+        class="img-3 absolute h-auto w-10"
       />
       <img
         src="/assets/images/autoedit-animation/k-4.png"
         alt=""
-        class="merge-img img-4"
+        class="img-4 absolute h-auto w-10"
       />
     </div>
 
     <!-- The revealed gif (below) -->
-    <div class="gif-container">
+    <div class="flex h-45 w-45 items-center justify-center">
       <img
         src="/assets/images/autoedit-animation/k.gif"
         alt="K4MERA animation result"
-        class="result-gif"
+        class="result-gif h-auto w-full opacity-0"
       />
     </div>
   </div>
 </div>
 
 <style>
-  .autoedit-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .autoedit-animation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 48px;
-  }
-
-  .merging-images {
-    position: relative;
-    height: 80px;
-    width: 320px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .merge-img {
-    position: absolute;
-    width: 60px;
-    height: auto;
-  }
-
   .img-1 {
     animation: merge-1 6s ease-in infinite;
   }
@@ -89,29 +60,18 @@ const { class: className = "" } = Astro.props;
     animation: merge-4 6s ease-in infinite;
   }
 
-  .gif-container {
-    width: 280px;
-    height: 280px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .result-gif {
-    width: 100%;
-    height: auto;
-    opacity: 0;
     animation: reveal-gif 6s ease-in-out infinite;
   }
 
   /* Image 1 - far left */
   @keyframes merge-1 {
     0% {
-      transform: translateX(-120px);
+      transform: translateX(-75px);
       opacity: 1;
     }
     15% {
-      transform: translateX(-120px);
+      transform: translateX(-75px);
       opacity: 1;
     }
     30% {
@@ -123,11 +83,11 @@ const { class: className = "" } = Astro.props;
       opacity: 0.5;
     }
     95% {
-      transform: translateX(-120px);
+      transform: translateX(-75px);
       opacity: 1;
     }
     100% {
-      transform: translateX(-120px);
+      transform: translateX(-75px);
       opacity: 1;
     }
   }
@@ -135,11 +95,11 @@ const { class: className = "" } = Astro.props;
   /* Image 2 - left of center */
   @keyframes merge-2 {
     0% {
-      transform: translateX(-40px);
+      transform: translateX(-25px);
       opacity: 1;
     }
     15% {
-      transform: translateX(-40px);
+      transform: translateX(-25px);
       opacity: 1;
     }
     30% {
@@ -151,11 +111,11 @@ const { class: className = "" } = Astro.props;
       opacity: 0.5;
     }
     95% {
-      transform: translateX(-40px);
+      transform: translateX(-25px);
       opacity: 1;
     }
     100% {
-      transform: translateX(-40px);
+      transform: translateX(-25px);
       opacity: 1;
     }
   }
@@ -163,11 +123,11 @@ const { class: className = "" } = Astro.props;
   /* Image 3 - right of center */
   @keyframes merge-3 {
     0% {
-      transform: translateX(40px);
+      transform: translateX(25px);
       opacity: 1;
     }
     15% {
-      transform: translateX(40px);
+      transform: translateX(25px);
       opacity: 1;
     }
     30% {
@@ -179,11 +139,11 @@ const { class: className = "" } = Astro.props;
       opacity: 0.5;
     }
     95% {
-      transform: translateX(40px);
+      transform: translateX(25px);
       opacity: 1;
     }
     100% {
-      transform: translateX(40px);
+      transform: translateX(25px);
       opacity: 1;
     }
   }
@@ -191,11 +151,11 @@ const { class: className = "" } = Astro.props;
   /* Image 4 - far right */
   @keyframes merge-4 {
     0% {
-      transform: translateX(120px);
+      transform: translateX(75px);
       opacity: 1;
     }
     15% {
-      transform: translateX(120px);
+      transform: translateX(75px);
       opacity: 1;
     }
     30% {
@@ -207,11 +167,11 @@ const { class: className = "" } = Astro.props;
       opacity: 0.5;
     }
     95% {
-      transform: translateX(120px);
+      transform: translateX(75px);
       opacity: 1;
     }
     100% {
-      transform: translateX(120px);
+      transform: translateX(75px);
       opacity: 1;
     }
   }
