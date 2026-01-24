@@ -26,9 +26,34 @@ import { Content as About } from "../content/about.md";
           The first digital wigglegram camera. Bring your pictures to life!
         </p>
       </div>
-      <MultiGif
-        sources={["assets/images/gif-1.gif", "assets/images/gif-2.gif"]}
-      />
+      <!-- Desktop: 3 GIFs side by side -->
+      <div class="hidden md:flex gap-4 mb-4">
+        <img
+          src="assets/images/gif-3.gif"
+          alt="Wigglegram"
+          class="h-96 w-auto object-cover"
+        />
+        <img
+          src="assets/images/gif-4.gif"
+          alt="Wigglegram"
+          class="h-96 w-auto object-cover"
+        />
+        <img
+          src="assets/images/gif-5.gif"
+          alt="Wigglegram"
+          class="h-96 w-auto object-cover"
+        />
+      </div>
+      <!-- Mobile: MultiGif rotating -->
+      <div class="md:hidden">
+        <MultiGif
+          sources={[
+            "assets/images/gif-3.gif",
+            "assets/images/gif-4.gif",
+            "assets/images/gif-5.gif",
+          ]}
+        />
+      </div>
       <div class="flex flex-col mt-2 gap-2">
         <a
           href="https://form.typeform.com/to/kRmB5TdA"

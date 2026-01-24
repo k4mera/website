@@ -1,0 +1,240 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`autoedit-container ${className}`}>
+  <div class="autoedit-animation">
+    <!-- The 4 merging images (top) -->
+    <div class="merging-images">
+      <img
+        src="/assets/images/autoedit-animation/k-1.png"
+        alt=""
+        class="merge-img img-1"
+      />
+      <img
+        src="/assets/images/autoedit-animation/k-2.png"
+        alt=""
+        class="merge-img img-2"
+      />
+      <img
+        src="/assets/images/autoedit-animation/k-3.png"
+        alt=""
+        class="merge-img img-3"
+      />
+      <img
+        src="/assets/images/autoedit-animation/k-4.png"
+        alt=""
+        class="merge-img img-4"
+      />
+    </div>
+
+    <!-- The revealed gif (below) -->
+    <div class="gif-container">
+      <img
+        src="/assets/images/autoedit-animation/k.gif"
+        alt="K4MERA animation result"
+        class="result-gif"
+      />
+    </div>
+  </div>
+</div>
+
+<style>
+  .autoedit-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .autoedit-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .merging-images {
+    position: relative;
+    height: 80px;
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .merge-img {
+    position: absolute;
+    width: 60px;
+    height: auto;
+  }
+
+  .img-1 {
+    animation: merge-1 6s ease-in infinite;
+  }
+
+  .img-2 {
+    animation: merge-2 6s ease-in infinite;
+  }
+
+  .img-3 {
+    animation: merge-3 6s ease-in infinite;
+  }
+
+  .img-4 {
+    animation: merge-4 6s ease-in infinite;
+  }
+
+  .gif-container {
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .result-gif {
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    animation: reveal-gif 6s ease-in-out infinite;
+  }
+
+  /* Image 1 - far left */
+  @keyframes merge-1 {
+    0% {
+      transform: translateX(-120px);
+      opacity: 1;
+    }
+    15% {
+      transform: translateX(-120px);
+      opacity: 1;
+    }
+    30% {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+    80% {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+    95% {
+      transform: translateX(-120px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-120px);
+      opacity: 1;
+    }
+  }
+
+  /* Image 2 - left of center */
+  @keyframes merge-2 {
+    0% {
+      transform: translateX(-40px);
+      opacity: 1;
+    }
+    15% {
+      transform: translateX(-40px);
+      opacity: 1;
+    }
+    30% {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+    80% {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+    95% {
+      transform: translateX(-40px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-40px);
+      opacity: 1;
+    }
+  }
+
+  /* Image 3 - right of center */
+  @keyframes merge-3 {
+    0% {
+      transform: translateX(40px);
+      opacity: 1;
+    }
+    15% {
+      transform: translateX(40px);
+      opacity: 1;
+    }
+    30% {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+    80% {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+    95% {
+      transform: translateX(40px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(40px);
+      opacity: 1;
+    }
+  }
+
+  /* Image 4 - far right */
+  @keyframes merge-4 {
+    0% {
+      transform: translateX(120px);
+      opacity: 1;
+    }
+    15% {
+      transform: translateX(120px);
+      opacity: 1;
+    }
+    30% {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+    80% {
+      transform: translateX(0);
+      opacity: 0.5;
+    }
+    95% {
+      transform: translateX(120px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(120px);
+      opacity: 1;
+    }
+  }
+
+  /* Gif reveal - fade in/out only */
+  @keyframes reveal-gif {
+    0% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+</style>
