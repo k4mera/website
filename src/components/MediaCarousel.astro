@@ -47,7 +47,7 @@ const carouselId = `carousel-${Math.random().toString(36).slice(2, 9)}`;
   </div>
   {
     sources.length > 1 && (
-      <div class="flex justify-center gap-2 py-2" data-dots-container>
+      <div class="flex justify-center gap-2 pt-2" data-dots-container>
         {sources.map((_, index) => (
           <button
             class={`w-2 h-2 rounded-full transition-colors cursor-pointer ${index === 0 ? "bg-custom-black" : "bg-gray-300"}`}
