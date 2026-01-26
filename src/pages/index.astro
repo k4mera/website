@@ -18,6 +18,15 @@ import SupportedBy from "../components/SupportedBy.astro";
 import k4meraRenderTop from "../../public/assets/images/k4-4.png";
 import teamPhoto from "../../public/assets/images/team.jpg";
 import k4meraRenderFront from "../../public/assets/images/k4-0.png";
+import heroGif1 from "../../public/assets/images/gif-3.gif";
+import heroGif2 from "../../public/assets/images/gif-4.gif";
+import heroGif3 from "../../public/assets/images/gif-5.gif";
+import tatakiPost from "../../public/assets/posts/tataki.gif";
+import tatakiProfile from "../../public/assets/posts/tataki.jpg";
+import strangetreePost from "../../public/assets/posts/strangetree.gif";
+import strangetreeProfile from "../../public/assets/posts/strangetree.jpg";
+import appScreen1 from "../../public/assets/images/app-1.png";
+import appScreen2 from "../../public/assets/images/app-2.png";
 ---
 
 <BaseLayout title="K4MERA" nav="/faq">
@@ -34,20 +43,23 @@ import k4meraRenderFront from "../../public/assets/images/k4-0.png";
       </div>
       <!-- Desktop: 3 GIFs side by side -->
       <div class="hidden md:flex gap-4 mb-4">
-        <img
-          src="assets/images/gif-3.gif"
+        <Image
+          src={heroGif1}
           alt="Wigglegram"
           class="h-96 w-auto object-cover"
+          loading="eager"
         />
-        <img
-          src="assets/images/gif-4.gif"
+        <Image
+          src={heroGif2}
           alt="Wigglegram"
           class="h-96 w-auto object-cover"
+          loading="eager"
         />
-        <img
-          src="assets/images/gif-5.gif"
+        <Image
+          src={heroGif3}
           alt="Wigglegram"
           class="h-96 w-auto object-cover"
+          loading="eager"
         />
       </div>
       <!-- Mobile: MultiGif rotating -->
@@ -134,10 +146,7 @@ import k4meraRenderFront from "../../public/assets/images/k4-0.png";
           description="Our companion app gives you everything you need after the click: instantly preview your 3D shots, fine-tune the motion, and export perfect wigglegrams. Easy and ready to share in just a few taps."
         >
           <MediaCarousel
-            sources={[
-              { src: "/assets/images/app-1.png" },
-              { src: "/assets/images/app-2.png" },
-            ]}
+            sources={[{ src: appScreen1 }, { src: appScreen2 }]}
             alt="K4MERA companion app"
           />
           <LearnMoreDialog slot="cta" buttonText="Learn more">
@@ -157,12 +166,12 @@ import k4meraRenderFront from "../../public/assets/images/k4-0.png";
       <InfiniteInstagramPostScroll
         posts={[
           {
-            image: "/assets/posts/tataki.gif",
+            image: tatakiPost,
             link: "https://www.instagram.com/p/DLNSROGoubg/?img_index=8",
-            profileImage: "assets/posts/tataki.jpg",
+            profileImage: tatakiProfile,
             username: "ta_ta_ki",
             caption: `
-                📸 3D 
+                📸 3D
                 <a
                   href="https://www.instagram.com/k4.mera/"
                   target="_blank"
@@ -173,12 +182,12 @@ import k4meraRenderFront from "../../public/assets/images/k4-0.png";
             `,
           },
           {
-            image: "/assets/posts/strangetree.gif",
+            image: strangetreePost,
             link: "https://www.instagram.com/p/DJTwH7hMqWU",
-            profileImage: "/assets/posts/strangetree.jpg",
+            profileImage: strangetreeProfile,
             username: "strangetree.fam",
             caption: `
-                Ps: we used a new camera by 
+                Ps: we used a new camera by
                 <a
                   href="https://www.instagram.com/k4.mera/"
                   target="_blank"

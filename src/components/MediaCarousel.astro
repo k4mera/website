@@ -1,6 +1,9 @@
 ---
-interface MediaItem {
-  src: string;
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+export interface MediaItem {
+  src: ImageMetadata | string;
   isVideo?: boolean;
 }
 
@@ -27,7 +30,7 @@ const carouselId = `carousel-${Math.random().toString(36).slice(2, 9)}`;
         <div class="carousel-slide w-full shrink-0" data-slide-index={index}>
           {item.isVideo ? (
             <video
-              src={item.src}
+              src={item.src as string}
               autoplay
               muted
               loop
@@ -35,8 +38,8 @@ const carouselId = `carousel-${Math.random().toString(36).slice(2, 9)}`;
               class="w-full h-auto object-cover cursor-default"
             />
           ) : (
-            <img
-              src={item.src}
+            <Image
+              src={item.src as ImageMetadata}
               alt={`${alt} - ${index + 1}`}
               class="w-full h-auto object-cover cursor-default"
             />

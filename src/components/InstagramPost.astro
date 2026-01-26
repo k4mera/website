@@ -1,8 +1,11 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 export interface InstagramPostProps {
-  image: string;
+  image: ImageMetadata;
   link: string;
-  profileImage: string;
+  profileImage: ImageMetadata;
   username: string;
   caption: string;
 }
@@ -18,14 +21,14 @@ const { post } = Astro.props;
   class="shrink-0 w-80 flex flex-col items-center p-0 box-border rounded border-2 border-custom-black text-base"
 >
   <a href={post.link} target="_blank">
-    <img
+    <Image
       src={post.image}
       alt="Instagram post"
       class="w-full aspect-square object-cover p-1"
     />
   </a>
   <div class="p-4 flex flex-row items-start gap-2 w-full">
-    <img
+    <Image
       src={post.profileImage}
       alt={`${post.username}'s profile`}
       class="w-10 h-10 rounded-full"
