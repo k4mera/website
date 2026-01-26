@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Logotype from "../components/Logotype.astro";
 import Title from "../components/Title.astro";
@@ -13,6 +14,10 @@ import { Content as LearnMoreApp } from "../content/learn-more-app.md";
 import { Content as About } from "../content/about.md";
 import AutoeditAnimation from "../components/AutoeditAnimation.astro";
 import SupportedBy from "../components/SupportedBy.astro";
+
+import k4meraRenderTop from "../../public/assets/images/k4-4.png";
+import teamPhoto from "../../public/assets/images/team.jpg";
+import k4meraRenderFront from "../../public/assets/images/k4-0.png";
 ---
 
 <BaseLayout title="K4MERA" nav="/faq">
@@ -86,8 +91,8 @@ import SupportedBy from "../components/SupportedBy.astro";
 
     <!-- INTERLUDE -->
     <div class="flex justify-center items-center min-h-[50vh]">
-      <img
-        src="assets/images/k4-4.png"
+      <Image
+        src={k4meraRenderTop}
         alt="K4MERA Render"
         class="w-64 h-auto interlude cursor-default"
       />
@@ -193,8 +198,8 @@ import SupportedBy from "../components/SupportedBy.astro";
       class="flex flex-col justify-center items-center interlude mb-24 mt-8 gap-2"
     >
       <Title class="text-center"> Say cheeeeese! </Title>
-      <img
-        src="/assets/images/team.jpg"
+      <Image
+        src={teamPhoto}
         alt="Team"
         class="p-1 cursor-default h-96 w-auto"
       />
@@ -240,8 +245,8 @@ import SupportedBy from "../components/SupportedBy.astro";
           animate();
         }
       </script>
-      <img
-        src="assets/images/k4-0.png"
+      <Image
+        src={k4meraRenderFront}
         alt="K4MERA Render"
         class="w-64 h-auto cursor-default m-2"
       />

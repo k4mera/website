@@ -1,5 +1,7 @@
 ---
 // src/components/Header.astro
+import { Image } from "astro:assets";
+import logo from "../../public/assets/images/logo.png";
 ---
 
 <header
@@ -10,8 +12,8 @@
     aria-label="Go to home"
     class="hover:opacity-75 transition-opacity"
   >
-    <img
-      src="/assets/images/logo.png"
+    <Image
+      src={logo}
       alt="K4MERA logo"
       class="w-16 md:w-20 h-auto"
     />
