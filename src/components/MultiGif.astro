@@ -13,7 +13,7 @@ const { sources = [] } = Astro.props;
   ) : null
 }
 
-<script define:vars={{ sources }}>
+<script is:inline define:vars={{ sources }}>
   const gifSources = sources;
 
   let currentIndex = 0;

@@ -60,7 +60,7 @@ const carouselId = `carousel-${Math.random().toString(36).slice(2, 9)}`;
   }
 </div>
 
-<script define:vars={{ carouselId, slideCount: sources.length }}>
+<script is:inline define:vars={{ carouselId, slideCount: sources.length }}>
   if (slideCount > 1) {
     document.addEventListener("DOMContentLoaded", () => {
       const carousel = document.querySelector(

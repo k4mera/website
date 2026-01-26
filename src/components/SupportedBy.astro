@@ -1,0 +1,33 @@
+---
+interface Supporter {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  supporters: Supporter[];
+}
+
+const { supporters } = Astro.props;
+---
+
+<div class="flex flex-col justify-center items-center">
+  <h3 class="font-aileron-regular text-xl text-center mb-4">
+    K4MERA is built with the support of:
+  </h3>
+
+  <div class="flex flex-row justify-evenly items-center w-full gap-8">
+    {
+      supporters.map((supporter) => (
+        <a
+          href={supporter.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-inter font-bold accent-blue hover:underline"
+        >
+          {supporter.name}
+        </a>
+      ))
+    }
+  </div>
+</div>

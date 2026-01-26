@@ -57,6 +57,13 @@
     color: #ff8a5c
 }
 
+/* Prose headings use Aileron */
+.prose h1,
+.prose h2 {
+    font-family: 'Aileron', sans-serif;
+    font-weight: 400;
+}
+
 .gradient-orange-blue {
     background: linear-gradient(45deg, #ff8a5c, #3c3e8c, #ff8a5c, #3c3e8c);
     background-size: 400% 400%;
