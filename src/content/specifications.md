@@ -15,7 +15,7 @@ _Full specs coming soon!_
 |                        |                               |
 | ---------------------- | ----------------------------- |
 | **Lens configuration** | 4 synchronized camera modules |
-| **Focal cength**       | █.██ mm                       |
+| **Focal length**       | █.██ mm                       |
 | **Aperture**           | f/█.██                        |
 | **Field of view**      | ███°                          |
 | **Focus system**       | Autofocus                     |
@@ -40,7 +40,7 @@ _Full specs coming soon!_
 |                      |                               |
 | -------------------- | ----------------------------- |
 | **Image resolution** | ████ × ████ pixels per module |
-| **Video esolution**  | █████ @ ██fps spatial video   |
+| **Video resolution** | █████ @ ██fps spatial video   |
 | **File formats**     | JPEG, PNG, RAW, MP4, GIF      |
 | **HDR modes**        | █████████████████████         |
 

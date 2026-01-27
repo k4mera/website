@@ -1,4 +1,4 @@
-# Companion App
+# Comp4nion App
 
 ## Instant transfer
 
