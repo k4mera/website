@@ -1,14 +1,14 @@
 # Companion App
 
-## Instant Transfer
+## Instant transfer
 
-Through a Wi-Fi hotspot, Your photos sync automatically from your K4MERA to your phone. No cables, no cloud, your shots are always there when you need them.
+Through a Wi-Fi hotspot, your photos sync automatically from your K4MERA to your phone. No cables, no cloud, your shots are always there when you need them.
 
-## Shape the Motion
+## Craft perfect wigglegrams
 
-Preview and tweak your 3D shots instantly, without Photoshop: speed, direction, timing, feel. It's all adjustable in a few taps.
+Preview and tweak your 3D shots instantly, without Photoshop: Focus point, speed, lighting. It's all adjustable in a few taps.
 
-## From wigglegrams to K4ROUSELs
+## From wigglegrams to carousels
 
 Stitch multiple wigglegrams into a signature K4ROUSEL and export ready-to-post results.
 

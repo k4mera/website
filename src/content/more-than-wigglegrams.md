@@ -1,4 +1,4 @@
-# More than wigglegrams
+# Beyong Wigglegrams
 
 ## A stereoscopic playground
 
