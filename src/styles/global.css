@@ -64,6 +64,22 @@
     font-weight: 400;
 }
 
+/* Fixed column widths for specification tables */
+.prose table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.prose table td:first-child,
+.prose table th:first-child {
+    width: 30%;
+}
+
+.prose table td:last-child,
+.prose table th:last-child {
+    width: 70%;
+}
+
 .gradient-orange-blue {
     background: linear-gradient(45deg, #ff8a5c, #3c3e8c, #ff8a5c, #3c3e8c);
     background-size: 400% 400%;
