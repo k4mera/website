@@ -1,0 +1,141 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  sources: (ImageMetadata | string)[];
+}
+
+const { sources } = Astro.props;
+const galleryId = Math.random().toString(36).substring(2, 9);
+---
+
+<div
+  class="flex gap-4 mb-4"
+  id={`hero-gallery-${galleryId}`}
+  data-gallery-id={galleryId}
+>
+  {
+    sources.map((src, index) => (
+      <div class="relative h-96 w-auto" data-gif-index={index}>
+        <canvas
+          class="h-96 w-auto object-cover absolute inset-0"
+          data-canvas-index={index}
+        />
+        {typeof src === "string" ? (
+          <img
+            src={src}
+            alt="Wigglegram"
+            class="h-96 w-auto object-cover relative transition-opacity duration-300"
+            data-img-index={index}
+            loading="eager"
+          />
+        ) : (
+          <Image
+            src={src}
+            alt="Wigglegram"
+            class="h-96 w-auto object-cover relative transition-opacity duration-300"
+            data-img-index={index}
+            loading="eager"
+          />
+        )}
+      </div>
+    ))
+  }
+</div>
+
+<script define:vars={{ galleryId, sources }}>
+  const gallery = document.getElementById(`hero-gallery-${galleryId}`);
+  if (gallery) {
+    let activeIndex = 0;
+    let autoRotateTimer = null;
+    const ROTATE_INTERVAL = 4000;
+
+    const containers = gallery.querySelectorAll("[data-gif-index]");
+    const images = gallery.querySelectorAll("[data-img-index]");
+    const canvases = gallery.querySelectorAll("[data-canvas-index]");
+
+    // Draw first frame of each GIF to its canvas
+    function freezeGifToCanvas(img, canvas) {
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      // Match canvas size to image's natural dimensions while respecting display size
+      const displayHeight = img.clientHeight || 384; // h-96 = 384px
+      const aspectRatio = img.naturalWidth / img.naturalHeight;
+      const displayWidth = displayHeight * aspectRatio;
+
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      canvas.style.width = `${displayWidth}px`;
+      canvas.style.height = `${displayHeight}px`;
+
+      ctx.drawImage(img, 0, 0);
+    }
+
+    // Initialize canvases once images are loaded
+    images.forEach((img, index) => {
+      const canvas = canvases[index];
+      if (img.complete) {
+        freezeGifToCanvas(img, canvas);
+      } else {
+        img.addEventListener("load", () => freezeGifToCanvas(img, canvas));
+      }
+    });
+
+    // Update display: show animated GIF for active, frozen canvas for others
+    function updateActiveState() {
+      images.forEach((img, index) => {
+        if (index === activeIndex) {
+          img.style.opacity = "1";
+          img.style.pointerEvents = "auto";
+        } else {
+          img.style.opacity = "0";
+          img.style.pointerEvents = "none";
+        }
+      });
+    }
+
+    // Rotate to next GIF
+    function rotateToNext() {
+      activeIndex = (activeIndex + 1) % sources.length;
+      updateActiveState();
+    }
+
+    // Set specific GIF as active
+    function setActive(index) {
+      activeIndex = index;
+      updateActiveState();
+    }
+
+    // Reset auto-rotation timer
+    function resetAutoRotate() {
+      if (autoRotateTimer) {
+        clearInterval(autoRotateTimer);
+      }
+      autoRotateTimer = setInterval(rotateToNext, ROTATE_INTERVAL);
+    }
+
+    // Handle mouse enter on a GIF container
+    containers.forEach((container, index) => {
+      container.addEventListener("mouseenter", () => {
+        setActive(index);
+        // Pause auto-rotation while hovering
+        if (autoRotateTimer) {
+          clearInterval(autoRotateTimer);
+          autoRotateTimer = null;
+        }
+      });
+
+      container.addEventListener("mouseleave", () => {
+        // Move to next GIF and restart timer
+        rotateToNext();
+        resetAutoRotate();
+      });
+    });
+
+    // Initialize
+    updateActiveState();
+    resetAutoRotate();
+  }
+</script>

@@ -6,6 +6,7 @@ import Title from "../components/Title.astro";
 import Card from "../components/Card.astro";
 import MediaCarousel from "../components/MediaCarousel.astro";
 import MultiGif from "../components/MultiGif.astro";
+import HeroGifGallery from "../components/HeroGifGallery.astro";
 import InfiniteInstagramPostScroll from "../components/InfiniteInstagramPostScroll.astro";
 import LearnMoreDialog from "../components/LearnMoreDialog.astro";
 import { Content as Specifications } from "../content/specifications.md";
@@ -18,15 +19,15 @@ import SupportedBy from "../components/SupportedBy.astro";
 import k4meraRenderTop from "../../public/assets/images/k4-4.png";
 import teamPhoto from "../../public/assets/images/team.jpg";
 import k4meraRenderFront from "../../public/assets/images/k4-0.png";
-import heroGif1 from "../../public/assets/images/gif-3.gif";
-import heroGif2 from "../../public/assets/images/gif-4.gif";
-import heroGif3 from "../../public/assets/images/gif-5.gif";
 import tatakiPost from "../../public/assets/posts/tataki.gif";
 import tatakiProfile from "../../public/assets/posts/tataki.jpg";
 import strangetreePost from "../../public/assets/posts/strangetree.gif";
 import strangetreeProfile from "../../public/assets/posts/strangetree.jpg";
 import appScreen1 from "../../public/assets/images/app-1.png";
 import appScreen2 from "../../public/assets/images/app-2.png";
+import heroGif1 from "../../public/assets/images/gif-3.gif";
+import heroGif2 from "../../public/assets/images/gif-4.gif";
+import heroGif3 from "../../public/assets/images/gif-5.gif";
 ---
 
 <BaseLayout
@@ -46,26 +47,9 @@ import appScreen2 from "../../public/assets/images/app-2.png";
           The first digital wigglegram camera. Bring your pictures to life!
         </p>
       </div>
-      <!-- Desktop: 3 GIFs side by side -->
-      <div class="hidden md:flex gap-4 mb-4">
-        <Image
-          src={heroGif1}
-          alt="Wigglegram"
-          class="h-96 w-auto object-cover"
-          loading="eager"
-        />
-        <Image
-          src={heroGif2}
-          alt="Wigglegram"
-          class="h-96 w-auto object-cover"
-          loading="eager"
-        />
-        <Image
-          src={heroGif3}
-          alt="Wigglegram"
-          class="h-96 w-auto object-cover"
-          loading="eager"
-        />
+      <!-- Desktop: Interactive GIF gallery with hover/auto-rotation -->
+      <div class="hidden md:flex">
+        <HeroGifGallery sources={[heroGif1, heroGif2, heroGif3]} />
       </div>
       <!-- Mobile: MultiGif rotating -->
       <div class="md:hidden">
