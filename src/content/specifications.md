@@ -41,7 +41,7 @@ _Full specs coming soon!_
 | -------------------- | ----------------------------- |
 | **Image resolution** | ████ × ████ pixels per module |
 | **Video resolution** | █████ @ ██fps spatial video   |
-| **File formats**     | JPEG, PNG, RAW, MP4, GIF      |
+| **File formats**     | GIF, PNG, ████, ███, ███      |
 | **HDR modes**        | █████████████████████         |
 
 ## Storage
@@ -71,5 +71,5 @@ _Full specs coming soon!_
 |                   |                             |
 | ----------------- | --------------------------- |
 | **Dimensions**    | ███ × ██ × ██ mm            |
-| **Weight**        | ██████ (with battery)       |
+| **Weight**        | ██████                      |
 | **Body material** | ███████████ + █████████████ |
