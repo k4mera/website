@@ -25,9 +25,28 @@ const { posts } = Astro.props;
   }
 </style>
 
-<div class="w-full overflow-hidden">
+<div class="scroll-container w-full overflow-hidden">
   <div class="w-full track gap-x-20 md:gap-x-60 items-center">
     {[...posts, ...posts].map((post) => <InstagramPost post={post} />)}
     {[...posts, ...posts].map((post) => <InstagramPost post={post} />)}
   </div>
 </div>
+
+<script>
+  const track = document.querySelector(".track");
+  const posts = document.querySelectorAll(".track > *");
+
+  if (track && posts.length) {
+    const animation = track.getAnimations()[0];
+
+    posts.forEach((post) => {
+      post.addEventListener("mouseenter", () => {
+        if (animation) animation.playbackRate = 0.66;
+      });
+
+      post.addEventListener("mouseleave", () => {
+        if (animation) animation.playbackRate = 1;
+      });
+    });
+  }
+</script>
