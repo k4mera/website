@@ -26,7 +26,7 @@ const { posts } = Astro.props;
 </style>
 
 <div class="scroll-container w-full overflow-hidden">
-  <div class="w-full track gap-x-20 md:gap-x-60 items-center">
+  <div class="w-full track gap-x-8 md:gap-x-60 items-center">
     {[...posts, ...posts].map((post) => <InstagramPost post={post} />)}
     {[...posts, ...posts].map((post) => <InstagramPost post={post} />)}
   </div>
