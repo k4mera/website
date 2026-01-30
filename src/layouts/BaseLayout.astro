@@ -1,8 +1,31 @@
 ---
-const { title, nav } = Astro.props;
+interface Props {
+  title: string;
+  nav?: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: "website" | "product";
+  canonicalUrl?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  nav,
+  description = "K4MERA is the first digital wigglegram camera. Capture authentic 3D photos with 4 lenses and built-in depth processing.",
+  ogImage = "/assets/images/logo.png",
+  ogType = "website",
+  canonicalUrl,
+  noIndex = false,
+} = Astro.props;
+
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://k4mera.world';
+const pageUrl = canonicalUrl || Astro.url.href;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---
 
 <!doctype html>
@@ -10,6 +33,26 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="K4MERA" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
     <!-- Google tag (gtag.js) -->
     <script
       is:inline
@@ -23,6 +66,11 @@ import "../styles/global.css";
       gtag("js", new Date());
       gtag("config", "G-GHEF0B28WX");
     </script>
+    <!-- Font Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
       rel="stylesheet"

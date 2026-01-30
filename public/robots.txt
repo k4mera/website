@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /m4gic
+
+Sitemap: https://k4mera.world/sitemap-index.xml

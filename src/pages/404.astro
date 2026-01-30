@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Title from "../components/Title.astro";
+---
+
+<BaseLayout
+  title="K404MERA - Page Not Found"
+  description="The page you're looking for doesn't exist."
+  noIndex={true}
+  nav="/"
+>
+  <div
+    class="flex flex-col items-center justify-center min-h-screen text-center p-4"
+  >
+    <h1
+      class="font-aileron-bold text-6xl md:text-8xl inline-block cursor-default select-none mb-4"
+    >
+      K<span class="accent-blue">404</span>MERA
+    </h1>
+    <p class="text-base font-inter mb-8">
+      The page you're looking for may have been moved or deleted.
+    </p>
+    <div class="flex flex-col gap-2">
+      <a
+        href="https://form.typeform.com/to/kRmB5TdA"
+        target="_blank"
+        class="px-3 py-2 bg-accent-blue text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity"
+      >
+        Join waitlist
+      </a>
+      <a
+        href="/"
+        class="text-custom-black hover:underline hover-accent-blue font-inter"
+      >
+        Back home
+      </a>
+    </div>
+  </div>
+</BaseLayout>
