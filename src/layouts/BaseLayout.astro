@@ -23,9 +23,12 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://k4mera.world';
+const siteUrl =
+  Astro.site?.toString().replace(/\/$/, "") || "https://k4mera.world";
 const pageUrl = canonicalUrl || Astro.url.href;
-const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+const fullOgImage = ogImage.startsWith("http")
+  ? ogImage
+  : `${siteUrl}${ogImage}`;
 ---
 
 <!doctype html>
@@ -105,5 +108,18 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
     </main>
     <Footer nav={nav} />
     <script src="/fluid.js" is:inline defer></script>
+    <script is:inline>
+      // Track "Join Waitlist" clicks to Google Analytics
+      document.addEventListener("click", function (e) {
+        const link = e.target.closest('a[href*="form.typeform.com"]');
+        if (link) {
+          console.log("join waitlist letesegooo");
+          gtag("event", "join_waitlist", {
+            event_category: "engagement",
+            event_label: window.location.pathname,
+          });
+        }
+      });
+    </script>
   </body>
 </html>
