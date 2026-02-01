@@ -33,7 +33,7 @@ const dialogId = `dialog-${Math.random().toString(36).slice(2, 9)}`;
 
     <!-- Dialog content -->
     <div
-      class="relative bg-custom-white rounded-lg shadow-xl max-w-2xl w-full max-h-[85vh] overflow-y-auto z-10 border-2 border-custom-black"
+      class="relative bg-custom-white rounded-lg shadow-xl max-w-2xl w-full max-h-[85vh] overflow-y-auto z-10"
       data-dialog-content={dialogId}
     >
       <!-- Close button -->
@@ -99,20 +99,6 @@ const dialogId = `dialog-${Math.random().toString(36).slice(2, 9)}`;
   [data-dialog-backdrop].open [data-dialog-content] {
     transform: scale(1) translateY(0);
     opacity: 1;
-  }
-
-  /* Custom scrollbar for dialog content */
-  [data-dialog-content]::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  [data-dialog-content]::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  [data-dialog-content]::-webkit-scrollbar-thumb {
-    background: #2e2e2e;
-    border-radius: 3px;
   }
 
   .bg-custom-white {
