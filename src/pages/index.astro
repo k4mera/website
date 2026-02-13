@@ -19,10 +19,10 @@ import SupportedBy from "../components/SupportedBy.astro";
 import k4meraRenderTop from "../../public/assets/images/k4-4.png";
 import teamPhoto from "../../public/assets/images/team.jpg";
 import k4meraRenderFront from "../../public/assets/images/k4-0.png";
-import tatakiPost from "../../public/assets/posts/tataki.gif";
-import tatakiProfile from "../../public/assets/posts/tataki.jpg";
-import strangetreePost from "../../public/assets/posts/strangetree.gif";
-import strangetreeProfile from "../../public/assets/posts/strangetree.jpg";
+// import tatakiPost from "../../public/assets/posts/tataki.gif";
+// import tatakiProfile from "../../public/assets/posts/tataki.jpg";
+// import strangetreePost from "../../public/assets/posts/strangetree.gif";
+// import strangetreeProfile from "../../public/assets/posts/strangetree.jpg";
 import appScreen1 from "../../public/assets/images/app-1.png";
 import appScreen2 from "../../public/assets/images/app-2.png";
 import heroGif1 from "../../public/assets/images/gif-3.gif";
@@ -70,25 +70,19 @@ import heroGif3 from "../../public/assets/images/gif-5.gif";
           Join waitlist
         </a>
         <button
-          onclick="document.getElementById('body-3').scrollIntoView({behavior:'smooth'})"
+          onclick="document.getElementById('video').scrollIntoView({behavior:'smooth'})"
           class="text-custom-black hover:underline hover-accent-blue font-inter cursor-pointer"
         >
           Learn more
         </button>
       </div>
       <div
-        onclick="document.getElementById('body-3').scrollIntoView({behavior:'smooth'})"
+        onclick="document.getElementById('video').scrollIntoView({behavior:'smooth'})"
         class="mt-6 text-2xl text-custom-black animate-bounce cursor-pointer hover:opacity-75"
       >
         ↓
       </div>
     </div>
-
-    <!-- Video -->
-    <!-- <div
-      class="flex flex-col items-center justify-center text-center min-h-screen max-w-5xl"
-    >
-    </div> -->
 
     <!-- INTERLUDE -->
     <div class="flex justify-center items-center min-h-[50vh]">
@@ -98,6 +92,69 @@ import heroGif3 from "../../public/assets/images/gif-5.gif";
         class="w-64 h-auto interlude cursor-default"
       />
     </div>
+
+    <!-- Video -->
+    <div
+      class="flex flex-col items-center justify-center text-center min-h-screen max-w-5xl"
+      id="video"
+    >
+      <video
+        id="hero-video"
+        class="w-full rounded-xs"
+        muted
+        playsinline
+        preload="metadata"
+      >
+        <source src="/assets/videos/k4.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <script>
+      const video = document.getElementById("hero-video") as HTMLVideoElement;
+      if (video) {
+        let userClicked = false;
+
+        // Loop immediately when video ends
+        video.addEventListener("ended", () => {
+          video.currentTime = 0;
+          video.play();
+        });
+
+        // Any click on the page enables sound
+        document.addEventListener("click", () => {
+          if (!userClicked) {
+            userClicked = true;
+            video.muted = false;
+          }
+        });
+
+        // Click on video to toggle pause/play
+        video.addEventListener("click", () => {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+
+        // Autoplay muted when scrolled into view, pause when out
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                video.muted = !userClicked;
+                video.play();
+              } else {
+                video.pause();
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+        observer.observe(video);
+      }
+    </script>
+
     <!-- Body 3: Cards -->
     <div
       class="flex flex-col items-center justify-center max-w-5xl min-h-screen"
