@@ -13,6 +13,7 @@ const messages: Record<string, string> = {
 };
 
 const isHidden = state !== "loading";
+const showButtons = state === "error" || state === "empty";
 const textOpacity =
   state === "empty" ? "text-custom-black/60" : "text-custom-black";
 const align = state === "loading" ? "flex justify-center" : "text-center";
@@ -25,6 +26,25 @@ const dotsId = `${id}-dots`;
       id={dotsId}
       class="inline-block w-[1.5ch] text-left dots-animated"></span>
   </p>
+  {
+    showButtons && (
+      <div class="flex flex-col gap-2 mt-8 items-center">
+        <a
+          href="https://form.typeform.com/to/kRmB5TdA"
+          target="_blank"
+          class="px-3 py-2 bg-accent-blue text-custom-white rounded-lg font-inter hover:opacity-75 transition-opacity"
+        >
+          Join waitlist
+        </a>
+        <a
+          href="/"
+          class="text-custom-black hover:underline hover-accent-blue font-inter"
+        >
+          Back home
+        </a>
+      </div>
+    )
+  }
 </div>
 
 <script>
