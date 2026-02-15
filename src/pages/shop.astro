@@ -37,7 +37,7 @@ import CartDrawer from "../components/CartDrawer.astro";
       <!-- Product grid container -->
       <div
         id="product-grid"
-        class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
+        class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
       >
       </div>
     </div>
@@ -135,10 +135,64 @@ import CartDrawer from "../components/CartDrawer.astro";
             return;
           }
 
-          renderProductGrid(products);
+          // Fetch quantityAvailable for all variants via raw Storefront API query
+          fetchVariantQuantities(products).then(function (qtyMap) {
+            products.forEach(function (product) {
+              product.variants.forEach(function (variant) {
+                if (qtyMap[variant.id] !== undefined) {
+                  variant.quantityAvailable = qtyMap[variant.id];
+                }
+              });
+            });
+            renderProductGrid(products);
+          });
         })
         .catch(function () {
           showError();
+        });
+    }
+
+    function fetchVariantQuantities(products) {
+      var variantIds = [];
+      products.forEach(function (product) {
+        product.variants.forEach(function (variant) {
+          variantIds.push(variant.id);
+        });
+      });
+
+      var gids = variantIds.map(function (id) {
+        return '"' + id + '"';
+      });
+
+      var query =
+        "{ nodes(ids: [" +
+        gids.join(",") +
+        "]) { ... on ProductVariant { id quantityAvailable } } }";
+
+      return fetch("https://" + SHOPIFY_DOMAIN + "/api/2024-01/graphql.json", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Storefront-Access-Token": SHOPIFY_TOKEN,
+        },
+        body: JSON.stringify({ query: query }),
+      })
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (json) {
+          var map = {};
+          if (json.data && json.data.nodes) {
+            json.data.nodes.forEach(function (node) {
+              if (node && node.id != null) {
+                map[node.id] = node.quantityAvailable;
+              }
+            });
+          }
+          return map;
+        })
+        .catch(function () {
+          return {};
         });
     }
 
@@ -177,6 +231,15 @@ import CartDrawer from "../components/CartDrawer.astro";
         price,
         currency,
       );
+
+      // Check if all variants are sold out
+      var allSoldOut = product.variants.every(function (v) {
+        return isVariantSoldOut(v);
+      });
+
+      if (allSoldOut) {
+        card.classList.add("opacity-50");
+      }
 
       card.addEventListener("click", function () {
         openProductModal(product);
@@ -235,10 +298,12 @@ import CartDrawer from "../components/CartDrawer.astro";
         }
 
         function selectVariantBtn(btn) {
-          variantOptions.querySelectorAll("[data-variant-id]").forEach(function (b) {
-            b.classList.remove("border-accent-blue", "accent-blue");
-            b.classList.add("border-gray-300", "text-custom-black");
-          });
+          variantOptions
+            .querySelectorAll("[data-variant-id]")
+            .forEach(function (b) {
+              b.classList.remove("border-accent-blue", "accent-blue");
+              b.classList.add("border-gray-300", "text-custom-black");
+            });
           btn.classList.remove("border-gray-300", "text-custom-black");
           btn.classList.add("border-accent-blue", "accent-blue");
         }
@@ -263,7 +328,8 @@ import CartDrawer from "../components/CartDrawer.astro";
             maxQuantity = getMaxQuantity(selectedVariant);
             if (currentQuantity > maxQuantity) {
               currentQuantity = Math.max(maxQuantity, 1);
-              document.getElementById("modal-qty-value").textContent = currentQuantity;
+              document.getElementById("modal-qty-value").textContent =
+                currentQuantity;
             }
             updateActionButtons(selectedVariant);
           }
@@ -294,9 +360,14 @@ import CartDrawer from "../components/CartDrawer.astro";
         });
 
         // If first variant is sold out, auto-select the first available one
-        var firstAvailable = product.variants.findIndex(function (v) { return v.available !== false; });
+        var firstAvailable = product.variants.findIndex(function (v) {
+          return v.available !== false;
+        });
         if (firstAvailable > 0) {
-          var availableBtn = variantOptions.querySelectorAll("[data-variant-id]")[firstAvailable];
+          var availableBtn =
+            variantOptions.querySelectorAll("[data-variant-id]")[
+              firstAvailable
+            ];
           selectVariantBtn(availableBtn);
           onVariantChange(product.variants[firstAvailable].id);
           maxQuantity = getMaxQuantity(product.variants[firstAvailable]);
@@ -420,7 +491,9 @@ import CartDrawer from "../components/CartDrawer.astro";
           .classList.contains("hidden")
       ) {
         var selected = variantOptions.querySelector(".border-accent-blue");
-        return selected ? selected.getAttribute("data-variant-id") : currentProduct.variants[0].id;
+        return selected
+          ? selected.getAttribute("data-variant-id")
+          : currentProduct.variants[0].id;
       }
       return currentProduct.variants[0].id;
     }
