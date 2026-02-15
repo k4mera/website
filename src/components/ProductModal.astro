@@ -1,0 +1,165 @@
+---
+const modalId = "product-modal";
+---
+
+<div
+  class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+  id={modalId}
+  data-modal-backdrop
+>
+  <!-- Backdrop overlay -->
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" data-modal-overlay>
+  </div>
+
+  <!-- Modal content -->
+  <div
+    class="relative bg-custom-white rounded-lg shadow-xl w-full max-h-[90vh] overflow-y-auto z-10 md:max-w-4xl"
+    data-modal-content
+  >
+    <!-- Close button -->
+    <button
+      type="button"
+      class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-custom-black hover:bg-gray-100 rounded-full transition-colors cursor-pointer z-20"
+      data-modal-close
+      aria-label="Close product details"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="flex flex-col md:flex-row">
+      <!-- Product image -->
+      <div class="w-full md:w-1/2 shrink-0">
+        <img
+          id="modal-product-image"
+          src=""
+          alt=""
+          class="w-full h-64 md:h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none"
+        />
+      </div>
+
+      <!-- Product info -->
+      <div class="p-6 flex flex-col justify-between flex-1">
+        <div>
+          <h2
+            id="modal-product-title"
+            class="text-2xl font-aileron-regular mb-1"
+          >
+          </h2>
+          <p
+            id="modal-product-price"
+            class="text-lg font-inter accent-blue mb-4"
+          >
+          </p>
+          <div
+            id="modal-product-description"
+            class="text-sm font-inter text-custom-black/80 mb-4 leading-relaxed"
+          >
+          </div>
+
+          <!-- Variant selector (hidden if no variants) -->
+          <div id="modal-variant-selector" class="mb-4 hidden">
+            <label
+              for="modal-variant-select"
+              class="block text-sm font-inter mb-1">Option</label
+            >
+            <select
+              id="modal-variant-select"
+              class="w-full border border-gray-300 rounded px-3 py-2 font-inter text-sm bg-white cursor-pointer"
+            >
+            </select>
+          </div>
+
+          <!-- Quantity -->
+          <div class="flex items-center gap-3 mb-6">
+            <label class="text-sm font-inter">Qty</label>
+            <div class="flex items-center border border-gray-300 rounded">
+              <button
+                type="button"
+                id="modal-qty-minus"
+                class="px-3 py-1 hover:bg-gray-100 transition-colors cursor-pointer text-lg"
+                >-</button
+              >
+              <span
+                id="modal-qty-value"
+                class="px-3 py-1 font-inter text-sm min-w-8 text-center">1</span
+              >
+              <button
+                type="button"
+                id="modal-qty-plus"
+                class="px-3 py-1 hover:bg-gray-100 transition-colors cursor-pointer text-lg"
+                >+</button
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="flex flex-col gap-2">
+          <button
+            type="button"
+            id="modal-buy-now"
+            class="w-full px-4 py-3 text-custom-white rounded-lg font-inter bg-accent-blue hover:opacity-75 transition-opacity cursor-pointer"
+          >
+            Buy now
+          </button>
+          <button
+            type="button"
+            id="modal-add-to-cart"
+            class="w-full px-4 py-3 rounded-lg font-inter border-2 border-accent-blue accent-blue bg-transparent hover:opacity-75 transition-opacity cursor-pointer"
+          >
+            Add to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #product-modal.open {
+    display: flex;
+  }
+
+  :global(body.modal-open) {
+    overflow: hidden;
+  }
+
+  #product-modal {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+  }
+
+  #product-modal.open {
+    opacity: 1;
+  }
+
+  [data-modal-content] {
+    transform: scale(0.95) translateY(10px);
+    transition:
+      transform 0.2s ease-out,
+      opacity 0.2s ease-out;
+    opacity: 0;
+  }
+
+  #product-modal.open [data-modal-content] {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  .bg-custom-white {
+    background: #fffefd;
+  }
+</style>
