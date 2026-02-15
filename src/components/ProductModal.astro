@@ -42,7 +42,7 @@ const modalId = "product-modal";
     <div class="flex flex-col md:flex-row">
       <!-- Product images carousel -->
       <div
-        class="w-full md:w-1/2 shrink-0 relative overflow-hidden aspect-square bg-gray-100 rounded-t-lg md:rounded-l-lg md:rounded-tr-none p-4"
+        class="w-full md:w-1/2 shrink-0 relative overflow-hidden aspect-square rounded-t-lg md:rounded-l-lg md:rounded-tr-none p-4"
         id="modal-carousel"
       >
         <div
@@ -74,7 +74,7 @@ const modalId = "product-modal";
           </p>
           <div
             id="modal-product-description"
-            class="text-sm font-inter text-custom-black/80 mb-4 leading-relaxed"
+            class="text-sm font-inter text-custom-black mb-4 leading-relaxed"
           >
           </div>
 
@@ -199,7 +199,7 @@ const modalId = "product-modal";
         dots[slideIndex].classList.add("bg-gray-400");
       }
       slideIndex = index;
-      track.style.transform = "translateX(-" + (slideIndex * 100) + "%)";
+      track.style.transform = "translateX(-" + slideIndex * 100 + "%)";
       if (dots[slideIndex]) {
         dots[slideIndex].classList.add("bg-custom-black");
         dots[slideIndex].classList.remove("bg-gray-400");
@@ -225,10 +225,15 @@ const modalId = "product-modal";
 
         if (images.length > 1) {
           var dot = document.createElement("button");
-          dot.className = "w-2 h-2 rounded-full transition-colors cursor-pointer " + (i === 0 ? "bg-custom-black" : "bg-gray-400");
+          dot.className =
+            "w-2 h-2 rounded-full transition-colors cursor-pointer " +
+            (i === 0 ? "bg-custom-black" : "bg-gray-400");
           dot.setAttribute("data-dot-index", i);
           dot.setAttribute("aria-label", "Go to image " + (i + 1));
-          dot.addEventListener("click", function () { goToSlide(i); resetTimer(); });
+          dot.addEventListener("click", function () {
+            goToSlide(i);
+            resetTimer();
+          });
           dotsContainer.appendChild(dot);
         }
       });
@@ -272,7 +277,7 @@ const modalId = "product-modal";
       } else if (diff > threshold && slideIndex > 0) {
         goToSlide(slideIndex - 1);
       } else {
-        track.style.transform = "translateX(-" + (slideIndex * 100) + "%)";
+        track.style.transform = "translateX(-" + slideIndex * 100 + "%)";
       }
       resetTimer();
     }
@@ -306,7 +311,7 @@ const modalId = "product-modal";
       } else if (diff > threshold && slideIndex > 0) {
         goToSlide(slideIndex - 1);
       } else {
-        track.style.transform = "translateX(-" + (slideIndex * 100) + "%)";
+        track.style.transform = "translateX(-" + slideIndex * 100 + "%)";
       }
       resetTimer();
     });
