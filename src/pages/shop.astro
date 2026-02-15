@@ -71,10 +71,36 @@ import CartDrawer from "../components/CartDrawer.astro";
     var maxQuantity = 10;
 
     function getMaxQuantity(variant) {
+      if (!variant.available) return 0;
       if (variant.quantityAvailable != null) {
         return Math.min(variant.quantityAvailable, 10);
       }
       return 10;
+    }
+
+    function isVariantSoldOut(variant) {
+      return variant.available === false;
+    }
+
+    function updateActionButtons(variant) {
+      var buyBtn = document.getElementById("modal-buy-now");
+      var cartBtn = document.getElementById("modal-add-to-cart");
+      var soldOut = isVariantSoldOut(variant);
+      buyBtn.disabled = soldOut;
+      cartBtn.disabled = soldOut;
+      buyBtn.textContent = soldOut ? "Sold out" : "Buy now";
+      cartBtn.textContent = soldOut ? "Sold out" : "Add to cart";
+      if (soldOut) {
+        buyBtn.classList.add("opacity-50", "cursor-not-allowed");
+        buyBtn.classList.remove("cursor-pointer");
+        cartBtn.classList.add("opacity-50", "cursor-not-allowed");
+        cartBtn.classList.remove("cursor-pointer");
+      } else {
+        buyBtn.classList.remove("opacity-50", "cursor-not-allowed");
+        buyBtn.classList.add("cursor-pointer");
+        cartBtn.classList.remove("opacity-50", "cursor-not-allowed");
+        cartBtn.classList.add("cursor-pointer");
+      }
     }
 
     // ── Shopify Client Init ──────────────────────────────────
@@ -195,6 +221,7 @@ import CartDrawer from "../components/CartDrawer.astro";
         descEl.textContent = product.description || "";
       }
       document.getElementById("modal-qty-value").textContent = "1";
+      updateActionButtons(product.variants[0]);
 
       // Variant selector
       var variantSelector = document.getElementById("modal-variant-selector");
@@ -238,6 +265,7 @@ import CartDrawer from "../components/CartDrawer.astro";
               currentQuantity = Math.max(maxQuantity, 1);
               document.getElementById("modal-qty-value").textContent = currentQuantity;
             }
+            updateActionButtons(selectedVariant);
           }
         }
 
@@ -245,18 +273,36 @@ import CartDrawer from "../components/CartDrawer.astro";
           var btn = document.createElement("button");
           btn.type = "button";
           btn.setAttribute("data-variant-id", variant.id);
-          btn.className =
-            "px-4 py-2 border-2 rounded-lg font-inter text-sm cursor-pointer transition-colors " +
-            (i === 0
-              ? "border-accent-blue accent-blue"
-              : "border-gray-300 text-custom-black");
+          var soldOut = isVariantSoldOut(variant);
+          if (soldOut) {
+            btn.className =
+              "px-4 py-2 border-2 rounded-lg font-inter text-sm transition-colors border-gray-200 text-gray-300 cursor-not-allowed line-through";
+            btn.disabled = true;
+          } else {
+            btn.className =
+              "px-4 py-2 border-2 rounded-lg font-inter text-sm cursor-pointer transition-colors " +
+              (i === 0
+                ? "border-accent-blue accent-blue"
+                : "border-gray-300 text-custom-black");
+            btn.addEventListener("click", function () {
+              selectVariantBtn(btn);
+              onVariantChange(variant.id);
+            });
+          }
           btn.textContent = variant.title;
-          btn.addEventListener("click", function () {
-            selectVariantBtn(btn);
-            onVariantChange(variant.id);
-          });
           variantOptions.appendChild(btn);
         });
+
+        // If first variant is sold out, auto-select the first available one
+        var firstAvailable = product.variants.findIndex(function (v) { return v.available !== false; });
+        if (firstAvailable > 0) {
+          var availableBtn = variantOptions.querySelectorAll("[data-variant-id]")[firstAvailable];
+          selectVariantBtn(availableBtn);
+          onVariantChange(product.variants[firstAvailable].id);
+          maxQuantity = getMaxQuantity(product.variants[firstAvailable]);
+          currentQuantity = 1;
+          document.getElementById("modal-qty-value").textContent = "1";
+        }
 
         variantSelector.classList.remove("hidden");
       } else {
