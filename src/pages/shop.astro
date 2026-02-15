@@ -189,22 +189,27 @@ import CartDrawer from "../components/CartDrawer.astro";
 
       // Variant selector
       var variantSelector = document.getElementById("modal-variant-selector");
-      var variantSelect = document.getElementById("modal-variant-select");
+      var variantOptions = document.getElementById("modal-variant-options");
 
       if (product.variants.length > 1) {
-        variantSelect.innerHTML = "";
-        product.variants.forEach(function (variant) {
-          var option = document.createElement("option");
-          option.value = variant.id;
-          option.textContent = variant.title;
-          variantSelect.appendChild(option);
-        });
-        variantSelector.classList.remove("hidden");
+        variantOptions.innerHTML = "";
+        var variantLabel = document.getElementById("modal-variant-label");
+        if (variantLabel && product.options && product.options.length > 0) {
+          variantLabel.textContent = product.options[0].name;
+        }
 
-        // Update price/image when variant changes
-        variantSelect.onchange = function () {
+        function selectVariantBtn(btn) {
+          variantOptions.querySelectorAll("[data-variant-id]").forEach(function (b) {
+            b.classList.remove("border-accent-blue", "accent-blue");
+            b.classList.add("border-gray-300", "text-custom-black");
+          });
+          btn.classList.remove("border-gray-300", "text-custom-black");
+          btn.classList.add("border-accent-blue", "accent-blue");
+        }
+
+        function onVariantChange(variantId) {
           var selectedVariant = product.variants.find(function (v) {
-            return v.id === variantSelect.value;
+            return v.id === variantId;
           });
           if (selectedVariant) {
             var vPrice = selectedVariant.price.amount || selectedVariant.price;
@@ -220,7 +225,26 @@ import CartDrawer from "../components/CartDrawer.astro";
               }
             }
           }
-        };
+        }
+
+        product.variants.forEach(function (variant, i) {
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.setAttribute("data-variant-id", variant.id);
+          btn.className =
+            "px-4 py-2 border-2 rounded-lg font-inter text-sm cursor-pointer transition-colors " +
+            (i === 0
+              ? "border-accent-blue accent-blue"
+              : "border-gray-300 text-custom-black");
+          btn.textContent = variant.title;
+          btn.addEventListener("click", function () {
+            selectVariantBtn(btn);
+            onVariantChange(variant.id);
+          });
+          variantOptions.appendChild(btn);
+        });
+
+        variantSelector.classList.remove("hidden");
       } else {
         variantSelector.classList.add("hidden");
       }
@@ -326,14 +350,15 @@ import CartDrawer from "../components/CartDrawer.astro";
       });
 
     function getSelectedVariantId() {
-      var variantSelect = document.getElementById("modal-variant-select");
+      var variantOptions = document.getElementById("modal-variant-options");
       if (
         currentProduct.variants.length > 1 &&
         !document
           .getElementById("modal-variant-selector")
           .classList.contains("hidden")
       ) {
-        return variantSelect.value;
+        var selected = variantOptions.querySelector(".border-accent-blue");
+        return selected ? selected.getAttribute("data-variant-id") : currentProduct.variants[0].id;
       }
       return currentProduct.variants[0].id;
     }

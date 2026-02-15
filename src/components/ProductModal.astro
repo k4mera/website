@@ -82,13 +82,15 @@ const modalId = "product-modal";
           <div id="modal-variant-selector" class="mb-4 hidden">
             <label
               for="modal-variant-select"
+              id="modal-variant-label"
               class="block text-sm font-inter mb-1">Option</label
             >
-            <select
-              id="modal-variant-select"
-              class="w-full border border-gray-300 rounded px-3 py-2 font-inter text-sm bg-white cursor-pointer"
+            <div
+              id="modal-variant-options"
+              class="flex flex-wrap gap-2"
             >
-            </select>
+              <!-- Variant buttons injected dynamically -->
+            </div>
           </div>
 
           <!-- Quantity -->
