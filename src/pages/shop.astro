@@ -168,12 +168,11 @@ import CartDrawer from "../components/CartDrawer.astro";
       currentProduct = product;
       currentQuantity = 1;
 
-      var image = product.images.length > 0 ? product.images[0].src : "";
       var price = product.variants[0].price.amount || product.variants[0].price;
       var currency = product.variants[0].price.currencyCode || "";
 
-      document.getElementById("modal-product-image").src = image;
-      document.getElementById("modal-product-image").alt = product.title;
+      // Set carousel images via ProductModal's own script
+      window.modalCarousel.setImages(product.images, product.title);
       document.getElementById("modal-product-title").textContent =
         product.title;
       document.getElementById("modal-product-price").textContent = formatPrice(
@@ -213,8 +212,12 @@ import CartDrawer from "../components/CartDrawer.astro";
             document.getElementById("modal-product-price").textContent =
               formatPrice(vPrice, vCurrency);
             if (selectedVariant.image) {
-              document.getElementById("modal-product-image").src =
-                selectedVariant.image.src;
+              var variantImgIndex = product.images.findIndex(function (img) {
+                return img.src === selectedVariant.image.src;
+              });
+              if (variantImgIndex >= 0) {
+                window.modalCarousel.goToSlide(variantImgIndex);
+              }
             }
           }
         };

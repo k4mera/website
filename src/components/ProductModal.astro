@@ -172,3 +172,135 @@ const modalId = "product-modal";
     background: #fffefd;
   }
 </style>
+
+<script is:inline>
+  (function () {
+    var carousel = document.getElementById("modal-carousel");
+    var track = document.getElementById("modal-carousel-track");
+    var dotsContainer = document.getElementById("modal-carousel-dots");
+    var slideIndex = 0;
+    var slideCount = 0;
+
+    function goToSlide(index) {
+      var dots = dotsContainer.querySelectorAll("[data-dot-index]");
+      if (dots[slideIndex]) {
+        dots[slideIndex].classList.remove("bg-custom-black");
+        dots[slideIndex].classList.add("bg-gray-400");
+      }
+      slideIndex = index;
+      track.style.transform = "translateX(-" + (slideIndex * 100) + "%)";
+      if (dots[slideIndex]) {
+        dots[slideIndex].classList.add("bg-custom-black");
+        dots[slideIndex].classList.remove("bg-gray-400");
+      }
+    }
+
+    function setImages(images, alt) {
+      track.innerHTML = "";
+      dotsContainer.innerHTML = "";
+      slideIndex = 0;
+      slideCount = images.length;
+
+      images.forEach(function (img, i) {
+        var slide = document.createElement("div");
+        slide.className = "w-full shrink-0 h-full";
+        var imgEl = document.createElement("img");
+        imgEl.src = img.src;
+        imgEl.alt = (alt || "Product") + " - " + (i + 1);
+        imgEl.className = "w-full h-full object-contain";
+        imgEl.draggable = false;
+        slide.appendChild(imgEl);
+        track.appendChild(slide);
+
+        if (images.length > 1) {
+          var dot = document.createElement("button");
+          dot.className = "w-2 h-2 rounded-full transition-colors cursor-pointer " + (i === 0 ? "bg-custom-black" : "bg-gray-400");
+          dot.setAttribute("data-dot-index", i);
+          dot.setAttribute("aria-label", "Go to image " + (i + 1));
+          dot.addEventListener("click", function () { goToSlide(i); });
+          dotsContainer.appendChild(dot);
+        }
+      });
+
+      dotsContainer.style.display = images.length > 1 ? "" : "none";
+      track.style.transform = "translateX(0%)";
+    }
+
+    // Swipe / drag support
+    var isDragging = false;
+    var startX = 0;
+    var currentTranslate = 0;
+
+    carousel.addEventListener("mousedown", function (e) {
+      if (e.target.closest("button, a")) return;
+      isDragging = true;
+      startX = e.clientX;
+      track.style.transition = "none";
+      carousel.style.cursor = "grabbing";
+    });
+
+    carousel.addEventListener("mousemove", function (e) {
+      if (!isDragging) return;
+      var diff = e.clientX - startX;
+      var base = -slideIndex * 100;
+      var pct = (diff / carousel.offsetWidth) * 100;
+      currentTranslate = base + pct;
+      track.style.transform = "translateX(" + currentTranslate + "%)";
+    });
+
+    function endDrag(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      track.style.transition = "";
+      carousel.style.cursor = "";
+      var diff = e.clientX - startX;
+      var threshold = carousel.offsetWidth * 0.2;
+      if (diff < -threshold && slideIndex < slideCount - 1) {
+        goToSlide(slideIndex + 1);
+      } else if (diff > threshold && slideIndex > 0) {
+        goToSlide(slideIndex - 1);
+      } else {
+        track.style.transform = "translateX(-" + (slideIndex * 100) + "%)";
+      }
+    }
+
+    carousel.addEventListener("mouseup", endDrag);
+    carousel.addEventListener("mouseleave", endDrag);
+
+    carousel.addEventListener("touchstart", function (e) {
+      isDragging = true;
+      startX = e.touches[0].clientX;
+      track.style.transition = "none";
+    });
+
+    carousel.addEventListener("touchmove", function (e) {
+      if (!isDragging) return;
+      var diff = e.touches[0].clientX - startX;
+      var base = -slideIndex * 100;
+      var pct = (diff / carousel.offsetWidth) * 100;
+      currentTranslate = base + pct;
+      track.style.transform = "translateX(" + currentTranslate + "%)";
+    });
+
+    carousel.addEventListener("touchend", function (e) {
+      if (!isDragging) return;
+      isDragging = false;
+      track.style.transition = "";
+      var diff = e.changedTouches[0].clientX - startX;
+      var threshold = carousel.offsetWidth * 0.2;
+      if (diff < -threshold && slideIndex < slideCount - 1) {
+        goToSlide(slideIndex + 1);
+      } else if (diff > threshold && slideIndex > 0) {
+        goToSlide(slideIndex - 1);
+      } else {
+        track.style.transform = "translateX(-" + (slideIndex * 100) + "%)";
+      }
+    });
+
+    // Expose API for shop.astro
+    window.modalCarousel = {
+      setImages: setImages,
+      goToSlide: goToSlide,
+    };
+  })();
+</script>
