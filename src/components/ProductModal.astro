@@ -180,6 +180,17 @@ const modalId = "product-modal";
     var dotsContainer = document.getElementById("modal-carousel-dots");
     var slideIndex = 0;
     var slideCount = 0;
+    var autoTimer = null;
+
+    function resetTimer() {
+      clearInterval(autoTimer);
+      autoTimer = null;
+      if (slideCount > 1) {
+        autoTimer = setInterval(function () {
+          goToSlide((slideIndex + 1) % slideCount);
+        }, 8000);
+      }
+    }
 
     function goToSlide(index) {
       var dots = dotsContainer.querySelectorAll("[data-dot-index]");
@@ -217,13 +228,14 @@ const modalId = "product-modal";
           dot.className = "w-2 h-2 rounded-full transition-colors cursor-pointer " + (i === 0 ? "bg-custom-black" : "bg-gray-400");
           dot.setAttribute("data-dot-index", i);
           dot.setAttribute("aria-label", "Go to image " + (i + 1));
-          dot.addEventListener("click", function () { goToSlide(i); });
+          dot.addEventListener("click", function () { goToSlide(i); resetTimer(); });
           dotsContainer.appendChild(dot);
         }
       });
 
       dotsContainer.style.display = images.length > 1 ? "" : "none";
       track.style.transform = "translateX(0%)";
+      resetTimer();
     }
 
     // Swipe / drag support
@@ -262,6 +274,7 @@ const modalId = "product-modal";
       } else {
         track.style.transform = "translateX(-" + (slideIndex * 100) + "%)";
       }
+      resetTimer();
     }
 
     carousel.addEventListener("mouseup", endDrag);
@@ -295,6 +308,7 @@ const modalId = "product-modal";
       } else {
         track.style.transform = "translateX(-" + (slideIndex * 100) + "%)";
       }
+      resetTimer();
     });
 
     // Expose API for shop.astro
