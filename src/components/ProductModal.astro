@@ -40,14 +40,23 @@ const modalId = "product-modal";
     </button>
 
     <div class="flex flex-col md:flex-row">
-      <!-- Product image -->
-      <div class="w-full md:w-1/2 shrink-0">
-        <img
-          id="modal-product-image"
-          src=""
-          alt=""
-          class="w-full h-64 md:h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none"
-        />
+      <!-- Product images carousel -->
+      <div
+        class="w-full md:w-1/2 shrink-0 relative overflow-hidden aspect-square bg-gray-100 rounded-t-lg md:rounded-l-lg md:rounded-tr-none p-4"
+        id="modal-carousel"
+      >
+        <div
+          class="flex transition-transform duration-300 ease-in-out h-full pb-1"
+          id="modal-carousel-track"
+        >
+          <!-- Slides injected dynamically -->
+        </div>
+        <div
+          class="flex justify-center gap-2 py-2 absolute bottom-0 left-0 right-0"
+          id="modal-carousel-dots"
+        >
+          <!-- Dots injected dynamically -->
+        </div>
       </div>
 
       <!-- Product info -->
