@@ -1,0 +1,22 @@
+<!-- Template for product cards — cloned by JS at runtime -->
+<template id="product-card-template">
+  <div
+    class="flex-1 flex flex-col p-2 rounded bg-white/40 text-base cursor-pointer"
+    role="button"
+    tabindex="0"
+  >
+    <div class="w-full aspect-square overflow-hidden">
+      <img
+        data-card="image"
+        src=""
+        alt=""
+        class="w-full h-full object-contain"
+        loading="lazy"
+      />
+    </div>
+    <div class="p-3">
+      <h3 data-card="title" class="font-aileron-regular mb-1 text-xl mt-2"></h3>
+      <p data-card="price" class="font-inter text-sm accent-blue"></p>
+    </div>
+  </div>
+</template>
