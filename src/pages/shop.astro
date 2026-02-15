@@ -68,6 +68,14 @@ import CartDrawer from "../components/CartDrawer.astro";
     var checkout = null;
     var currentProduct = null;
     var currentQuantity = 1;
+    var maxQuantity = 10;
+
+    function getMaxQuantity(variant) {
+      if (variant.quantityAvailable != null) {
+        return Math.min(variant.quantityAvailable, 10);
+      }
+      return 10;
+    }
 
     // ── Shopify Client Init ──────────────────────────────────
     function initShopify() {
@@ -167,6 +175,7 @@ import CartDrawer from "../components/CartDrawer.astro";
     function openProductModal(product) {
       currentProduct = product;
       currentQuantity = 1;
+      maxQuantity = getMaxQuantity(product.variants[0]);
 
       var price = product.variants[0].price.amount || product.variants[0].price;
       var currency = product.variants[0].price.currencyCode || "";
@@ -223,6 +232,11 @@ import CartDrawer from "../components/CartDrawer.astro";
               if (variantImgIndex >= 0) {
                 window.modalCarousel.goToSlide(variantImgIndex);
               }
+            }
+            maxQuantity = getMaxQuantity(selectedVariant);
+            if (currentQuantity > maxQuantity) {
+              currentQuantity = Math.max(maxQuantity, 1);
+              document.getElementById("modal-qty-value").textContent = currentQuantity;
             }
           }
         }
@@ -285,9 +299,11 @@ import CartDrawer from "../components/CartDrawer.astro";
     document
       .getElementById("modal-qty-plus")
       .addEventListener("click", function () {
-        currentQuantity++;
-        document.getElementById("modal-qty-value").textContent =
-          currentQuantity;
+        if (currentQuantity < maxQuantity) {
+          currentQuantity++;
+          document.getElementById("modal-qty-value").textContent =
+            currentQuantity;
+        }
       });
 
     // ── Add to Cart ──────────────────────────────────────────
