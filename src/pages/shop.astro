@@ -4,6 +4,7 @@ import Title from "../components/Title.astro";
 import ProductCard from "../components/ProductCard.astro";
 import ProductModal from "../components/ProductModal.astro";
 import CartDrawer from "../components/CartDrawer.astro";
+import ShopState from "../components/ShopState.astro";
 ---
 
 <BaseLayout title="K4MERA Shop" description="" nav="/">
@@ -15,24 +16,9 @@ import CartDrawer from "../components/CartDrawer.astro";
 
     <!-- Product grid -->
     <div class="w-full max-w-5xl px-4 pb-16 flex-1">
-      <!-- Loading state -->
-      <div id="shop-loading" class="flex justify-center py-12">
-        <p class="text-sm font-inter text-custom-black">Loading products...</p>
-      </div>
-
-      <!-- Error state -->
-      <div id="shop-error" class="hidden text-center py-12">
-        <p class="text-sm font-inter text-custom-black">
-          Unable to load products. Please try again later.
-        </p>
-      </div>
-
-      <!-- Empty state -->
-      <div id="shop-empty" class="hidden text-center py-12">
-        <p class="text-sm font-inter text-custom-black/60">
-          No products available yet. Check back soon!
-        </p>
-      </div>
+      <ShopState id="shop-loading" state="loading" />
+      <ShopState id="shop-error" state="error" />
+      <ShopState id="shop-empty" state="empty" />
 
       <!-- Product grid container -->
       <div

@@ -1,0 +1,42 @@
+---
+interface Props {
+  id: string;
+  state: "loading" | "error" | "empty";
+}
+
+const { id, state } = Astro.props;
+
+const messages: Record<string, string> = {
+  loading: "Loading products",
+  error: "Unable to load products.\nPlease try again later",
+  empty: "Nothing to see here",
+};
+
+const isHidden = state !== "loading";
+const textOpacity =
+  state === "empty" ? "text-custom-black/60" : "text-custom-black";
+const align = state === "loading" ? "flex justify-center" : "text-center";
+const dotsId = `${id}-dots`;
+---
+
+<div id={id} class:list={[align, "py-12", { hidden: isHidden }]}>
+  <p class:list={["text-xl font-aileron-regular", textOpacity]}>
+    {messages[state]}<span
+      id={dotsId}
+      class="inline-block w-[1.5ch] text-left dots-animated"></span>
+  </p>
+</div>
+
+<script>
+  document.querySelectorAll(".dots-animated").forEach((dots) => {
+    const delays = [100, 100, 100, 100, 1000];
+    let count = 0;
+    const animate = () => {
+      dots.textContent = ".".repeat(count);
+      const delay = delays[count];
+      count = (count + 1) % 5;
+      setTimeout(animate, delay);
+    };
+    animate();
+  });
+</script>
