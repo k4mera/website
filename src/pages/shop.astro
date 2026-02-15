@@ -1,0 +1,483 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Title from "../components/Title.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ProductModal from "../components/ProductModal.astro";
+import CartDrawer from "../components/CartDrawer.astro";
+---
+
+<BaseLayout title="K4MERA Shop" description="" nav="/">
+  <div class="flex flex-col w-full items-center min-h-screen">
+    <!-- Hero -->
+    <div class="flex flex-col items-center justify-center text-center py-16">
+      <Title>Shop</Title>
+    </div>
+
+    <!-- Product grid -->
+    <div class="w-full max-w-5xl px-4 pb-16 flex-1">
+      <!-- Loading state -->
+      <div id="shop-loading" class="flex justify-center py-12">
+        <p class="text-sm font-inter text-custom-black">Loading products...</p>
+      </div>
+
+      <!-- Error state -->
+      <div id="shop-error" class="hidden text-center py-12">
+        <p class="text-sm font-inter text-custom-black">
+          Unable to load products. Please try again later.
+        </p>
+      </div>
+
+      <!-- Empty state -->
+      <div id="shop-empty" class="hidden text-center py-12">
+        <p class="text-sm font-inter text-custom-black/60">
+          No products available yet. Check back soon!
+        </p>
+      </div>
+
+      <!-- Product grid container -->
+      <div
+        id="product-grid"
+        class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
+      >
+      </div>
+    </div>
+  </div>
+
+  <!-- Templates -->
+  <ProductCard />
+
+  <!-- Product detail modal -->
+  <ProductModal />
+
+  <!-- Cart drawer -->
+  <CartDrawer />
+</BaseLayout>
+
+<!-- Shopify Buy SDK -->
+<script
+  is:inline
+  src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"
+></script>
+
+<script is:inline>
+  const SHOPIFY_DOMAIN = "k4mera-shop.myshopify.com";
+  const SHOPIFY_TOKEN = "1524ff06afee2ac99ec71fb19d63d8a2";
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var client = null;
+    var checkout = null;
+    var currentProduct = null;
+    var currentQuantity = 1;
+
+    // ── Shopify Client Init ──────────────────────────────────
+    function initShopify() {
+      if (typeof ShopifyBuy === "undefined") {
+        showError();
+        return;
+      }
+
+      client = ShopifyBuy.buildClient({
+        domain: SHOPIFY_DOMAIN,
+        storefrontAccessToken: SHOPIFY_TOKEN,
+      });
+
+      // Create a checkout session
+      client.checkout.create().then(function (c) {
+        checkout = c;
+      });
+
+      fetchProducts();
+    }
+
+    // ── Fetch & Render Products ──────────────────────────────
+    function fetchProducts() {
+      client.product
+        .fetchAll()
+        .then(function (products) {
+          document.getElementById("shop-loading").classList.add("hidden");
+
+          if (!products || products.length === 0) {
+            document.getElementById("shop-empty").classList.remove("hidden");
+            return;
+          }
+
+          renderProductGrid(products);
+        })
+        .catch(function () {
+          showError();
+        });
+    }
+
+    function showError() {
+      document.getElementById("shop-loading").classList.add("hidden");
+      document.getElementById("shop-error").classList.remove("hidden");
+    }
+
+    function renderProductGrid(products) {
+      var grid = document.getElementById("product-grid");
+      grid.innerHTML = "";
+
+      products.forEach(function (product) {
+        var card = createProductCard(product);
+        grid.appendChild(card);
+      });
+    }
+
+    // ── Product Card ─────────────────────────────────────────
+    var cardTemplate = document.getElementById("product-card-template");
+
+    function createProductCard(product) {
+      var image = product.images.length > 0 ? product.images[0].src : "";
+      var price = product.variants[0].price.amount || product.variants[0].price;
+      var currency = product.variants[0].price.currencyCode || "";
+
+      var clone = cardTemplate.content.cloneNode(true);
+      var card = clone.firstElementChild;
+
+      var imgEl = card.querySelector('[data-card="image"]');
+      imgEl.src = image;
+      imgEl.alt = product.title;
+
+      card.querySelector('[data-card="title"]').textContent = product.title;
+      card.querySelector('[data-card="price"]').textContent = formatPrice(
+        price,
+        currency,
+      );
+
+      card.addEventListener("click", function () {
+        openProductModal(product);
+      });
+
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openProductModal(product);
+        }
+      });
+
+      return card;
+    }
+
+    // ── Product Modal ────────────────────────────────────────
+    var modal = document.getElementById("product-modal");
+    var modalOverlay = modal.querySelector("[data-modal-overlay]");
+    var modalClose = modal.querySelector("[data-modal-close]");
+    var modalContent = modal.querySelector("[data-modal-content]");
+
+    function openProductModal(product) {
+      currentProduct = product;
+      currentQuantity = 1;
+
+      var image = product.images.length > 0 ? product.images[0].src : "";
+      var price = product.variants[0].price.amount || product.variants[0].price;
+      var currency = product.variants[0].price.currencyCode || "";
+
+      document.getElementById("modal-product-image").src = image;
+      document.getElementById("modal-product-image").alt = product.title;
+      document.getElementById("modal-product-title").textContent =
+        product.title;
+      document.getElementById("modal-product-price").textContent = formatPrice(
+        price,
+        currency,
+      );
+      var descEl = document.getElementById("modal-product-description");
+      if (product.descriptionHtml) {
+        descEl.innerHTML = product.descriptionHtml;
+      } else {
+        descEl.textContent = product.description || "";
+      }
+      document.getElementById("modal-qty-value").textContent = "1";
+
+      // Variant selector
+      var variantSelector = document.getElementById("modal-variant-selector");
+      var variantSelect = document.getElementById("modal-variant-select");
+
+      if (product.variants.length > 1) {
+        variantSelect.innerHTML = "";
+        product.variants.forEach(function (variant) {
+          var option = document.createElement("option");
+          option.value = variant.id;
+          option.textContent = variant.title;
+          variantSelect.appendChild(option);
+        });
+        variantSelector.classList.remove("hidden");
+
+        // Update price/image when variant changes
+        variantSelect.onchange = function () {
+          var selectedVariant = product.variants.find(function (v) {
+            return v.id === variantSelect.value;
+          });
+          if (selectedVariant) {
+            var vPrice = selectedVariant.price.amount || selectedVariant.price;
+            var vCurrency = selectedVariant.price.currencyCode || "";
+            document.getElementById("modal-product-price").textContent =
+              formatPrice(vPrice, vCurrency);
+            if (selectedVariant.image) {
+              document.getElementById("modal-product-image").src =
+                selectedVariant.image.src;
+            }
+          }
+        };
+      } else {
+        variantSelector.classList.add("hidden");
+      }
+
+      modal.classList.add("open");
+      document.body.classList.add("modal-open");
+      modalClose.focus();
+    }
+
+    function closeProductModal() {
+      modal.classList.remove("open");
+      document.body.classList.remove("modal-open");
+    }
+
+    modalOverlay.addEventListener("click", closeProductModal);
+    modalClose.addEventListener("click", closeProductModal);
+    modalContent.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("open")) {
+        closeProductModal();
+      }
+    });
+
+    // Quantity controls
+    document
+      .getElementById("modal-qty-minus")
+      .addEventListener("click", function () {
+        if (currentQuantity > 1) {
+          currentQuantity--;
+          document.getElementById("modal-qty-value").textContent =
+            currentQuantity;
+        }
+      });
+
+    document
+      .getElementById("modal-qty-plus")
+      .addEventListener("click", function () {
+        currentQuantity++;
+        document.getElementById("modal-qty-value").textContent =
+          currentQuantity;
+      });
+
+    // ── Add to Cart ──────────────────────────────────────────
+    document
+      .getElementById("modal-add-to-cart")
+      .addEventListener("click", function () {
+        if (!currentProduct || !checkout) return;
+
+        var variantId = getSelectedVariantId();
+        var btn = document.getElementById("modal-add-to-cart");
+        btn.textContent = "Adding...";
+        btn.disabled = true;
+
+        client.checkout
+          .addLineItems(checkout.id, [
+            { variantId: variantId, quantity: currentQuantity },
+          ])
+          .then(function (updatedCheckout) {
+            checkout = updatedCheckout;
+            updateCartUI();
+            btn.textContent = "Added!";
+            setTimeout(function () {
+              btn.textContent = "Add to cart";
+              btn.disabled = false;
+            }, 1500);
+            closeProductModal();
+          })
+          .catch(function () {
+            btn.textContent = "Error — try again";
+            btn.disabled = false;
+          });
+      });
+
+    // ── Buy Now ──────────────────────────────────────────────
+    document
+      .getElementById("modal-buy-now")
+      .addEventListener("click", function () {
+        if (!currentProduct || !client) return;
+
+        var variantId = getSelectedVariantId();
+        var btn = document.getElementById("modal-buy-now");
+        btn.textContent = "Redirecting...";
+        btn.disabled = true;
+
+        // Create a fresh checkout for buy-now so it only has this item
+        client.checkout
+          .create()
+          .then(function (freshCheckout) {
+            return client.checkout.addLineItems(freshCheckout.id, [
+              { variantId: variantId, quantity: currentQuantity },
+            ]);
+          })
+          .then(function (readyCheckout) {
+            window.location.href = readyCheckout.webUrl;
+          })
+          .catch(function () {
+            btn.textContent = "Error — try again";
+            btn.disabled = false;
+          });
+      });
+
+    function getSelectedVariantId() {
+      var variantSelect = document.getElementById("modal-variant-select");
+      if (
+        currentProduct.variants.length > 1 &&
+        !document
+          .getElementById("modal-variant-selector")
+          .classList.contains("hidden")
+      ) {
+        return variantSelect.value;
+      }
+      return currentProduct.variants[0].id;
+    }
+
+    // ── Cart Drawer ──────────────────────────────────────────
+    var cartDrawer = document.getElementById("cart-drawer");
+    var cartOverlay = cartDrawer.querySelector("[data-cart-overlay]");
+    var cartCloseBtn = cartDrawer.querySelector("[data-cart-close]");
+    var cartToggle = document.getElementById("cart-toggle");
+
+    function openCart() {
+      cartDrawer.classList.add("open");
+      document.body.classList.add("cart-open");
+    }
+
+    function closeCart() {
+      cartDrawer.classList.remove("open");
+      document.body.classList.remove("cart-open");
+    }
+
+    cartToggle.addEventListener("click", openCart);
+    cartOverlay.addEventListener("click", closeCart);
+    cartCloseBtn.addEventListener("click", closeCart);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && cartDrawer.classList.contains("open")) {
+        closeCart();
+      }
+    });
+
+    document
+      .getElementById("cart-checkout")
+      .addEventListener("click", function () {
+        if (checkout && checkout.webUrl) {
+          window.location.href = checkout.webUrl;
+        }
+      });
+
+    // ── Cart UI Updates ──────────────────────────────────────
+    function updateCartUI() {
+      var lineItems = checkout.lineItems;
+      var totalCount = 0;
+      lineItems.forEach(function (item) {
+        totalCount += item.quantity;
+      });
+
+      // Update cart count badge
+      var countEl = document.getElementById("cart-count");
+      countEl.textContent = totalCount;
+
+      // Show/hide cart toggle button
+      var toggleBtn = document.getElementById("cart-toggle");
+      if (totalCount > 0) {
+        toggleBtn.classList.remove("hidden");
+      } else {
+        toggleBtn.classList.add("hidden");
+      }
+
+      // Render cart items
+      var cartItemsEl = document.getElementById("cart-items");
+      var emptyMsg = document.getElementById("cart-empty-msg");
+      var cartFooter = document.getElementById("cart-footer");
+
+      if (lineItems.length === 0) {
+        emptyMsg.classList.remove("hidden");
+        cartFooter.classList.add("hidden");
+        cartItemsEl.querySelectorAll(".cart-line-item").forEach(function (el) {
+          el.remove();
+        });
+        return;
+      }
+
+      emptyMsg.classList.add("hidden");
+      cartFooter.classList.remove("hidden");
+
+      // Clear existing items
+      cartItemsEl.querySelectorAll(".cart-line-item").forEach(function (el) {
+        el.remove();
+      });
+
+      var cartItemTemplate = document.getElementById("cart-item-template");
+
+      lineItems.forEach(function (item) {
+        var clone = cartItemTemplate.content.cloneNode(true);
+        var itemEl = clone.firstElementChild;
+
+        var imgSrc = item.variant.image ? item.variant.image.src : "";
+        var itemPrice = item.variant.price.amount || item.variant.price;
+        var itemCurrency = item.variant.price.currencyCode || "";
+
+        var imgEl = itemEl.querySelector('[data-cart-item="image"]');
+        imgEl.src = imgSrc;
+        imgEl.alt = item.title;
+
+        itemEl.querySelector('[data-cart-item="title"]').textContent =
+          item.title;
+
+        var variantEl = itemEl.querySelector('[data-cart-item="variant"]');
+        if (item.variant.title !== "Default Title") {
+          variantEl.textContent = item.variant.title;
+        } else {
+          variantEl.remove();
+        }
+
+        itemEl.querySelector('[data-cart-item="price"]').textContent =
+          formatPrice(itemPrice, itemCurrency) + " x " + item.quantity;
+
+        itemEl
+          .querySelector('[data-cart-item="remove"]')
+          .addEventListener("click", function () {
+            client.checkout
+              .removeLineItems(checkout.id, [item.id])
+              .then(function (updatedCheckout) {
+                checkout = updatedCheckout;
+                updateCartUI();
+              });
+          });
+
+        cartItemsEl.appendChild(itemEl);
+      });
+
+      // Total
+      var totalPrice = checkout.totalPrice.amount || checkout.totalPrice;
+      var totalCurrency = checkout.totalPrice.currencyCode || "";
+      document.getElementById("cart-total").textContent = formatPrice(
+        totalPrice,
+        totalCurrency,
+      );
+    }
+
+    // ── Helpers ──────────────────────────────────────────────
+    function formatPrice(amount, currency) {
+      var num = parseFloat(amount);
+      if (currency) {
+        try {
+          return new Intl.NumberFormat(undefined, {
+            style: "currency",
+            currency: currency,
+          }).format(num);
+        } catch (e) {
+          // fallback
+        }
+      }
+      return "$" + num.toFixed(2);
+    }
+
+    // ── Init ─────────────────────────────────────────────────
+    initShopify();
+  });
+</script>
