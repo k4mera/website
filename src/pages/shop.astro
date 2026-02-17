@@ -6,7 +6,11 @@ import ProductModal from "../components/ProductModal.astro";
 import ShopState from "../components/ShopState.astro";
 ---
 
-<BaseLayout title="K4MERA Shop" description="" nav="/">
+<BaseLayout
+  title="K4MERA Shop"
+  description="Shop K4MERA products. All proceeds go towards development and production."
+  nav="/"
+>
   <div class="flex flex-col w-full items-center min-h-screen">
     <!-- Hero -->
     <div class="flex flex-col items-center justify-center text-center py-16">
@@ -42,6 +46,7 @@ import ShopState from "../components/ShopState.astro";
 <!-- Shopify Buy SDK -->
 <script
   is:inline
+  defer
   src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"
 ></script>
 
@@ -102,9 +107,9 @@ import ShopState from "../components/ShopState.astro";
       });
 
       // Create a checkout session
-      client.checkout.create().then(function (c) {
-        checkout = c;
-      });
+      // client.checkout.create().then(function (c) {
+      //   checkout = c;
+      // });
 
       fetchProducts();
     }
@@ -265,7 +270,7 @@ import ShopState from "../components/ShopState.astro";
       );
       var descEl = document.getElementById("modal-product-description");
       if (product.descriptionHtml) {
-        descEl.innerHTML = product.descriptionHtml;
+        descEl.innerHTML = sanitizeHtml(product.descriptionHtml);
       } else {
         descEl.textContent = product.description || "";
       }
@@ -611,6 +616,16 @@ import ShopState from "../components/ShopState.astro";
     // }
 
     // ── Helpers ──────────────────────────────────────────────
+    function sanitizeHtml(html) {
+      var doc = new DOMParser().parseFromString(html, "text/html");
+      doc
+        .querySelectorAll("script,style,iframe,object,embed,form")
+        .forEach(function (el) {
+          el.remove();
+        });
+      return doc.body.innerHTML;
+    }
+
     function formatPrice(amount, currency) {
       var num = parseFloat(amount);
       if (currency) {
