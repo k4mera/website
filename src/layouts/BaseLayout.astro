@@ -56,8 +56,8 @@ const fullOgImage = ogImage.startsWith("http")
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullOgImage} />
 
-    <!-- Google tag (gtag.js) -->
-    <script
+    <!-- Google Analytics commented out to avoid cookies/GDPR issues -->
+    <!-- <script
       is:inline
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-GHEF0B28WX"></script>
@@ -68,7 +68,7 @@ const fullOgImage = ogImage.startsWith("http")
       }
       gtag("js", new Date());
       gtag("config", "G-GHEF0B28WX");
-    </script>
+    </script> -->
     <!-- Font Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -108,6 +108,7 @@ const fullOgImage = ogImage.startsWith("http")
     </main>
     <Footer nav={nav} />
     <script src="/fluid.js" is:inline defer></script>
+    <!-- Google Analytics event tracking commented out
     <script is:inline>
       // Track "Join Waitlist" clicks to Google Analytics
       document.addEventListener("click", function (e) {
@@ -120,6 +121,6 @@ const fullOgImage = ogImage.startsWith("http")
           });
         }
       });
-    </script>
+    </script> -->
   </body>
 </html>
