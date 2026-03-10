@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Content as PrivacyContent } from "../content/privacy.md";
+---
+
+<BaseLayout
+  title="Privacy Policy | K4MERA"
+  description="Privacy Policy for K4MERA by Roofless Labs Sàrl."
+  nav="/"
+>
+  <div class="flex flex-col w-full items-center px-6 py-24 md:py-32">
+    <div class="max-w-2xl w-full text-custom-black font-inter text-sm md:text-base leading-relaxed prose prose-sm">
+      <PrivacyContent />
+    </div>
+  </div>
+</BaseLayout>

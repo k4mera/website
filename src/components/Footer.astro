@@ -55,36 +55,9 @@ const { nav = "/" } = Astro.props;
         about us
       </a>
       <a href="/terms" class="flex-1 hover:opacity-75">terms of service</a>
-      <p
-        class="flex-1 hover:opacity-75 hover:cursor-pointer"
-        id="privacyPolicy"
-      >
-        privacy
-      </p>
+      <a href="/privacy" class="flex-1 hover:opacity-75">privacy</a>
       <p class="flex-1 cursor-default">© 2026 k4mera.world</p>
     </div>
   </div>
 </footer>
 
-<script>
-  let expanded = false;
-
-  function expandText(id: string, newText: string) {
-    if (expanded) return;
-    const element = document.getElementById(id);
-    if (!element) return;
-
-    const originalText = element.innerHTML;
-    expanded = true;
-    element.innerHTML = newText;
-
-    setTimeout(() => {
-      element.innerHTML = originalText;
-      expanded = false;
-    }, 3000);
-  }
-
-  document.getElementById("privacyPolicy")?.addEventListener("click", () => {
-    expandText("privacyPolicy", "we won't spam you or resell your data");
-  });
-</script>
