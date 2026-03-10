@@ -6,9 +6,9 @@ By accessing this website and/or purchasing from us, you engage in our service a
 
 ## Company Information
 
-Roofless Labs Sàrl
-1 rue des photographes
-1200 Geneva
+Roofless Labs Sàrl\
+1 rue des Photographes\
+1207 Geneva\
 Switzerland
 
 Contact: [contact@rooflesslabs.com](mailto:contact@rooflesslabs.com)
