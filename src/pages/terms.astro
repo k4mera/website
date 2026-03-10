@@ -1,120 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Content as TermsContent } from "../content/terms.md";
 ---
 
 <BaseLayout
-  title="Terms & Conditions | K4MERA"
+  title="Terms of Service | K4MERA"
   description="Terms of Service, Refund Policy, and Shipping Policy for K4MERA by Roofless Labs Sàrl."
   nav="/"
 >
   <div class="flex flex-col w-full items-center px-6 py-24 md:py-32">
-    <div class="max-w-2xl w-full text-custom-black font-inter text-sm md:text-base leading-relaxed">
-
-      <h1 class="font-aileron-bold text-3xl md:text-4xl mb-12">Terms of Service</h1>
-
-      <p class="mb-4">
-        This website is operated by Roofless Labs Sàrl. Throughout the site, the terms "we", "us" and "our" refer to Roofless Labs Sàrl.
-      </p>
-      <p class="mb-8">
-        By accessing this website and/or purchasing from us, you engage in our service and agree to be bound by the following terms and conditions.
-      </p>
-
-      <!-- Company Information -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Company Information</h2>
-      <p class="mb-1">Roofless Labs Sàrl</p>
-      <p class="mb-1">1 rue des photographes</p>
-      <p class="mb-1">1200 Geneva</p>
-      <p class="mb-1">Switzerland</p>
-      <p class="mb-8">
-        Contact: <a href="mailto:contact@rooflesslabs.com" class="underline hover:opacity-75">contact@rooflesslabs.com</a>
-      </p>
-
-      <!-- Accuracy of Information -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Accuracy of Information</h2>
-      <p class="mb-8">You agree to provide accurate and complete billing, shipping, and contact information when placing an order. We are not responsible for delays or failed deliveries resulting from incorrect information provided by the customer.</p>
-
-      <!-- Pricing -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Pricing</h2>
-      <p class="mb-4">All prices displayed on this website are in CHF.</p>
-      <p class="mb-4">
-        Roofless Labs Sàrl is currently not subject to Swiss VAT in accordance with Article 10 of the Swiss VAT Act.
-      </p>
-      <p class="mb-8">Prices displayed therefore do not include VAT.</p>
-
-      <!-- Products -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Products</h2>
-      <p class="mb-4">We strive to display our products as accurately as possible.</p>
-      <p class="mb-4">However, slight variations may occur between product images and the final delivered item.</p>
-      <p class="mb-8">Certain products showcased on this website may not yet be available for purchase. Product descriptions, specifications, pricing, and availability are subject to change without notice and do not constitute a binding offer.</p>
-
-      <!-- Orders -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Orders</h2>
-      <p class="mb-4">All orders placed through this website are subject to acceptance and availability.</p>
-      <p class="mb-8">We reserve the right to refuse or cancel any order if fraudulent or suspicious activity is suspected.</p>
-
-      <!-- Payment -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Payment</h2>
-      <p class="mb-4">Payments are processed securely through Shopify's payment system.</p>
-      <p class="mb-8">Orders will only be processed after full payment has been received.</p>
-
-      <!-- Shipping -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Shipping</h2>
-      <p class="mb-4">Orders are shipped via Swiss Post.</p>
-      <p class="mb-4">Estimated processing and shipping time is 7–14 business days.</p>
-      <p class="mb-8">These timeframes are estimates and may vary depending on destination or circumstances beyond our control.</p>
-
-      <!-- International Shipping -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">International Shipping</h2>
-      <p class="mb-4">We ship worldwide.</p>
-      <p class="mb-4">Customs duties, import taxes, or additional fees required by the destination country are the sole responsibility of the customer.</p>
-      <p class="mb-8">If a shipment is refused due to unpaid duties or taxes, the refund may exclude shipping and return costs.</p>
-
-      <!-- Intellectual Property -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Intellectual Property</h2>
-      <p class="mb-4">All content on this website, including designs, logos, images, and products, is the intellectual property of Roofless Labs Sàrl.</p>
-      <p class="mb-8">Unauthorized reproduction or distribution is prohibited.</p>
-
-      <!-- Limitation of Liability -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Limitation of Liability</h2>
-      <p class="mb-4">To the fullest extent permitted by applicable law, Roofless Labs Sàrl shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of this website or the purchase of any product.</p>
-      <p class="mb-8">In any case, our total liability shall not exceed the amount paid by you for the product in question.</p>
-
-      <!-- Governing Law -->
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Governing Law</h2>
-      <p class="mb-4">These terms are governed by the laws of Switzerland.</p>
-      <p class="mb-12">Any disputes shall be handled by the competent courts of Geneva.</p>
-
-      <!-- Refund Policy -->
-      <h1 class="font-aileron-bold text-3xl md:text-4xl mb-12">Refund Policy</h1>
-
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Returns</h2>
-      <p class="mb-4">We accept returns within 14 days of delivery.</p>
-      <p class="mb-2">To be eligible for a return, the item must be:</p>
-      <ul class="list-disc list-inside mb-4 space-y-1 pl-2">
-        <li>Unworn</li>
-        <li>Unwashed</li>
-        <li>With original tags attached</li>
-        <li>In its original packaging</li>
-      </ul>
-      <p class="mb-8">Return shipping costs are the responsibility of the customer.</p>
-
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">Refunds</h2>
-      <p class="mb-4">Once your return is received and inspected, we will process your refund within 7 days.</p>
-      <p class="mb-4">Refunds will be issued to the original payment method used during checkout.</p>
-      <p class="mb-12">We currently do not offer exchanges.</p>
-
-      <!-- Shipping Policy -->
-      <h1 class="font-aileron-bold text-3xl md:text-4xl mb-12">Shipping Policy</h1>
-
-      <p class="mb-4">All orders are processed within 7–14 business days.</p>
-      <p class="mb-4">Orders are shipped via Swiss Post.</p>
-      <p class="mb-8">Delivery times may vary depending on the destination country and local customs procedures.</p>
-
-      <h2 class="font-aileron-bold text-xl md:text-2xl mb-4">International Shipping</h2>
-      <p class="mb-4">We ship worldwide.</p>
-      <p class="mb-4">Customers are responsible for any customs duties, import taxes, or additional fees charged by their country.</p>
-      <p class="mb-8">Roofless Labs Sàrl is not responsible for delays caused by customs.</p>
-
+    <div class="max-w-2xl w-full text-custom-black font-inter text-sm md:text-base leading-relaxed prose prose-sm">
+      <TermsContent />
     </div>
   </div>
 </BaseLayout>
