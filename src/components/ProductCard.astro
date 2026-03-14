@@ -1,7 +1,7 @@
 <!-- Template for product cards — cloned by JS at runtime -->
 <template id="product-card-template">
   <div
-    class="flex-1 flex flex-col p-2 rounded bg-white/40 text-base cursor-pointer"
+    class="flex-1 flex flex-col items-center p-2 rounded text-base cursor-pointer"
     role="button"
     tabindex="0"
   >
@@ -14,8 +14,8 @@
         loading="lazy"
       />
     </div>
-    <div class="p-3">
-      <h3 data-card="title" class="font-aileron-regular mb-1 text-xl mt-2"></h3>
+    <div class="px-3 pt-0 pb-3">
+      <h3 data-card="title" class="font-aileron-regular mb-1 text-xl"></h3>
       <p data-card="price" class="font-inter text-sm accent-blue"></p>
     </div>
   </div>

@@ -47,7 +47,7 @@ Orders will only be processed after full payment has been received.
 
 Orders are shipped via Swiss Post.
 
-Estimated processing and shipping time is 7–14 business days.
+Clothing items are sold as pre-orders. Estimated shipping time for clothing is between 2–8 weeks, depending on how close the order was placed to a new batch being produced.
 
 These timeframes are estimates and may vary depending on destination or circumstances beyond our control.
 

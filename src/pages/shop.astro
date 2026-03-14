@@ -4,6 +4,8 @@ import Title from "../components/Title.astro";
 import ProductCard from "../components/ProductCard.astro";
 import ProductModal from "../components/ProductModal.astro";
 import ShopState from "../components/ShopState.astro";
+
+const isProd = import.meta.env.PROD;
 ---
 
 <BaseLayout
@@ -42,6 +44,57 @@ import ShopState from "../components/ShopState.astro";
   <!-- Product detail modal -->
   <ProductModal />
 </BaseLayout>
+
+{!isProd && (
+  <script is:inline>
+    window.__SHOP_MOCK__ = function (renderProductGrid) {
+      document.getElementById("shop-loading").classList.add("hidden");
+
+      var mockProducts = [
+        {
+          title: "3D 4D TEE",
+          description: "A mock product for testing the product modal.",
+          descriptionHtml:
+            "<p>A mock product for testing the product modal.</p><ul><li>Feature one</li><li>Feature two</li><li>Feature three</li></ul>",
+          images: [
+            { src: "/assets/images/tee.png" },
+            { src: "/assets/images/tee.png" },
+            { src: "/assets/images/tee.png" },
+          ],
+          options: [{ name: "Color" }],
+          variants: [
+            {
+              id: "mock-variant-black",
+              title: "Black",
+              available: true,
+              quantityAvailable: 5,
+              price: { amount: "60.00", currencyCode: "CHF" },
+              image: { src: "/assets/images/tee.png" },
+            },
+            {
+              id: "mock-variant-blue",
+              title: "Blue",
+              available: true,
+              quantityAvailable: 3,
+              price: { amount: "60.00", currencyCode: "CHF" },
+              image: { src: "/assets/images/tee.png" },
+            },
+            {
+              id: "mock-variant-orange",
+              title: "Orange",
+              available: false,
+              quantityAvailable: 0,
+              price: { amount: "60.00", currencyCode: "CHF" },
+              image: { src: "/assets/images/tee.png" },
+            },
+          ],
+        },
+      ];
+
+      renderProductGrid(mockProducts);
+    };
+  </script>
+)}
 
 <!-- Shopify Buy SDK -->
 <script
@@ -642,6 +695,10 @@ import ShopState from "../components/ShopState.astro";
     }
 
     // ── Init ─────────────────────────────────────────────────
-    initShopify();
+    if (typeof window.__SHOP_MOCK__ === "function") {
+      window.__SHOP_MOCK__(renderProductGrid);
+    } else {
+      initShopify();
+    }
   });
 </script>
