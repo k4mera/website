@@ -29,12 +29,25 @@ const { src, index } = Astro.props;
     break-inside: avoid;
     margin-bottom: 12px;
     width: 100%;
+    overflow: hidden;
   }
 
   .gallery-item video {
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  /* Size variants assigned randomly by JS */
+  .gallery-item.size-wide   { aspect-ratio: 16 / 9; }
+  .gallery-item.size-square { aspect-ratio: 1 / 1; }
+  .gallery-item.size-tall   { aspect-ratio: 3 / 5; }
+
+  .gallery-item.size-wide video,
+  .gallery-item.size-square video,
+  .gallery-item.size-tall video {
+    height: 100%;
+    object-fit: cover;
   }
 
   @media (min-width: 768px) {

@@ -48,6 +48,17 @@ const files = readdirSync("./public/assets/gallery")
     (w) => w.querySelector("video") as HTMLVideoElement
   );
 
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+  // Randomly assign size variants on desktop only — weighted toward natural/wide
+  if (!isMobile) {
+    const sizes = ["size-wide", "size-wide", "size-square", "size-tall", ""];
+    orderedWrappers.forEach((wrapper) => {
+      const pick = sizes[Math.floor(Math.random() * sizes.length)];
+      if (pick) wrapper.classList.add(pick);
+    });
+  }
+
   // Show first frame of every video without playing
   orderedVideos.forEach((v) => {
     v.addEventListener("loadedmetadata", () => {
@@ -62,26 +73,25 @@ const files = readdirSync("./public/assets/gallery")
     video.play().catch(() => {});
   }
 
-  const isMobile = window.matchMedia("(max-width: 767px)").matches;
-
   if (isMobile) {
     // --- Mobile: play the video occupying the most screen space ---
-    const ratioMap = new Map<HTMLVideoElement, number>();
+    const areaMap = new Map<HTMLVideoElement, number>();
 
     const mobileObs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) =>
-          ratioMap.set(e.target as HTMLVideoElement, e.intersectionRatio)
-        );
+        entries.forEach((e) => {
+          const area = e.intersectionRect.width * e.intersectionRect.height;
+          areaMap.set(e.target as HTMLVideoElement, area);
+        });
         let best: HTMLVideoElement | null = null;
-        let bestRatio = 0;
-        ratioMap.forEach((r, v) => {
-          if (r > bestRatio) {
-            bestRatio = r;
+        let bestArea = 0;
+        areaMap.forEach((area, v) => {
+          if (area > bestArea) {
+            bestArea = area;
             best = v;
           }
         });
-        if (best && bestRatio > 0) activateVideo(best);
+        if (best && bestArea > 0) activateVideo(best);
       },
       { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] }
     );
