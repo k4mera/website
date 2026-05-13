@@ -1,0 +1,134 @@
+---
+import { readdirSync } from "node:fs";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GalleryItem from "../components/GalleryItem.astro";
+
+const files = readdirSync("./public/assets/gallery")
+  .filter((f) => f.endsWith(".mp4"))
+  .map((f, i) => ({ src: `/assets/gallery/${f}`, index: i }));
+---
+
+<BaseLayout title="Gallery — K4MERA" nav="/">
+  <div class="gallery-grid">
+    {files.map((item) => <GalleryItem src={item.src} index={item.index} />)}
+  </div>
+</BaseLayout>
+
+<style>
+  .gallery-grid {
+    columns: 1;
+    column-gap: 12px;
+    padding: 80px 12px 12px;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-grid {
+      columns: 4;
+      column-gap: 16px;
+      padding: 80px 64px 16px;
+    }
+  }
+</style>
+
+<script>
+  const grid = document.querySelector(".gallery-grid") as HTMLElement;
+  const wrappers = [...grid.children] as HTMLElement[];
+  const allVideos = wrappers.map((w) => w.querySelector("video") as HTMLVideoElement);
+
+  // --- Shuffle DOM (Fisher-Yates) ---
+  for (let i = wrappers.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    grid.appendChild(wrappers[j]);
+    [wrappers[i], wrappers[j]] = [wrappers[j], wrappers[i]];
+  }
+
+  // Re-query after shuffle so order matches DOM
+  const orderedWrappers = [...grid.children] as HTMLElement[];
+  const orderedVideos = orderedWrappers.map(
+    (w) => w.querySelector("video") as HTMLVideoElement
+  );
+
+  // Show first frame of every video without playing
+  orderedVideos.forEach((v) => {
+    v.addEventListener("loadedmetadata", () => {
+      v.currentTime = 0.001;
+    });
+  });
+
+  function activateVideo(video: HTMLVideoElement) {
+    orderedVideos.forEach((v) => {
+      if (v !== video) v.pause();
+    });
+    video.play().catch(() => {});
+  }
+
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+  if (isMobile) {
+    // --- Mobile: play the video occupying the most screen space ---
+    const ratioMap = new Map<HTMLVideoElement, number>();
+
+    const mobileObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) =>
+          ratioMap.set(e.target as HTMLVideoElement, e.intersectionRatio)
+        );
+        let best: HTMLVideoElement | null = null;
+        let bestRatio = 0;
+        ratioMap.forEach((r, v) => {
+          if (r > bestRatio) {
+            bestRatio = r;
+            best = v;
+          }
+        });
+        if (best && bestRatio > 0) activateVideo(best);
+      },
+      { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] }
+    );
+
+    orderedVideos.forEach((v) => mobileObs.observe(v));
+  } else {
+    // --- Desktop: hover/focus to activate; fallback to first visible ---
+    let hoveredVideo: HTMLVideoElement | null = null;
+    const visibleSet = new Set<HTMLVideoElement>();
+
+    function activateFirst() {
+      const first = orderedVideos.find((v) => visibleSet.has(v));
+      if (first) activateVideo(first);
+    }
+
+    const visObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          const v = e.target as HTMLVideoElement;
+          if (e.isIntersecting) visibleSet.add(v);
+          else visibleSet.delete(v);
+        });
+        if (!hoveredVideo) activateFirst();
+      },
+      { threshold: 0.1 }
+    );
+
+    orderedVideos.forEach((v) => visObs.observe(v));
+
+    orderedWrappers.forEach((wrapper) => {
+      const video = wrapper.querySelector("video") as HTMLVideoElement;
+      wrapper.addEventListener("mouseenter", () => {
+        hoveredVideo = video;
+        activateVideo(video);
+      });
+      wrapper.addEventListener("mouseleave", () => {
+        hoveredVideo = null;
+        activateFirst();
+      });
+      wrapper.addEventListener("focus", () => {
+        hoveredVideo = video;
+        activateVideo(video);
+      });
+      wrapper.addEventListener("blur", () => {
+        hoveredVideo = null;
+        activateFirst();
+      });
+    });
+  }
+</script>

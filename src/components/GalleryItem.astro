@@ -1,0 +1,45 @@
+---
+interface Props {
+  src: string;
+  index: number;
+}
+
+const { src, index } = Astro.props;
+---
+
+<div
+  class="gallery-item overflow-hidden cursor-pointer outline-none"
+  data-gallery-item
+  data-index={index}
+  tabindex="0"
+>
+  <video
+    src={src}
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    class="w-full block"
+  ></video>
+  <slot />
+</div>
+
+<style>
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 12px;
+    width: 100%;
+  }
+
+  .gallery-item video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .gallery-item {
+      margin-bottom: 16px;
+    }
+  }
+</style>
