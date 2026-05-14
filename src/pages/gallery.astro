@@ -33,9 +33,7 @@ const files = readdirSync("./public/assets/gallery")
 <script>
   const grid = document.querySelector(".gallery-grid") as HTMLElement;
   const wrappers = [...grid.children] as HTMLElement[];
-  const allVideos = wrappers.map((w) => w.querySelector("video") as HTMLVideoElement);
-
-  // --- Shuffle DOM (Fisher-Yates) ---
+// --- Shuffle DOM (Fisher-Yates) ---
   for (let i = wrappers.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     grid.appendChild(wrappers[j]);
@@ -59,12 +57,26 @@ const files = readdirSync("./public/assets/gallery")
     });
   }
 
-  // Show first frame of every video without playing
-  orderedVideos.forEach((v) => {
-    v.addEventListener("loadedmetadata", () => {
-      v.currentTime = 0.001;
-    });
-  });
+  // Lazy-load: only assign src when video is near the viewport
+  const lazyObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const video = e.target as HTMLVideoElement;
+        if (!video.hasAttribute("src")) {
+          video.src = video.dataset.src!;
+          video.load();
+          video.addEventListener("loadedmetadata", () => {
+            video.currentTime = 0.001;
+          }, { once: true });
+        }
+        lazyObs.unobserve(video);
+      });
+    },
+    { rootMargin: "300px" }
+  );
+
+  orderedVideos.forEach((v) => lazyObs.observe(v));
 
   function activateVideo(video: HTMLVideoElement) {
     orderedVideos.forEach((v) => {

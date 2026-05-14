@@ -14,11 +14,11 @@ const { src, index } = Astro.props;
   tabindex="0"
 >
   <video
-    src={src}
+    data-src={src}
     muted
     loop
     playsinline
-    preload="metadata"
+    preload="none"
     class="w-full block"
   ></video>
   <slot />
