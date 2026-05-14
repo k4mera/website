@@ -2,9 +2,10 @@
 interface Props {
   src: string;
   index: number;
+  poster?: string;
 }
 
-const { src, index } = Astro.props;
+const { src, index, poster } = Astro.props;
 ---
 
 <div
@@ -15,6 +16,7 @@ const { src, index } = Astro.props;
 >
   <video
     data-src={src}
+    poster={poster}
     muted
     loop
     playsinline

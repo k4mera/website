@@ -4,6 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "generate-posters": "node scripts/generate-gallery-posters.mjs",
+    "prebuild": "node scripts/generate-gallery-posters.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -14,5 +16,9 @@
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.5",
     "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "blurhash": "^2.0.5",
+    "sharp": "^0.34.5"
   }
 }

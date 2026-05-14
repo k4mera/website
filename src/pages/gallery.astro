@@ -2,15 +2,20 @@
 import { readdirSync } from "node:fs";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import GalleryItem from "../components/GalleryItem.astro";
+import posters from "../data/gallery-posters.json";
 
 const files = readdirSync("./public/assets/gallery")
   .filter((f) => f.endsWith(".mp4"))
-  .map((f, i) => ({ src: `/assets/gallery/${f}`, index: i }));
+  .map((f, i) => ({
+    src: `/assets/gallery/${f}`,
+    index: i,
+    poster: (posters as Record<string, string>)[f],
+  }));
 ---
 
 <BaseLayout title="Gallery — K4MERA" nav="/">
   <div class="gallery-grid">
-    {files.map((item) => <GalleryItem src={item.src} index={item.index} />)}
+    {files.map((item) => <GalleryItem src={item.src} index={item.index} poster={item.poster} />)}
   </div>
 </BaseLayout>
 
